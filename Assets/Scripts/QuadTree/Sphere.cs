@@ -1,0 +1,201 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Sphere : MonoBehaviour
+{
+    public PlanetProfile profile;
+    public bool UseMaps;
+    public int AmountOfVertices;
+
+    public CustomPerlinGenerator generator;
+    MeshFilter filter;
+    MeshRenderer render;
+
+    #region UNITY
+
+    private void Start()
+    {
+        if (!UseMaps)
+        {
+            Generate();
+        }
+    }
+
+    #endregion
+
+    #region REGENERATE
+
+    public void Regenerate()
+    {
+        generator.Generate(profile);
+        ReScale();
+
+        if (UseMaps)
+        {
+            render.material = profile.material;
+
+            // if lit
+            if (render.material.shader.name == "Universal Render Pipeline/Lit")
+            {
+                //if (profile.name.Contains("Magma"))
+                //{
+                //    render.material.SetTexture("_EmissionMap", generator.InverseHeightMap);
+                //}
+
+                render.material.SetTexture("_BaseMap", generator.ColorMap);
+            }
+            // if unlit
+            else
+            {
+                render.material.SetTexture("_MainTex", generator.ColorMap);
+            }
+        }
+    }
+
+    #endregion
+
+    #region INIT
+
+    public void Generate()
+    {
+        generator = GetComponent<CustomPerlinGenerator>();
+
+        Mesh mesh = new Mesh();
+
+        SetupVerticesAndUV(mesh);
+
+        mesh.triangles = ProcessTriangles();
+        filter = GetComponent<MeshFilter>();
+        filter.mesh = mesh;
+        render = GetComponent<MeshRenderer>();
+
+        //if (UseMaps)
+        //{
+        //    render.material.SetTexture("_BaseMap", generator.ColorMap);
+        //}
+    }
+
+    #endregion
+
+    #region Elevation
+
+    void ReScale()
+    {
+        // We don't want to recalculate the elevation if there is none
+        if (!UseMaps)
+        {
+            return;
+        }
+
+        Vector3[] vertices = new Vector3[
+            ((AmountOfVertices + 1) * (AmountOfVertices + 1))];
+        Vector3[] normals = new Vector3[vertices.Length];
+        float latPadding = 180f / (float)AmountOfVertices;
+        float lonPadding = 360f / (float)AmountOfVertices;
+
+        for (int x = 0, i = 0; x <= AmountOfVertices; x++)
+        {
+            for (int y = 0; y <= AmountOfVertices; y++, i++)
+            {
+                vertices[i] = CoordinatesProjector.InverseMercatorProjector(
+                    (((x * lonPadding) - 180f) * Mathf.Deg2Rad),
+                    (((y * latPadding) - 90f) * Mathf.Deg2Rad),
+                    profile.BaseElevation + (GetGrayScale(
+                            generator.HeightMap,
+                            x,
+                            y) * profile.ElevationMultiplier));
+
+                normals[i] = vertices[i].normalized;
+
+            }
+        }
+
+        filter.mesh.vertices = vertices;
+        filter.mesh.normals = normals;
+        //filter.mesh.RecalculateNormals();
+        filter.mesh.RecalculateTangents();
+    }
+
+    float GetGrayScale(Texture2D tex, int x, int y)
+    {
+        if (x == AmountOfVertices && y == AmountOfVertices)
+        {
+            return tex.GetPixel(tex.width - 1, tex.height - 1).grayscale;
+        }
+
+        return tex.GetPixel(
+            (int)((float)tex.width * ((float)x / (float)AmountOfVertices)),
+            (int)((float)tex.height * ((float)y / (float)AmountOfVertices))).grayscale;
+    }
+
+    #endregion
+
+    #region MeshGeneration
+
+    void SetupVerticesAndUV(Mesh mesh)
+    {
+        Vector3[] vertices = new Vector3[
+            ((AmountOfVertices + 1) * (AmountOfVertices + 1))];
+        Vector2[] uv = new Vector2[vertices.Length];
+        float latPadding = 180f / (float)AmountOfVertices;
+        float lonPadding = 360f / (float)AmountOfVertices;
+
+        for (int x = 0, i = 0; x <= AmountOfVertices; x++)
+        {
+            for (int y = 0; y <= AmountOfVertices; y++, i++)
+            {
+                    vertices[i] = CoordinatesProjector.InverseMercatorProjector(
+                        (((x * lonPadding) - 180f) * Mathf.Deg2Rad),
+                        (((y * latPadding) - 90f) * Mathf.Deg2Rad),
+                        .96f);
+
+                uv[i] = new Vector2(
+                    (float)x / (float)AmountOfVertices,
+                    (float)y / (float)AmountOfVertices);
+            }
+        }
+
+        mesh.RecalculateNormals();
+        mesh.vertices = vertices;
+        mesh.uv = uv;
+    }
+
+    //void   CalculateNormals(Mesh mesh)
+    //{
+    //    Vector3[] normals = new Vector3[mesh.vertices.Length];
+
+    //    for (int x = 0; x < AmountOfVertices; x++)
+    //    {
+
+    //    }
+
+
+    //    mesh.normals = normals;
+    //}
+
+    //Vector3 GetVector(int x, int y)
+    //{
+
+    //}
+
+    int[] ProcessTriangles()
+    {
+        int[] triangles = new int[((AmountOfVertices * AmountOfVertices) + AmountOfVertices) * 6];
+
+        for (int ti = 0, vi = 0, y = 0; y < AmountOfVertices; y++, vi++)
+        {
+            for (int x = 0; x < AmountOfVertices; x++, ti += 6, vi++)
+            {
+                triangles[ti] = vi;
+                triangles[ti + 3] = triangles[ti + 2] = vi + 1;
+                triangles[ti + 4] = triangles[ti + 1] = vi + AmountOfVertices + 1;
+                triangles[ti + 5] = vi + AmountOfVertices + 2;
+            }
+        }
+
+        return triangles;
+    }
+
+    #endregion
+}

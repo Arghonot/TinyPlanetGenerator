@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d581b5036d7911741ad01e8ca81765b9, type: 3}
+  m_Name: EarthTest
+  m_EditorClassIdentifier: 
+  Name: 
+  ColorMap:
+    serializedVersion: 2
+    key0: {r: 0.1764706, g: 0.24313726, b: 0.5176471, a: 1}
+    key1: {r: 0.34901962, g: 0.44705883, b: 0.6901961, a: 1}
+    key2: {r: 1, g: 0.91128063, b: 0.754717, a: 0}
+    key3: {r: 0.2612756, g: 0.5471698, b: 0.23745106, a: 0}
+    key4: {r: 0.046991818, g: 0.31132078, b: 0.08003294, a: 0}
+    key5: {r: 0.48235294, g: 0.49019608, b: 0.41568628, a: 0}
+    key6: {r: 0.78039217, g: 0.79607844, b: 0.78431374, a: 0}
+    key7: {r: 0.7411765, g: 0.7647059, b: 0.78039217, a: 0}
+    ctime0: 2313
+    ctime1: 2891
+    ctime2: 6168
+    ctime3: 21974
+    ctime4: 49151
+    ctime5: 61102
+    ctime6: 65535
+    ctime7: 65535
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 7
+    m_NumAlphaKeys: 2
+  ElevationMap:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 0, g: 0, b: 0, a: 1}
+    key2: {r: 0.1339675, g: 0.1339675, b: 0.1339675, a: 0}
+    key3: {r: 0.14548236, g: 0.14548236, b: 0.14548236, a: 0}
+    key4: {r: 0.5882249, g: 0.5882249, b: 0.5882249, a: 0}
+    key5: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 386
+    ctime2: 964
+    ctime3: 12914
+    ctime4: 59560
+    ctime5: 65535
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 6
+    m_NumAlphaKeys: 2
+  InverseElevationMap:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 0, g: 0, b: 0, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  ElevationMultiplier: 0.09
+  type: 0
+  material: {fileID: 2100000, guid: fd2c6b0d068173c4a8cb6e5372551ed9, type: 2}
+  frequency: 2
+  lacunarity: 2
+  persistence: 0.4
+  displacement: 0
+  octaves: 6
