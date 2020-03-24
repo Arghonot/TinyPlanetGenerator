@@ -19,6 +19,7 @@ public class PlanetProfile : ScriptableObject
     public Gradient ColorMap;
     public Gradient ElevationMap;
     public Gradient InverseElevationMap;
+    public bool useWater;
     public float ElevationMultiplier;
     public float BaseElevation = .35f;
     public NoiseType type;

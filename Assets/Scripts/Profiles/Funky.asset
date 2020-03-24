@@ -100,7 +100,9 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  useWater: 1
   ElevationMultiplier: 0.1
+  BaseElevation: 0.35
   type: 2
   material: {fileID: 2100000, guid: fd2c6b0d068173c4a8cb6e5372551ed9, type: 2}
   frequency: 1

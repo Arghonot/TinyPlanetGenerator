@@ -7,6 +7,7 @@ public class Sphere : MonoBehaviour
     public PlanetProfile profile;
     public bool UseMaps;
     public int AmountOfVertices;
+    public GameObject water;
 
     public CustomPerlinGenerator generator;
     MeshFilter filter;
@@ -50,6 +51,15 @@ public class Sphere : MonoBehaviour
             {
                 render.material.SetTexture("_MainTex", generator.ColorMap);
             }
+        }
+
+        if (profile.useWater)
+        {
+            water.SetActive(true);
+        }
+        else
+        {
+            water.SetActive(false);
         }
     }
 
