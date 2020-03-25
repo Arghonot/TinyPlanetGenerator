@@ -100,7 +100,7 @@ Material:
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Tint: {r: 0.16078432, g: 0.5019608, b: 0.7254902, a: 1}
+    - _Tint: {r: 0, g: 0.14864244, b: 0.3207547, a: 1}
 --- !u!114 &6868195554732883608
 MonoBehaviour:
   m_ObjectHideFlags: 11

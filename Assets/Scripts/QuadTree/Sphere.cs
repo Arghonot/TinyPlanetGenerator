@@ -13,6 +13,11 @@ public class Sphere : MonoBehaviour
     MeshFilter filter;
     MeshRenderer render;
 
+    bool Draw = false;
+    Vector3[] _normals;
+    Vector3[] _vertices;
+    public float length;
+
     #region UNITY
 
     private void Start()
@@ -115,17 +120,153 @@ public class Sphere : MonoBehaviour
                             generator.HeightMap,
                             x,
                             y) * profile.ElevationMultiplier));
-
-                normals[i] = vertices[i].normalized;
-
             }
         }
 
+        //for (int x = 0, i = 0; x <= AmountOfVertices; x++)
+        //{
+        //    for (int y = 0; y <= AmountOfVertices; y++, i++)
+        //    {
+        //        normals[i] = getNormal(i, vertices);
+        //    }
+        //}
+
         filter.mesh.vertices = vertices;
-        filter.mesh.normals = normals;
-        //filter.mesh.RecalculateNormals();
+        filter.mesh.normals = CalCulateNormals(vertices, filter.mesh.triangles);
+        filter.mesh.RecalculateNormals();
         filter.mesh.RecalculateTangents();
+
+        Draw = true;
+        _vertices = vertices;
+        _normals = filter.mesh.normals;
     }
+
+    Vector3[] CalCulateNormals(Vector3[] vertices, int[] triangles)
+    {
+        Vector3[] vertexNormals = new Vector3[vertices.Length];
+        int triangleCount = triangles.Length / 3;
+
+        for (int x = 0, i = 0; x <= AmountOfVertices; x++)
+        {
+            for (int y = 0; y <= AmountOfVertices; y++, i++)
+            {
+                vertexNormals[i] = SurfaceNormalFromIndices(
+                    i,
+                    vertices).normalized;
+                //print(i + " " + vertexNormals[i].magnitude);
+                if (i % AmountOfVertices == 0)
+                {
+                    print("+-------------------+");
+                }
+            }
+        }
+
+        return vertexNormals;
+    }
+
+    Vector3 SurfaceNormalFromIndices(int Index, Vector3[] vertices)
+    {
+        Vector3 normal = Vector3.zero;
+        if (Index < AmountOfVertices + 1 || Index > (AmountOfVertices - 1) * AmountOfVertices)
+        {
+            return vertices[Index];
+        }
+
+        Vector3 SideA = vertices[Index + AmountOfVertices] - vertices[Index];
+        Vector3 SideB = vertices[Index + AmountOfVertices - 1] - vertices[Index];
+                
+        Vector3 SideC = vertices[Index -1 ] - vertices[Index];
+        Vector3 SideD = vertices[Index - AmountOfVertices - 1] - vertices[Index];
+                
+        Vector3 SideE = vertices[Index - AmountOfVertices] - vertices[Index];
+        Vector3 SideF = vertices[Index - AmountOfVertices + 1] - vertices[Index];
+                
+        Vector3 SideG = vertices[Index + 1] - vertices[Index];
+        Vector3 SideH = vertices[Index + AmountOfVertices + 1] - vertices[Index];
+
+        Vector3 CrossedNormalA = Vector3.Cross(SideB, SideA);
+        Vector3 CrossedNormalB = Vector3.Cross(SideC, SideD);
+        Vector3 CrossedNormalC = Vector3.Cross(SideE, SideF);
+        Vector3 CrossedNormalD = Vector3.Cross(SideG, SideH);
+
+        Vector3 DoubleCrossedNormalA = Vector3.Cross(CrossedNormalA, CrossedNormalB);
+        Vector3 DoubleCrossedNormalB = Vector3.Cross(CrossedNormalC, CrossedNormalD);
+
+        return CrossedNormalA;
+        return Vector3.Cross(DoubleCrossedNormalA, DoubleCrossedNormalB);
+
+        //normal += vertices[Index - 1];
+        //normal += vertices[Index + 1];
+
+        //normal += vertices[Index - AmountOfVertices - 1];
+        //normal += vertices[Index - AmountOfVertices];
+        //normal += vertices[Index - AmountOfVertices + 1];
+
+        //normal += vertices[Index + AmountOfVertices - 1];
+        //normal += vertices[Index + AmountOfVertices];
+        //normal += vertices[Index + AmountOfVertices + 1];
+
+        print("CALCULATED NORMAL");
+        return normal;
+    }
+
+    //Vector3[] CalCulateNormals(Vector3[] vertices, int[] triangles)
+    //{
+    //    Vector3[] vertexNormals = new Vector3[vertices.Length];
+    //    int triangleCount = triangles.Length / 3;
+
+    //    for (int i = 0; i < triangleCount; i++)
+    //    {
+    //        int normalTriangleIndex = i * 3;
+
+    //        int vertexIndexA = triangles[normalTriangleIndex];
+    //        int vertexIndexB = triangles[normalTriangleIndex + 1];
+    //        int vertexIndexC = triangles[normalTriangleIndex + 2];
+
+    //        print(vertexIndexA);
+
+    //        //if (normalTriangleIndex % (AmountOfVertices * 2) == 0)
+    //        //{
+    //        //    print("WLESH : " + normalTriangleIndex
+    //        //        + "    " + vertexIndexA
+    //        //        + "    " + vertexIndexB
+    //        //        + "    " + vertexIndexC);
+    //        //}
+
+    //        //print(i + " " + vertexIndexA + "   " + vertexIndexB + "   " + vertexIndexC);
+
+    //        Vector3 triangleNormal = SurfaceNormalFromIndices(
+    //            vertexIndexA,
+    //            vertexIndexB,
+    //            vertexIndexC,
+    //            vertices);
+    //        vertexNormals[vertexIndexA] += triangleNormal;
+    //        vertexNormals[vertexIndexB] += triangleNormal;
+    //        vertexNormals[vertexIndexC] += triangleNormal;
+    //    }
+
+    //    for (int i = 0; i < vertexNormals.Length; i++)
+    //    {
+    //        vertexNormals[i].Normalize();
+    //    }
+
+    //    return vertexNormals;
+    //}
+
+    //Vector3 SurfaceNormalFromIndices(int IndexA, int IndexB, int IndexC, Vector3[] vertices)
+    //{
+    //    Vector3 pointA = vertices[IndexA];
+    //    Vector3 pointB = vertices[IndexB];
+    //    Vector3 pointC = vertices[IndexC];
+
+    //    //print(IndexA + "    " + IndexB + "  " + IndexC);
+    //    // if begin of the mesh
+
+    //    Vector3 sideAB = pointB - pointA;
+    //    Vector3 sideAC = pointC - pointA;
+
+    //    return Vector3.Cross(sideAB, sideAC).normalized;
+    //}
 
     float GetGrayScale(Texture2D tex, int x, int y)
     {
@@ -160,6 +301,8 @@ public class Sphere : MonoBehaviour
                         (((y * latPadding) - 90f) * Mathf.Deg2Rad),
                         .96f);
 
+                //print("[X][DEG]" + x + " " + (x * lonPadding) + "    [Y][DEG]" + y + " " + (y * latPadding));
+
                 uv[i] = new Vector2(
                     (float)x / (float)AmountOfVertices,
                     (float)y / (float)AmountOfVertices);
@@ -170,24 +313,6 @@ public class Sphere : MonoBehaviour
         mesh.vertices = vertices;
         mesh.uv = uv;
     }
-
-    //void   CalculateNormals(Mesh mesh)
-    //{
-    //    Vector3[] normals = new Vector3[mesh.vertices.Length];
-
-    //    for (int x = 0; x < AmountOfVertices; x++)
-    //    {
-
-    //    }
-
-
-    //    mesh.normals = normals;
-    //}
-
-    //Vector3 GetVector(int x, int y)
-    //{
-
-    //}
 
     int[] ProcessTriangles()
     {
@@ -205,6 +330,32 @@ public class Sphere : MonoBehaviour
         }
 
         return triangles;
+    }
+
+    #endregion
+
+    #region DEBUG
+
+    private void OnDrawGizmos()
+    {
+        if (!Draw)
+        {
+            return;
+        }
+        for (int i = 0; i < _vertices.Length; i++)
+        {
+            if (i % AmountOfVertices + 1 == 0)
+            {
+                Gizmos.color = Color.red;
+            }
+            else
+            {
+                Gizmos.color = Color.white;
+            }
+
+            Gizmos.DrawLine(transform.position + _vertices[i], transform.position + _vertices[i] + (_normals[i] * length));
+                //(new Ray(_vertices[i], _normals[i] * length));
+        }
     }
 
     #endregion

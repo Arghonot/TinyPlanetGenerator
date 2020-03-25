@@ -27,8 +27,6 @@ public class UIMapManager : Singleton<UIMapManager>
             return;
         }
 
-        print("AddMap");
-
         var newmap = Instantiate(UIMapPrefab);
 
         uimaps.Add(name, newmap.GetComponent<UIMap>());

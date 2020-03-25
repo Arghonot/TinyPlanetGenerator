@@ -100,7 +100,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  useWater: 1
+  useWater: 0
   ElevationMultiplier: 0.04
   BaseElevation: 0.33
   type: 1

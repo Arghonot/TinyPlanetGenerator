@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 81f714daf7144784b8a2f42f1cd30927, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 0a6e0ea26bb66a04b9104c7b6be19755, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -131,7 +131,7 @@ PrefabInstance:
     - target: {fileID: 1107323894440535753, guid: 240c5d18b44436148b19bcfda648e143,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00007672071
+      value: 5.0000377
       objectReference: {fileID: 0}
     - target: {fileID: 1107323894500721791, guid: 240c5d18b44436148b19bcfda648e143,
         type: 3}
@@ -405,6 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90ca6853c663188478e12ec10619870c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turbulence: 0
   mapSize: 256
   south: -90
   north: 90
@@ -428,7 +429,9 @@ MonoBehaviour:
   profile: {fileID: 0}
   UseMaps: 1
   AmountOfVertices: 80
+  water: {fileID: 0}
   generator: {fileID: 605780106}
+  length: 0
 --- !u!23 &605780108
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -536,6 +539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90ca6853c663188478e12ec10619870c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turbulence: 0
   mapSize: 256
   south: -90
   north: 90
@@ -559,7 +563,9 @@ MonoBehaviour:
   profile: {fileID: 0}
   UseMaps: 1
   AmountOfVertices: 80
+  water: {fileID: 0}
   generator: {fileID: 640073457}
+  length: 0
 --- !u!23 &640073459
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -854,6 +860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90ca6853c663188478e12ec10619870c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turbulence: 0
   mapSize: 256
   south: -90
   north: 90
@@ -877,7 +884,9 @@ MonoBehaviour:
   profile: {fileID: 0}
   UseMaps: 1
   AmountOfVertices: 80
+  water: {fileID: 0}
   generator: {fileID: 1464011916}
+  length: 0
 --- !u!23 &1464011918
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1173,6 +1182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90ca6853c663188478e12ec10619870c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turbulence: 0
   mapSize: 256
   south: -90
   north: 90
@@ -1196,7 +1206,9 @@ MonoBehaviour:
   profile: {fileID: 0}
   UseMaps: 1
   AmountOfVertices: 80
+  water: {fileID: 0}
   generator: {fileID: 2102019240}
+  length: 0
 --- !u!23 &2102019242
 MeshRenderer:
   m_ObjectHideFlags: 0
