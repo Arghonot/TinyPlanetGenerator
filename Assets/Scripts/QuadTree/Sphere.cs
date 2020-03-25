@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +17,8 @@ public class Sphere : MonoBehaviour
     bool Draw = false;
     Vector3[] _normals;
     Vector3[] _vertices;
+    List<Tuple<Vector3, Tuple<Vector3, Vector3>>> _editedNormals;
+    List<Vector3> pos;
     public float length;
 
     #region UNITY
@@ -132,83 +135,135 @@ public class Sphere : MonoBehaviour
         //}
 
         filter.mesh.vertices = vertices;
-        filter.mesh.normals = CalCulateNormals(vertices, filter.mesh.triangles);
         filter.mesh.RecalculateNormals();
-        filter.mesh.RecalculateTangents();
+        Vector3[] copied_normals = filter.mesh.normals;
+        copied_normals = CalCulateNormals(copied_normals, vertices);
+        //filter.mesh.RecalculateTangents();
+        filter.mesh.normals = copied_normals;
 
         Draw = true;
         _vertices = vertices;
         _normals = filter.mesh.normals;
     }
 
-    Vector3[] CalCulateNormals(Vector3[] vertices, int[] triangles)
+    Vector3[] CalCulateNormals(Vector3[] normals, Vector3[] vertices)
     {
-        Vector3[] vertexNormals = new Vector3[vertices.Length];
-        int triangleCount = triangles.Length / 3;
+        pos = new List<Vector3>();
+        _editedNormals = new List<Tuple<Vector3, Tuple<Vector3, Vector3>>>();
 
-        for (int x = 0, i = 0; x <= AmountOfVertices; x++)
+        for (int i = 0; i <= AmountOfVertices; i++)
         {
-            for (int y = 0; y <= AmountOfVertices; y++, i++)
-            {
-                vertexNormals[i] = SurfaceNormalFromIndices(
-                    i,
-                    vertices).normalized;
-                //print(i + " " + vertexNormals[i].magnitude);
-                if (i % AmountOfVertices == 0)
-                {
-                    print("+-------------------+");
-                }
-            }
+            int endindex = ((1 + AmountOfVertices) * (1 + AmountOfVertices)) - (AmountOfVertices) + i - 1;
+
+            //Vector3 leftvector = vertices[endindex - 1] - vertices[endindex];
+            //Vector3 rightvector = vertices[i + 1] - vertices[i];
+
+            //Vector3 leftvector = vertices[endindex] - vertices[endindex - 1];
+            //Vector3 rightvector = vertices[i] - vertices[i + 1];
+            ////Vector3 newnormal = Vector3.Cross(leftvector, rightvector).normalized;
+            //Vector3 newnormal = -(leftvector + rightvector).normalized;
+
+            Vector3 leftvector = vertices[endindex] + vertices[endindex - 1];
+            Vector3 rightvector = vertices[i] + vertices[i + 1];
+            //Vector3 newnormal = Vector3.Cross(leftvector, rightvector).normalized;
+            Vector3 newnormal = (leftvector + rightvector).normalized;
+
+            if (newnormal.magnitude < 0)
+                newnormal *= -1f;
+
+            //print(i + " " + endindex);
+            print(newnormal);
+            normals[i] = normals[endindex] = newnormal;
+            _editedNormals.Add(
+                new Tuple<Vector3, Tuple<Vector3, Vector3>>(
+                    vertices[i],
+                    new Tuple<Vector3, Vector3>(
+                        normals[i],
+                        normals[endindex])));
         }
 
-        return vertexNormals;
+        print(_editedNormals.Count);
+
+        // 2 loops
+        //for (int x = 0, i = 0; x <= AmountOfVertices; x++)
+        //{
+        //    int begin = i;
+        //    for (int y = 0; y <= AmountOfVertices; y++, i++)
+        //    {
+        //        if (x == 0 || x == AmountOfVertices)
+        //        {
+        //            print(normals[begin]);
+        //            Vector3 newnormal = (normals[begin] + normals[i - 1]).normalized;
+        //            pos.Add(vertices[begin]);
+        //            pos.Add(vertices[i - 1]);
+        //            normals[begin] = newnormal;
+        //            normals[i - 1] = normals[begin];
+
+        //            print(begin + " " + (i - 1));
+        //            print(normals[begin]);
+        //        }
+        //    }
+        //}
+
+        // 1 loop attempt
+        //for (int i = 0; i <= AmountOfVertices; i++)
+        //{
+        //    int index = i * AmountOfVertices;
+
+        //    normals[index] = (normals[index] + normals[index + AmountOfVertices]).normalized;
+        //    normals[index + AmountOfVertices] = normals[index];
+
+        //    print(index + "  " + (index + AmountOfVertices));
+        //}
+
+        return normals;
     }
 
-    Vector3 SurfaceNormalFromIndices(int Index, Vector3[] vertices)
-    {
-        Vector3 normal = Vector3.zero;
-        if (Index < AmountOfVertices + 1 || Index > (AmountOfVertices - 1) * AmountOfVertices)
-        {
-            return vertices[Index];
-        }
+    //Vector3 SurfaceNormalFromIndices(int Index, Vector3[] vertices)
+    //{
+    //    Vector3 normal = Vector3.zero;
+    //    if (Index < AmountOfVertices + 1 || Index > (AmountOfVertices - 1) * AmountOfVertices)
+    //    {
+    //        return vertices[Index];
+    //    }
 
-        Vector3 SideA = vertices[Index + AmountOfVertices] - vertices[Index];
-        Vector3 SideB = vertices[Index + AmountOfVertices - 1] - vertices[Index];
+    //    Vector3 SideA = vertices[Index + AmountOfVertices] - vertices[Index];
+    //    Vector3 SideB = vertices[Index + AmountOfVertices - 1] - vertices[Index];
                 
-        Vector3 SideC = vertices[Index -1 ] - vertices[Index];
-        Vector3 SideD = vertices[Index - AmountOfVertices - 1] - vertices[Index];
+    //    Vector3 SideC = vertices[Index -1 ] - vertices[Index];
+    //    Vector3 SideD = vertices[Index - AmountOfVertices - 1] - vertices[Index];
                 
-        Vector3 SideE = vertices[Index - AmountOfVertices] - vertices[Index];
-        Vector3 SideF = vertices[Index - AmountOfVertices + 1] - vertices[Index];
+    //    Vector3 SideE = vertices[Index - AmountOfVertices] - vertices[Index];
+    //    Vector3 SideF = vertices[Index - AmountOfVertices + 1] - vertices[Index];
                 
-        Vector3 SideG = vertices[Index + 1] - vertices[Index];
-        Vector3 SideH = vertices[Index + AmountOfVertices + 1] - vertices[Index];
+    //    Vector3 SideG = vertices[Index + 1] - vertices[Index];
+    //    Vector3 SideH = vertices[Index + AmountOfVertices + 1] - vertices[Index];
 
-        Vector3 CrossedNormalA = Vector3.Cross(SideB, SideA);
-        Vector3 CrossedNormalB = Vector3.Cross(SideC, SideD);
-        Vector3 CrossedNormalC = Vector3.Cross(SideE, SideF);
-        Vector3 CrossedNormalD = Vector3.Cross(SideG, SideH);
+    //    Vector3 CrossedNormalA = Vector3.Cross(SideB, SideA);
+    //    Vector3 CrossedNormalB = Vector3.Cross(SideC, SideD);
+    //    Vector3 CrossedNormalC = Vector3.Cross(SideE, SideF);
+    //    Vector3 CrossedNormalD = Vector3.Cross(SideG, SideH);
 
-        Vector3 DoubleCrossedNormalA = Vector3.Cross(CrossedNormalA, CrossedNormalB);
-        Vector3 DoubleCrossedNormalB = Vector3.Cross(CrossedNormalC, CrossedNormalD);
+    //    Vector3 DoubleCrossedNormalA = Vector3.Cross(CrossedNormalA, CrossedNormalB);
+    //    Vector3 DoubleCrossedNormalB = Vector3.Cross(CrossedNormalC, CrossedNormalD);
 
-        return CrossedNormalA;
-        return Vector3.Cross(DoubleCrossedNormalA, DoubleCrossedNormalB);
+    //    return CrossedNormalA;
+    //    return Vector3.Cross(DoubleCrossedNormalA, DoubleCrossedNormalB);
 
-        //normal += vertices[Index - 1];
-        //normal += vertices[Index + 1];
+    //    //normal += vertices[Index - 1];
+    //    //normal += vertices[Index + 1];
 
-        //normal += vertices[Index - AmountOfVertices - 1];
-        //normal += vertices[Index - AmountOfVertices];
-        //normal += vertices[Index - AmountOfVertices + 1];
+    //    //normal += vertices[Index - AmountOfVertices - 1];
+    //    //normal += vertices[Index - AmountOfVertices];
+    //    //normal += vertices[Index - AmountOfVertices + 1];
 
-        //normal += vertices[Index + AmountOfVertices - 1];
-        //normal += vertices[Index + AmountOfVertices];
-        //normal += vertices[Index + AmountOfVertices + 1];
+    //    //normal += vertices[Index + AmountOfVertices - 1];
+    //    //normal += vertices[Index + AmountOfVertices];
+    //    //normal += vertices[Index + AmountOfVertices + 1];
 
-        print("CALCULATED NORMAL");
-        return normal;
-    }
+    //    print("CALCULATED NORMAL");
+    //    return normal;
+    //}
 
     //Vector3[] CalCulateNormals(Vector3[] vertices, int[] triangles)
     //{
@@ -342,20 +397,44 @@ public class Sphere : MonoBehaviour
         {
             return;
         }
-        for (int i = 0; i < _vertices.Length; i++)
-        {
-            if (i % AmountOfVertices + 1 == 0)
-            {
-                Gizmos.color = Color.red;
-            }
-            else
-            {
-                Gizmos.color = Color.white;
-            }
 
-            Gizmos.DrawLine(transform.position + _vertices[i], transform.position + _vertices[i] + (_normals[i] * length));
-                //(new Ray(_vertices[i], _normals[i] * length));
+        //Gizmos.DrawLine(
+        //    transform.position + _vertices[4],
+        //    transform.position + _vertices[4] + (_normals[4] * length));
+        //Gizmos.DrawLine(
+        //    transform.position + _vertices[34],
+        //    transform.position + _vertices[34] + (_vertices[34] * length));
+
+        for (int i = 0; i < _editedNormals.Count; i++)
+        {
+            Gizmos.color = Color.red;
+
+            Gizmos.DrawLine(
+                transform.position + _editedNormals[i].Item1,
+                transform.position + _editedNormals[i].Item1 + (_editedNormals[i].Item2.Item1 * length));
+
+            Gizmos.color = Color.white;
+
+            Gizmos.DrawLine(
+                transform.position + _editedNormals[i].Item1,
+                transform.position + _editedNormals[i].Item1 + (_editedNormals[i].Item2.Item2 * -length));
         }
+
+        //for (int i = 0; i < _vertices.Length; i++)
+        //{
+        //   Gizmos.color = Color.green;
+
+        //    Gizmos.DrawLine(
+        //        transform.position + _vertices[i],
+        //        transform.position + _vertices[i] + ((_normals[i] * length) / 2f));
+        //    //(new Ray(_vertices[i], _normals[i] * length));
+        //}
+
+        //for (int i = 0; i < pos.Count; i++)
+        //{
+        //    //print("sjhsdjh");
+        //    Gizmos.DrawSphere(transform.position + pos[i], length * 10f);
+        //}
     }
 
     #endregion

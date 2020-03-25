@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: 
   ColorMap:
     serializedVersion: 2
-    key0: {r: 0.6415094, g: 0.8129628, b: 1, a: 1}
+    key0: {r: 0.01766634, g: 0, b: 1, a: 1}
     key1: {r: 0, g: 0.8113208, b: 0.76489085, a: 1}
     key2: {r: 1, g: 1, b: 1, a: 0}
     key3: {r: 1, g: 1, b: 1, a: 0}
@@ -100,8 +100,9 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  useWater: 0
   ElevationMultiplier: 0.2
-  BaseElevation: 0.45
+  BaseElevation: 0.35
   type: 3
   material: {fileID: 2100000, guid: fd2c6b0d068173c4a8cb6e5372551ed9, type: 2}
   frequency: 1
