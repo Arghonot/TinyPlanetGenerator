@@ -598,7 +598,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotSpeed: 0
   maxSpeed: 10
-  velocity: {x: 0, y: 0, z: 0}
   maxAcceleration: 17.3
 --- !u!54 &613078861
 Rigidbody:
@@ -665,7 +664,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotSpeed: 5
   maxSpeed: 10
-  velocity: {x: 0, y: 0, z: 0}
   maxAcceleration: 10
 --- !u!1 &692954259
 GameObject:
@@ -865,10 +863,6 @@ MonoBehaviour:
   minZoom: 10
   maxZoom: 30
   ZoomLimiter: 50
-  OriginalOffset: {x: 0, y: 0, z: 0}
-  OriginalRotation: {x: 0, y: 0, z: 0}
-  cam: {fileID: 0}
-  velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &1192560707
 MonoBehaviour:
   m_ObjectHideFlags: 0
