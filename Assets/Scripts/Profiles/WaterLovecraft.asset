@@ -25,7 +25,7 @@ MonoBehaviour:
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
     ctime1: 31804
-    ctime2: 64571
+    ctime2: 42405
     ctime3: 65535
     ctime4: 65535
     ctime5: 65535
@@ -101,8 +101,8 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   useWater: 1
-  ElevationMultiplier: -0.04
-  BaseElevation: 0.35
+  ElevationMultiplier: -0.03
+  BaseElevation: 0.49
   type: 2
   material: {fileID: 2100000, guid: ff5469af096ca3643af76381d84d253d, type: 2}
   frequency: 4

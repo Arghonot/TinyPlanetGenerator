@@ -27,6 +27,7 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
 
     public void Regenerate()
     {
+        print("generate");
         // we clear the UI
         UIMapManager.Instance.FlushMaps();
         planets.ForEach(x => PlanetGeneration(x));
