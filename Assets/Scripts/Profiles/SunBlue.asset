@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SunBlue
   m_EditorClassIdentifier: 
   Name: 
+  TexturesSize: 32
   ColorMap:
     serializedVersion: 2
     key0: {r: 0, g: 0.017092142, b: 0.3962264, a: 1}
@@ -100,9 +101,11 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  useWater: 0
   ElevationMultiplier: 0
+  BaseElevation: 0.35
   type: 3
-  material: {fileID: 2100000, guid: ff5469af096ca3643af76381d84d253d, type: 2}
+  material: {fileID: 2100000, guid: 369463bff25aaeb499f6c345ce75be30, type: 2}
   frequency: 30
   lacunarity: 4
   persistence: 0

@@ -30,6 +30,7 @@ public class Sphere : MonoBehaviour
 
     public void Regenerate()
     {
+        generator.mapSize = profile.TexturesSize;
         generator.Generate(profile);
         ReScale();
 
@@ -50,7 +51,7 @@ public class Sphere : MonoBehaviour
             else if (render.material.shader.name.Contains("Magma"))
             {
                 print("Brap");
-                render.material.SetTexture("Texture2D_ED9EEB51", generator.ColorMap);
+                render.material.SetTexture("Texture2D_D98FF2C8", generator.ColorMap);
             }
             // if unlit
             else
