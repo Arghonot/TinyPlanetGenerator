@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: WaterLovecraft
   m_EditorClassIdentifier: 
   Name: 
+  TexturesSize: 512
   ColorMap:
     serializedVersion: 2
     key0: {r: 0, g: 0, b: 0, a: 1}
@@ -102,7 +103,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   useWater: 1
   ElevationMultiplier: -0.03
-  BaseElevation: 0.49
+  BaseElevation: 0.36
   type: 2
   material: {fileID: 2100000, guid: ff5469af096ca3643af76381d84d253d, type: 2}
   frequency: 4

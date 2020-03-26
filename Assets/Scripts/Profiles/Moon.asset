@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Moon
   m_EditorClassIdentifier: 
   Name: 
+  TexturesSize: 512
   ColorMap:
     serializedVersion: 2
     key0: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
@@ -100,10 +101,12 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  ElevationMultiplier: 0.1
-  type: 0
+  useWater: 0
+  ElevationMultiplier: 0.02
+  BaseElevation: 0.35
+  type: 2
   material: {fileID: 2100000, guid: fd2c6b0d068173c4a8cb6e5372551ed9, type: 2}
-  frequency: 1
+  frequency: 1.8
   lacunarity: 2
   persistence: 0.5
   displacement: 0

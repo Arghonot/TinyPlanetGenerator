@@ -50,8 +50,11 @@ public class Sphere : MonoBehaviour
             }
             else if (render.material.shader.name.Contains("Magma"))
             {
-                print("Brap");
                 render.material.SetTexture("Texture2D_D98FF2C8", generator.ColorMap);
+            }
+            else if (render.material.shader.name.Contains("WeirdFresnel"))
+            {
+                render.material.SetTexture("Texture2D_C9B692E6", generator.ColorMap);
             }
             // if unlit
             else

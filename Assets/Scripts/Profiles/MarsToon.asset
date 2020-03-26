@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MarsToon
   m_EditorClassIdentifier: 
   Name: 
+  TexturesSize: 512
   ColorMap:
     serializedVersion: 2
     key0: {r: 0.40392157, g: 0.07450981, b: 0.003921569, a: 1}
@@ -101,7 +102,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   useWater: 0
-  ElevationMultiplier: 0.1
+  ElevationMultiplier: 0.071
   BaseElevation: 0.35
   type: 3
   material: {fileID: 2100000, guid: fd2c6b0d068173c4a8cb6e5372551ed9, type: 2}

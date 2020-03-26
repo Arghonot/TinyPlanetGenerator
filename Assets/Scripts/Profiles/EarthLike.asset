@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: EarthLike
   m_EditorClassIdentifier: 
   Name: 
+  TexturesSize: 512
   ColorMap:
     serializedVersion: 2
-    key0: {r: 0.7830189, g: 0.7551063, b: 0.3767355, a: 1}
+    key0: {r: 0.5377358, g: 0.52066326, b: 0.28408685, a: 1}
     key1: {r: 0.990566, g: 0.9127983, b: 0.2990388, a: 1}
     key2: {r: 0, g: 0.4339623, b: 0.19775492, a: 0}
     key3: {r: 0, g: 0.34901962, b: 0.15686275, a: 0}
