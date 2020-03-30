@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   TexturesSize: 512
+  AmountOfMaps: 1
   ColorMap:
     serializedVersion: 2
     key0: {r: 0.5377358, g: 0.52066326, b: 0.28408685, a: 1}
@@ -29,7 +30,7 @@ MonoBehaviour:
     ctime2: 31611
     ctime3: 41249
     ctime4: 45104
-    ctime5: 56861
+    ctime5: 64186
     ctime6: 65535
     ctime7: 65535
     atime0: 0
@@ -45,8 +46,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   ElevationMap:
     serializedVersion: 2
-    key0: {r: 0, g: 0, b: 0, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
+    key0: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
+    key1: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
     key2: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 0}
     key3: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 0}
     key4: {r: 1, g: 1, b: 1, a: 0}
@@ -102,10 +103,10 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   useWater: 1
-  ElevationMultiplier: 0.07
-  BaseElevation: 0.35
+  ElevationMultiplier: 0.14
+  BaseElevation: 0.25
   type: 0
-  material: {fileID: 2100000, guid: fd2c6b0d068173c4a8cb6e5372551ed9, type: 2}
+  material: {fileID: 2100000, guid: 4dacbf83c4ddcac4786d71795885df8e, type: 2}
   frequency: 1
   lacunarity: 2
   persistence: 0.5

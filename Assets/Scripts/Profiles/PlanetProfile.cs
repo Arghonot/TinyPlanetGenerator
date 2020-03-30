@@ -18,6 +18,7 @@ public class PlanetProfile : ScriptableObject
     public string Name;
 
     public int TexturesSize = 512;
+    public int AmountOfMaps = 1;
     public Gradient ColorMap;
     public Gradient ElevationMap;
     public Gradient InverseElevationMap;

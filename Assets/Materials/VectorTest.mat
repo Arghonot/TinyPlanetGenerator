@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2670635996733390785
+--- !u!114 &-842603651412598672
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CartoonWater
-  m_Shader: {fileID: -6465566751694194690, guid: 6b6a748bc73597b4787e8e0ca07bb78e,
+  m_Name: VectorTest
+  m_Shader: {fileID: -6465566751694194690, guid: 2fa0761980fc6b641aba3750aa7a3a3c,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -33,6 +33,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_10E80854:
+        m_Texture: {fileID: 2800000, guid: eae85e978fd1aac4b99e9581c7323b7f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -62,17 +66,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_12EDE0A7: 0.02
-    - Vector1_1F9946C1: 5
-    - Vector1_2530CF1F: 0.7
-    - Vector1_29D98A4A: 160
-    - Vector1_5348EA72: 0
-    - Vector1_8EA7A140: 1.5
-    - Vector1_B9ECF5A3: 4
-    - Vector1_CF1871C4: 0
-    - Vector1_D7174581: 0.45
-    - Vector1_D9510FA2: 4
-    - Vector1_EA10231D: 0
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -95,8 +88,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_109BE5B1: {r: 0.17254902, g: 0.30588236, b: 0.30980393, a: 1}
-    - Color_B902B901: {r: 0.015686275, g: 0.07058824, b: 0.078431375, a: 0}
+    - Color_863EF5B8: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 0}
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

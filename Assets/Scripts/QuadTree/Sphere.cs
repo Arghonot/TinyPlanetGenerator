@@ -14,6 +14,10 @@ public class Sphere : MonoBehaviour
     MeshFilter filter;
     MeshRenderer render;
 
+    public float length;
+    Vector3[] __normals = null;
+    Vector3[] __Vertices = null;
+
     #region UNITY
 
     private void Start()
@@ -51,6 +55,10 @@ public class Sphere : MonoBehaviour
             else if (render.material.shader.name.Contains("Magma"))
             {
                 render.material.SetTexture("Texture2D_D98FF2C8", generator.ColorMap);
+            }
+            else if (render.material.shader.name.Contains("PlanetGround"))
+            {
+                render.material.SetTexture("Texture2D_10E80854", generator.ColorMap);
             }
             else if (render.material.shader.name.Contains("WeirdFresnel"))
             {
@@ -228,4 +236,20 @@ public class Sphere : MonoBehaviour
     }
 
     #endregion
+
+    //private void OnDrawGizmos()
+    //{
+    //    if (__normals != null)
+    //    {
+    //        for (int i = 0; i < __Vertices.Length; i++)
+    //        {
+    //            Gizmos.color = Color.red;
+    //            Gizmos.DrawLine(transform.position + __Vertices[i], transform.position + __Vertices[i] + (__normals[i] * length));
+    //            Gizmos.color = Color.blue;
+    //            Gizmos.DrawSphere(transform.position + __Vertices[i] + (__Vertices[i] * length), length / 20f);
+
+    //            //Gizmos.DrawRay(new Ray(transform.position + __Vertices[i], transform.position + __Vertices[i] + (__normals[i] * length)));
+    //        }
+    //    }
+    //}
 }

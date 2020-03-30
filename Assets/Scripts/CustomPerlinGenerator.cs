@@ -3,6 +3,7 @@
 using LibNoise.Unity;
 using LibNoise.Unity.Operator;
 using LibNoise.Unity.Generator;
+using System.Collections.Generic;
 
 public class CustomPerlinGenerator : MonoBehaviour
 {
@@ -18,8 +19,111 @@ public class CustomPerlinGenerator : MonoBehaviour
     public Texture2D ColorMap;
     public Texture2D HeightMap;
     public Texture2D InverseHeightMap;
+    public List<Texture2D> imgs;
 
     public void Generate(PlanetProfile profile)
+    {
+        imgs = new List<Texture2D>();
+        List<ModuleBase> generators = new List<ModuleBase>();
+
+        generators.Add(GetModule(profile));
+        generators.Add(GetModule(profile));
+        generators.Add(GetModule(profile));
+
+        Noise2D map01 = new Noise2D(mapSize, mapSize / 2, generators[0]);
+        Noise2D map02 = new Noise2D(mapSize, mapSize / 2, generators[0]);
+        Noise2D map03 = new Noise2D(mapSize, mapSize / 2, generators[0]);
+
+        map01.GenerateSpherical(
+            south,
+            north,
+            west,
+            east);
+
+        map02.GenerateSpherical(
+            south,
+            north,
+            west,
+            east);
+
+        map03.GenerateSpherical(
+            south,
+            north,
+            west,
+            east);
+
+        imgs.Add(map01.GetTexture());
+        imgs.Add(map02.GetTexture());
+        imgs.Add(map03.GetTexture());
+
+        imgs[0].Apply();
+        imgs[1].Apply();
+        imgs[2].Apply();
+
+        Add add1 = new Add(generators[0], generators[1]);
+        Add add2 = new Add(add1, generators[2]);
+
+        Noise2D map = new Noise2D(mapSize, mapSize / 2, add2);
+
+        map.GenerateSpherical(
+            south,
+            north,
+            west,
+            east);
+
+        ColorMap = map.GetTexture(profile.ColorMap);
+        ColorMap.Apply();
+
+        //HeightMap = map.GetTexture();
+        HeightMap = map.GetTexture(profile.ElevationMap);
+        HeightMap.Apply();
+
+        //InverseHeightMap = map.GetTexture(profile.InverseElevationMap);
+        //InverseHeightMap.Apply();
+
+        UIMapManager.Instance.AddMap(ColorMap, string.Join(" ", new string[]
+        {
+            profile.Name,
+            "Colormap"
+        }));
+        UIMapManager.Instance.AddMap(HeightMap, string.Join(" ", new string[]
+        {
+            profile.Name,
+            "HeightMap"
+        }));
+        //UIMapManager.Instance.AddMap(InverseHeightMap, string.Join(" ", new string[]
+        //{
+        //    profile.Name,
+        //    "InverseHeightMap"
+        //}));
+    }
+
+    public Texture2D GetCloudBase(UnityEngine.Gradient cloudGradient, int size, NoiseType type)
+    {
+        ModuleBase Generator = GetModule(type);
+        //Billow Generator = new Billow(
+        //    1f,
+        //    2f,
+        //    0.5f,
+        //    6,
+        //    Random.Range(0, int.MaxValue),
+        //    QualityMode.Low);
+
+        Noise2D map = new Noise2D(size, size / 2, Generator);
+
+        map.GenerateSpherical(
+            south,
+            north,
+            west,
+            east);
+
+        var tex = map.GetTexture(cloudGradient);
+        tex.Apply();
+
+        return tex;
+    }
+
+    ModuleBase GetModule(PlanetProfile profile)
     {
         ModuleBase Generator;
 
@@ -74,51 +178,65 @@ public class CustomPerlinGenerator : MonoBehaviour
                 break;
         }
 
-        //Generator2 = new Perlin(1, 2, .5, 6, 10, QualityMode.High);
-        //Generator2 = new Voronoi(1, 2, 10, false);
-        //Generator2 = new RiggedMultifractal(1, 2, 6, 10, QualityMode.High);
-        //Generator2 = new Billow();
-        //Generator3 = new RiggedMultifractal();
+        return Generator;
+    }
 
-        //Module1 = new ScaleBias(0.125, -0.75, Generator);
-        //Module2 = new Select(0, 1, 0.125, Module1, Generator3);
-        //Module2 = new Select(Generator, Generator2, Generator3);
+    ModuleBase GetModule(NoiseType type)
+    {
+        ModuleBase Generator;
 
-        //Module3 = new Turbulence()
-        //Add add = new Add(Generator, Generator2);
-
-        Noise2D map = new Noise2D(mapSize, mapSize / 2, Generator);
-
-
-        map.GenerateSpherical(
-            south,
-            north,
-            west,
-            east);
-
-        ColorMap = map.GetTexture(profile.ColorMap);
-        ColorMap.Apply();
-
-        HeightMap = map.GetTexture(profile.ElevationMap);
-        HeightMap.Apply();
-
-        //InverseHeightMap = map.GetTexture(profile.InverseElevationMap);
-        //InverseHeightMap.Apply();
-
-        UIMapManager.Instance.AddMap(ColorMap, string.Join(" ", new string[]
+        switch (type)
         {
-            profile.Name,
-            "Colormap"
-        }));
-        UIMapManager.Instance.AddMap(HeightMap, string.Join(" ", new string[]
-        {
-            profile.Name,
-            "HeightMap"
-        }));
-        //UIMapManager.Instance.AddMap(InverseHeightMap, string.Join(" ", new string[]
-        //{
-        //    profile.Name,
-        //    "InverseHeightMap"
-        //}));
+
+            case NoiseType.Perlin:
+                Generator = new Perlin(
+                    1d,
+                    2d,
+                    .5d,
+                    6,
+                    Random.Range(0, int.MaxValue),
+                    QualityMode.Low);
+
+                break;
+            case NoiseType.Billow:
+                Generator = new Billow(
+                    1d,
+                    2d,
+                    .5d,
+                    6,
+                    Random.Range(0, int.MaxValue),
+                    QualityMode.Low);
+
+                break;
+            case NoiseType.RiggedMultifractal:
+                Generator = new RiggedMultifractal(
+                    1d,
+                    2d,
+                    6,
+                    Random.Range(0, int.MaxValue),
+                    QualityMode.Low);
+
+                break;
+            case NoiseType.Voronoi:
+                Generator = new Voronoi(
+                    1d,
+                    0,
+                    Random.Range(0, int.MaxValue),
+                    true);
+
+                break;
+            default:
+                Generator = new Perlin(
+                    1d,
+                    2d,
+                    .5d,
+                    6,
+                    Random.Range(0, int.MaxValue),
+                    QualityMode.Low);
+
+                break;
+        }
+
+        return Generator;
     }
 }

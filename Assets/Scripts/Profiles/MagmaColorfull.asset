@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MagmaColorfull
   m_EditorClassIdentifier: 
   Name: 
+  TexturesSize: 32
   ColorMap:
     serializedVersion: 2
     key0: {r: 0, g: 0, b: 0, a: 1}
