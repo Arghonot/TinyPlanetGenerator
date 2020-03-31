@@ -6,27 +6,18 @@ using UnityEngine;
 public class Sphere : MonoBehaviour
 {
     public PlanetProfile profile;
-    public bool UseMaps;
-    public int AmountOfVertices;
+
     public GameObject water;
+    public GameObject Aura;
+    public GameObject Clouds;
 
     public CustomPerlinGenerator generator;
+
+    public int AmountOfVertices;
     MeshFilter filter;
     MeshRenderer render;
 
-    public float length;
-    Vector3[] __normals = null;
-    Vector3[] __Vertices = null;
-
     #region UNITY
-
-    private void Start()
-    {
-        if (!UseMaps)
-        {
-            Generate();
-        }
-    }
 
     #endregion
 
@@ -38,46 +29,100 @@ public class Sphere : MonoBehaviour
         generator.Generate(profile);
         ReScale();
 
-        if (UseMaps)
-        {
-            render.material = profile.material;
+        SetGroundMaterialValues();
 
-            // if lit
-            if (render.material.shader.name == "Universal Render Pipeline/Lit")
-            {
-                //if (profile.name.Contains("Magma"))
-                //{
-                //    render.material.SetTexture("_EmissionMap", generator.InverseHeightMap);
-                //}
+        HandleWater();
+        HandleClouds();
+        HandleAura();
+    }
 
-                render.material.SetTexture("_BaseMap", generator.ColorMap);
-            }
-            else if (render.material.shader.name.Contains("Magma"))
-            {
-                render.material.SetTexture("Texture2D_D98FF2C8", generator.ColorMap);
-            }
-            else if (render.material.shader.name.Contains("PlanetGround"))
-            {
-                render.material.SetTexture("Texture2D_10E80854", generator.ColorMap);
-            }
-            else if (render.material.shader.name.Contains("WeirdFresnel"))
-            {
-                render.material.SetTexture("Texture2D_C9B692E6", generator.ColorMap);
-            }
-            // if unlit
-            else
-            {
-                render.material.SetTexture("_MainTex", generator.ColorMap);
-            }
-        }
-
+    /// <summary>
+    /// Setup everything related to the planet's water (should it be activated, colors, ...).
+    /// </summary>
+    void HandleWater()
+    {
         if (profile.useWater)
         {
             water.SetActive(true);
+
+            Material Watermaterial = water.GetComponent<MeshRenderer>().material;
+
+            Watermaterial.SetColor("Color_109BE5B1", profile.WaterColor);
+            Watermaterial.SetColor("Color_B902B901", profile.RippleColor);
         }
         else
         {
             water.SetActive(false);
+        }
+    }
+
+    /// <summary>
+    /// Setup everything related to the planet's clouds (should it be activated, colors, ...).
+    /// </summary>
+    void HandleClouds()
+    {
+        if (profile.UseClouds)
+        {
+            Clouds.SetActive(true);
+        }
+        else
+        {
+            Clouds.SetActive(false);
+        }
+    }
+
+    /// <summary>
+    /// Setup everything related to the planet's atmosphere (should it be activated, colors, ...)..
+    /// </summary>
+    void HandleAura()
+    {
+        if (profile.UseAura)
+        {
+            Aura.SetActive(true);
+            Material auramat = Aura.GetComponent<MeshRenderer>().material;
+
+            auramat.SetColor("Color_C8024A4F", profile.Aura);
+            auramat.SetFloat("Vector1_F80876CD", profile.AuraIntensity);
+        }
+        else
+        {
+            Aura.SetActive(false);
+        }
+    }
+
+    /// <summary>
+    /// Setup the correct material for the profile and it's own variables.
+    /// </summary>
+    void SetGroundMaterialValues()
+    {
+        render.material = profile.material;
+
+        // if lit
+        if (render.material.shader.name == "Universal Render Pipeline/Lit")
+        {
+            render.material.SetTexture("_BaseMap", generator.ColorMap);
+        }
+        else if (render.material.shader.name.Contains("Magma"))
+        {
+            render.material.SetTexture("Texture2D_D98FF2C8", generator.ColorMap);
+        }
+        else if (render.material.shader.name.Contains("PlanetGround"))
+        {
+            render.material.SetTexture("Texture2D_10E80854", generator.ColorMap);
+
+            render.material.SetFloat("Vector1_AC9353BB", profile.CliffIntensity);
+
+            render.material.SetColor("Color_5EBF6256", profile.CliffLightColor);
+            render.material.SetColor("Color_863EF5B8", profile.CliffDarkColor);
+        }
+        else if (render.material.shader.name.Contains("WeirdFresnel"))
+        {
+            render.material.SetTexture("Texture2D_C9B692E6", generator.ColorMap);
+        }
+        // if unlit
+        else
+        {
+            render.material.SetTexture("_MainTex", generator.ColorMap);
         }
     }
 
@@ -110,12 +155,6 @@ public class Sphere : MonoBehaviour
 
     void ReScale()
     {
-        // We don't want to recalculate the elevation if there is none
-        if (!UseMaps)
-        {
-            return;
-        }
-
         Vector3[] vertices = new Vector3[
             ((AmountOfVertices + 1) * (AmountOfVertices + 1))];
         Vector3[] normals = new Vector3[vertices.Length];
@@ -236,20 +275,4 @@ public class Sphere : MonoBehaviour
     }
 
     #endregion
-
-    //private void OnDrawGizmos()
-    //{
-    //    if (__normals != null)
-    //    {
-    //        for (int i = 0; i < __Vertices.Length; i++)
-    //        {
-    //            Gizmos.color = Color.red;
-    //            Gizmos.DrawLine(transform.position + __Vertices[i], transform.position + __Vertices[i] + (__normals[i] * length));
-    //            Gizmos.color = Color.blue;
-    //            Gizmos.DrawSphere(transform.position + __Vertices[i] + (__Vertices[i] * length), length / 20f);
-
-    //            //Gizmos.DrawRay(new Ray(transform.position + __Vertices[i], transform.position + __Vertices[i] + (__normals[i] * length)));
-    //        }
-    //    }
-    //}
 }

@@ -131,7 +131,7 @@ PrefabInstance:
     - target: {fileID: 1107323894440535753, guid: 240c5d18b44436148b19bcfda648e143,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00005690405
+      value: 0.000017146633
       objectReference: {fileID: 0}
     - target: {fileID: 1107323894500721791, guid: 240c5d18b44436148b19bcfda648e143,
         type: 3}
@@ -878,7 +878,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -1690,12 +1690,12 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
   EmissionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 0
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1798,8 +1798,66 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    m_BurstCount: 0
-    m_Bursts: []
+    m_BurstCount: 1
+    m_Bursts:
+    - serializedVersion: 2
+      time: 0
+      countCurve:
+        serializedVersion: 2
+        minMaxState: 0
+        scalar: 100
+        minScalar: 30
+        maxCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        minCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+      cycleCount: 1
+      repeatInterval: 0.01
+      probability: 1
   SizeModule:
     enabled: 0
     curve:
@@ -5534,7 +5592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   system: {fileID: 1496586802}
   generator: {fileID: 2006164956}
-  CloudAmount: 400
+  CloudAmount: 100
   textureSize: 512
   grad:
     serializedVersion: 2
@@ -10772,6 +10830,16 @@ PrefabInstance:
       propertyPath: length
       value: 0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 3137600328866861320, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
+        type: 3}
+      propertyPath: Clouds
+      value: 
+      objectReference: {fileID: 1496586799}
+    - target: {fileID: 3137600328866861320, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
+        type: 3}
+      propertyPath: Aura
+      value: 
+      objectReference: {fileID: 1517745983}
     - target: {fileID: 3137600328866861323, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
       propertyPath: m_LocalPosition.x

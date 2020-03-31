@@ -27,7 +27,6 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
 
     public void Regenerate()
     {
-        print("generate");
         // we clear the UI
         UIMapManager.Instance.FlushMaps();
         planets.ForEach(x => PlanetGeneration(x));
@@ -35,7 +34,6 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
 
     void    PlanetGeneration(Sphere sphere)
     {
-        print(sphere.gameObject.name);
         PlanetProfile profile = RandomizePlanet();
         sphere.profile = profile;
         sphere.Regenerate();

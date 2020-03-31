@@ -82,12 +82,12 @@ MonoBehaviour:
   octaves: 6
   material: {fileID: 2100000, guid: 4dacbf83c4ddcac4786d71795885df8e, type: 2}
   useWater: 1
-  UseClouds: 0
+  UseClouds: 1
   UseAura: 1
-  WaterColor: {r: 0.17254898, g: 0.30588233, b: 0.3098039, a: 1}
-  RippleColor: {r: 0.015686275, g: 0.07058824, b: 0.078431375, a: 0}
-  CliffIntensity: 0.1
+  WaterColor: {r: 0.17254902, g: 0.30588236, b: 0.30980393, a: 1}
+  RippleColor: {r: 0.015686275, g: 0.07058824, b: 0.078431375, a: 1}
+  CliffIntensity: 0.696
   CliffLightColor: {r: 0.5960784, g: 0.44705886, b: 0.49803925, a: 1}
   CliffDarkColor: {r: 0.5566037, g: 0.40957633, b: 0.45714402, a: 1}
   AuraIntensity: 7.3
-  Aura: {r: 0, g: 0, b: 1, a: 1}
+  Aura: {r: 1, g: 0.30980396, b: 0.3169674, a: 1}

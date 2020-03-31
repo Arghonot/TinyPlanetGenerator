@@ -41,6 +41,7 @@ public class PlanetProfile : ScriptableObject
     public Color WaterColor = new Color(44, 78, 79);
     public Color RippleColor = new Color(4, 18, 20);
 
+    [Range(0f, 1f)]
     public float CliffIntensity = 0.1f;
     public Color CliffLightColor = new Color(152, 11, 127);
     public Color CliffDarkColor = new Color(142, 104, 117);
