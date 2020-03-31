@@ -106,7 +106,7 @@ MonoBehaviour:
   ElevationMultiplier: 0.09
   BaseElevation: 0.35
   type: 0
-  material: {fileID: 2100000, guid: fd2c6b0d068173c4a8cb6e5372551ed9, type: 2}
+  material: {fileID: 2100000, guid: 4dacbf83c4ddcac4786d71795885df8e, type: 2}
   frequency: 2
   lacunarity: 2
   persistence: 0.4

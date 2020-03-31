@@ -27,43 +27,8 @@ public class CustomPerlinGenerator : MonoBehaviour
         List<ModuleBase> generators = new List<ModuleBase>();
 
         generators.Add(GetModule(profile));
-        generators.Add(GetModule(profile));
-        generators.Add(GetModule(profile));
 
-        Noise2D map01 = new Noise2D(mapSize, mapSize / 2, generators[0]);
-        Noise2D map02 = new Noise2D(mapSize, mapSize / 2, generators[0]);
-        Noise2D map03 = new Noise2D(mapSize, mapSize / 2, generators[0]);
-
-        map01.GenerateSpherical(
-            south,
-            north,
-            west,
-            east);
-
-        map02.GenerateSpherical(
-            south,
-            north,
-            west,
-            east);
-
-        map03.GenerateSpherical(
-            south,
-            north,
-            west,
-            east);
-
-        imgs.Add(map01.GetTexture());
-        imgs.Add(map02.GetTexture());
-        imgs.Add(map03.GetTexture());
-
-        imgs[0].Apply();
-        imgs[1].Apply();
-        imgs[2].Apply();
-
-        Add add1 = new Add(generators[0], generators[1]);
-        Add add2 = new Add(add1, generators[2]);
-
-        Noise2D map = new Noise2D(mapSize, mapSize / 2, add2);
+        Noise2D map = new Noise2D(mapSize, mapSize / 2, generators[0]);
 
         map.GenerateSpherical(
             south,
