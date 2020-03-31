@@ -18,27 +18,12 @@ public class Cloud : MonoBehaviour
     public float Size;
 
     public NoiseType type;
-    public bool isDone = false;
 
-    private void Start()
+    public void Generate()
     {
-        system.maxParticles = CloudAmount;
-    }
-
-    private void LateUpdate()
-    {
-        Generate();
-    }
-
-    void Generate()
-    {
-        if (isDone)
-        {
-            return;
-        }
-
-        isDone = true;
         cloudmap = generator.GetCloudBase(grad, textureSize, type);
+
+        system.Emit(CloudAmount);
 
         if (particles == null)
         {

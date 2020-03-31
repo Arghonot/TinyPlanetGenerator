@@ -9,7 +9,7 @@ public class Sphere : MonoBehaviour
 
     public GameObject water;
     public GameObject Aura;
-    public GameObject Clouds;
+    public Cloud Clouds;
 
     public CustomPerlinGenerator generator;
 
@@ -63,11 +63,13 @@ public class Sphere : MonoBehaviour
     {
         if (profile.UseClouds)
         {
-            Clouds.SetActive(true);
+            print("HandleClouds");
+            Clouds.gameObject.SetActive(true);
+            Clouds.Generate();
         }
         else
         {
-            Clouds.SetActive(false);
+            Clouds.gameObject.SetActive(false);
         }
     }
 
