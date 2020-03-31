@@ -15,23 +15,8 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
 
     private void Start()
     {
-        for (int i = 0; i < PlanetAmount; i++)
-        {
-            planets.Add(Instantiate(PlanetPrefab));
+        SetupSolarSytem();
 
-            // USEFULL ?
-            planets[i].transform.position = Vector3.zero;
-
-            planets[i].transform.SetParent(transform);
-            planets[i].Generate();
-            planets[i].transform.position = new Vector3(1f, 0f, 1f) * (PlanetSpacing * i);
-
-
-            planets[i].profile = RandomizePlanet();
-            planets[i].Regenerate();
-        }
-        //planets.ForEach(x=> x.Generate());
-        //PlanetGeneration();
         Regenerate();
     }
 
@@ -41,6 +26,32 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
         {
             _Regenerate = false;
             Regenerate();
+        }
+    }
+
+    void SetupSolarSytem()
+    {
+        for (int i = 0; i < PlanetAmount; i++)
+        {
+            planets.Add(Instantiate(PlanetPrefab));
+
+            var anchor = new GameObject();
+            var rotator = anchor.AddComponent<Rotator>();
+            rotator.rotation = Vector3.up * Random.Range(0.5f, 10f);
+            anchor.transform.SetParent(transform);
+            anchor.transform.position = Vector3.zero;
+            anchor.name = "Planet_" + i;
+
+            // USEFULL ?
+            planets[i].transform.position = Vector3.zero;
+
+            planets[i].transform.SetParent(anchor.transform);
+            planets[i].transform.position = new Vector3(1f, 0f, 1f) * (PlanetSpacing * i);
+            planets[i].Generate();
+
+
+            planets[i].profile = RandomizePlanet();
+            planets[i].Regenerate();
         }
     }
 
