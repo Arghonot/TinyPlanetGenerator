@@ -131,7 +131,7 @@ PrefabInstance:
     - target: {fileID: 1107323894440535753, guid: 240c5d18b44436148b19bcfda648e143,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000017146633
+      value: 0.000019964962
       objectReference: {fileID: 0}
     - target: {fileID: 1107323894500721791, guid: 240c5d18b44436148b19bcfda648e143,
         type: 3}
@@ -5593,6 +5593,8 @@ MonoBehaviour:
   system: {fileID: 1496586802}
   generator: {fileID: 2006164956}
   CloudAmount: 100
+  PerCloud: 10
+  CloudSize: {x: 5, y: 5}
   textureSize: 512
   grad:
     serializedVersion: 2
@@ -5626,7 +5628,6 @@ MonoBehaviour:
   cloudmap: {fileID: 0}
   Size: 0.5
   type: 0
-  isDone: 0
 --- !u!114 &1496586804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10834,7 +10835,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Clouds
       value: 
-      objectReference: {fileID: 1496586799}
+      objectReference: {fileID: 1496586803}
     - target: {fileID: 3137600328866861320, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
       propertyPath: Aura

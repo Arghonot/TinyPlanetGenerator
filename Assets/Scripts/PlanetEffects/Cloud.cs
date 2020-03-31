@@ -72,21 +72,7 @@ public class Cloud : MonoBehaviour
                 particlePosition.x * Mathf.Deg2Rad,
                 particlePosition.y * Mathf.Deg2Rad,
                 Size);
-
-            print(POIs[i / PerCloud]);
-            //print(
-            //    POIs[i / PerCloud] + "    " +
-            //    particlePositionFromPOI + "   " +
-            //    particlePositionLonLat + "   " +
-            //    particlePosition + "   " +
-            //    particles[i].position);
-
         }
-
-        //for (int i = 0; i < CloudAmount; i++)
-        //{
-        //    particles[i].position = FindCloudPosition(cloudmap);
-        //}
     }
 
     Vector2 FindPOILonLat(Texture2D cloudmap)
