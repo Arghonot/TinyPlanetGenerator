@@ -10,6 +10,8 @@ public class Cloud : MonoBehaviour
     public CustomPerlinGenerator generator;
 
     public int CloudAmount;
+    public int PerCloud;
+    public Vector2 CloudSize;
 
     public int textureSize;
     public Gradient grad;
@@ -37,10 +39,85 @@ public class Cloud : MonoBehaviour
 
     void PlaceClouds(Texture2D cloudmap)
     {
+        // cloud's points of interest
+        List<Vector2> POIs = new List<Vector2>();
+
+        for (int i = 0; i < CloudAmount / PerCloud; i++)
+        {
+            POIs.Add(FindPOILonLat(cloudmap));
+        }
+
         for (int i = 0; i < CloudAmount; i++)
         {
-            particles[i].position = FindCloudPosition(cloudmap);
+            // particle pos relative to it's POI
+            Vector2 particlePositionFromPOI = new Vector2(
+                Random.Range(-CloudSize.x, CloudSize.x),
+                Random.Range(-CloudSize.y, CloudSize.y));
+
+            Vector2 particlePositionLonLat = new Vector2(
+                Mathf.Clamp(
+                    (POIs[i / PerCloud].x + particlePositionFromPOI.x),
+                    0,
+                    cloudmap.width),
+                Mathf.Clamp(
+                    (POIs[i / PerCloud].y + particlePositionFromPOI.y),
+                    0,
+                    cloudmap.height));
+
+            Vector2 particlePosition = new Vector2(
+                ((particlePositionLonLat.x / cloudmap.width) * 360f) - 180f,
+                ((particlePositionLonLat.y / cloudmap.height) * 180f) - 90f);
+
+            particles[i].position = CoordinatesProjector.InverseMercatorProjector(
+                particlePosition.x * Mathf.Deg2Rad,
+                particlePosition.y * Mathf.Deg2Rad,
+                Size);
+
+            print(POIs[i / PerCloud]);
+            //print(
+            //    POIs[i / PerCloud] + "    " +
+            //    particlePositionFromPOI + "   " +
+            //    particlePositionLonLat + "   " +
+            //    particlePosition + "   " +
+            //    particles[i].position);
+
         }
+
+        //for (int i = 0; i < CloudAmount; i++)
+        //{
+        //    particles[i].position = FindCloudPosition(cloudmap);
+        //}
+    }
+
+    Vector2 FindPOILonLat(Texture2D cloudmap)
+    {
+        // amount of iteration
+        int it = 0;
+        bool isInMap = false;
+        Vector2 texPos = Vector2.zero;
+
+        while (!isInMap)
+        {
+            texPos = new Vector2(
+                Random.Range(0, cloudmap.width),
+                Random.Range(0, cloudmap.height));
+
+            if (cloudmap.GetPixel((int)texPos.x, (int)texPos.y) == Color.white)
+            {
+                isInMap = true;
+            }
+
+            it++;
+
+            if (it > 50)
+            {
+                isInMap = true;
+            }
+        }
+
+        return new Vector2(
+            ((texPos.x / cloudmap.width) * 360f),
+            ((texPos.y / cloudmap.height) * 180f));
     }
 
     Vector3 FindCloudPosition(Texture2D cloudmap)

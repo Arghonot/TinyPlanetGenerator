@@ -63,7 +63,6 @@ public class Sphere : MonoBehaviour
     {
         if (profile.UseClouds)
         {
-            print("HandleClouds");
             Clouds.gameObject.SetActive(true);
             Clouds.Generate();
         }
