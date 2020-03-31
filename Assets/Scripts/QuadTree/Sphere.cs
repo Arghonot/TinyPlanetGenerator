@@ -143,11 +143,6 @@ public class Sphere : MonoBehaviour
         filter = GetComponent<MeshFilter>();
         filter.mesh = mesh;
         render = GetComponent<MeshRenderer>();
-
-        //if (UseMaps)
-        //{
-        //    render.material.SetTexture("_BaseMap", generator.ColorMap);
-        //}
     }
 
     #endregion

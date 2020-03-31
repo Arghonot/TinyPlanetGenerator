@@ -68,7 +68,7 @@ public class Cloud : MonoBehaviour
                 ((particlePositionLonLat.x / cloudmap.width) * 360f) - 180f,
                 ((particlePositionLonLat.y / cloudmap.height) * 180f) - 90f);
 
-            particles[i].position = CoordinatesProjector.InverseMercatorProjector(
+            particles[i].position = transform.position + CoordinatesProjector.InverseMercatorProjector(
                 particlePosition.x * Mathf.Deg2Rad,
                 particlePosition.y * Mathf.Deg2Rad,
                 Size);
