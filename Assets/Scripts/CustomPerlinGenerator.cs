@@ -46,16 +46,16 @@ public class CustomPerlinGenerator : MonoBehaviour
         //InverseHeightMap = map.GetTexture(profile.InverseElevationMap);
         //InverseHeightMap.Apply();
 
-        UIMapManager.Instance.AddMap(ColorMap, string.Join(" ", new string[]
-        {
-            profile.Name,
-            "Colormap"
-        }));
-        UIMapManager.Instance.AddMap(HeightMap, string.Join(" ", new string[]
-        {
-            profile.Name,
-            "HeightMap"
-        }));
+        //UIMapManager.Instance.AddMap(ColorMap, string.Join(" ", new string[]
+        //{
+        //    profile.Name,
+        //    "Colormap"
+        //}));
+        //UIMapManager.Instance.AddMap(HeightMap, string.Join(" ", new string[]
+        //{
+        //    profile.Name,
+        //    "HeightMap"
+        //}));
         //UIMapManager.Instance.AddMap(InverseHeightMap, string.Join(" ", new string[]
         //{
         //    profile.Name,
