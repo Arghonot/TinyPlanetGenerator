@@ -5550,6 +5550,16 @@ PrefabInstance:
       propertyPath: maxZoom
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 5306574766483798542, guid: 8a6063d1849addd4d90369abeacf3c82,
+        type: 3}
+      propertyPath: PlayerWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5306574766483798542, guid: 8a6063d1849addd4d90369abeacf3c82,
+        type: 3}
+      propertyPath: POIWeight
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5306574766483798642, guid: 8a6063d1849addd4d90369abeacf3c82,
         type: 3}
       propertyPath: m_Name
@@ -10629,5 +10639,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b897db29d349fae4ea6cf5ba3c7ea6a9,
         type: 2}
+    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
+        type: 3}
+      propertyPath: PlanetsSize.y
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2c0d77b36df71e4bbdb5ffdcdc13731, type: 3}

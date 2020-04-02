@@ -9,6 +9,8 @@ using UnityEngine;
 public class MultipleTargetsCamera : MonoBehaviour
 {
     public List<Transform> Targets;
+    public float PlayerWeight;
+    public float POIWeight;
     public Vector3 offset;
     public float smoothTime;
     public float minZoom = 40f;
