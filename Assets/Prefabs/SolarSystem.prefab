@@ -44,10 +44,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Regenerate: 0
-  PlanetAmount: 0
-  PlanetSpacing: 0
-  PlanetPrefab: {fileID: 0}
-  profiles:
+  PlanetAmount: 9
+  PlanetSpacing: 1
+  PlanetsSize: {x: 8, y: 20}
+  PlanetPrefab: {fileID: 8028085928368238260, guid: a52e16f315b0e174b9cfb9a16816ddf9,
+    type: 3}
+  RimWidth: 2
+  Player: {fileID: 0}
+  Suns:
+  - {fileID: 11400000, guid: 01587d81928540f4f845a5b63dce72f7, type: 2}
+  - {fileID: 11400000, guid: 60ddc7dba8b21914f91e73e61c09bd90, type: 2}
+  PlanetProfiles:
   - {fileID: 11400000, guid: df7448adb974b5548b32a4d81ab8ac64, type: 2}
   - {fileID: 11400000, guid: 50f65c1470e37d742acd4bb7cdf95958, type: 2}
   - {fileID: 11400000, guid: 201373bfe7992a249badb1e735e6408b, type: 2}
@@ -62,9 +69,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b2c15abc7fdc78445a9204d9e4813d49, type: 2}
   - {fileID: 11400000, guid: bfedcbbb6eaa990489efa36c7e46c3b4, type: 2}
   - {fileID: 11400000, guid: b897db29d349fae4ea6cf5ba3c7ea6a9, type: 2}
-  - {fileID: 11400000, guid: 60ddc7dba8b21914f91e73e61c09bd90, type: 2}
   - {fileID: 11400000, guid: 409fbd4bc8380c8468fcac93cd332105, type: 2}
-  - {fileID: 11400000, guid: 01587d81928540f4f845a5b63dce72f7, type: 2}
   - {fileID: 11400000, guid: fabd327c55493184288a6827caabe323, type: 2}
-  planets:
-  - {fileID: 0}
+  planets: []

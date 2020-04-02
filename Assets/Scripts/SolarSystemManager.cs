@@ -11,6 +11,8 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
 
     public Planet PlanetPrefab;
 
+    public float RimWidth;
+    public Transform Player;
     public List<PlanetProfile> Suns;
     public List<PlanetProfile> PlanetProfiles;
     public List<Planet> planets;
@@ -24,13 +26,44 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
 
     private void Update()
     {
-        if (_Regenerate)
+        if (isPlayerOutsideSolarSytem() || _Regenerate)
         {
             _Regenerate = false;
+
+            RepositionPlayer();
             Regenerate();
         }
     }
 
+    #region PLAYER management
+
+    /// <summary>
+    /// Used to know if we shall regenerate the solar system.
+    /// </summary>
+    /// <returns></returns>
+    bool isPlayerOutsideSolarSytem()
+    {
+        if (Player.position.magnitude > planets.Last().transform.position.magnitude + RimWidth)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    void RepositionPlayer()
+    {
+        Player.position = Vector3.left * planetSizes;
+    }
+
+    #endregion
+
+    #region Bodies management
+
+    /// <summary>
+    /// Use at executable initialization.
+    /// Create X planets, setup their hierarchy and base datas then give them a
+    /// </summary>
     void SetupSolarSytem()
     {
         // the width of all the previous planets
@@ -52,14 +85,19 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
             // real planet generation
             planets[i].Initialize();
             planetSizes += GeneratePlanet(i, planetSizes);
+        }
+    }
 
-            // then set the sun at the origin of solar system.
-            if (i == 0)
-            {
-                planets[0].transform.position = Vector3.zero;
-            }
+    /// <summary>
+    /// Re set a new profile to every planet and give them a proper position.
+    /// </summary>
+    public void Regenerate()
+    {
+        planetSizes = 0f;
 
-            rotator.transform.rotation = Quaternion.Euler(new Vector3(0f, Random.Range(0f, 360f), 0f));
+        for (int i = 0; i < planets.Count; i++)
+        {
+            planetSizes += GeneratePlanet(i, planetSizes);
         }
     }
 
@@ -73,38 +111,43 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
     {
         // the new position = 0 + the space occupied by previous planets + own width * spacing
         planets[i].transform.localScale = Vector3.one * Random.Range(PlanetsSize.x, PlanetsSize.y);
-        planets[i].transform.position =
-            new Vector3(1f, 0f, 1f) *
-            (planetsize + (PlanetSpacing * i) + planets[i].transform.localScale.x);
+
+        // We keep the sun at the center
+        if (i == 0)
+        {
+            planets[i].transform.position = Vector3.zero;
+        }
+        else
+        {
+            planets[i].transform.position =
+                new Vector3(1f, 0f, 1f) *
+                (planetsize + (PlanetSpacing * i) + planets[i].transform.localScale.x);
+        }
+
+        planets[i].Anchor.transform.rotation = Quaternion.Euler(new Vector3(0f, Random.Range(0f, 360f), 0f));
+
 
         // planet profile generation
         if (i == 0)
         {
-            planets[i].profile = RandomizePlanet(false);
+            planets[i].profile = GetRandomProfile(false);
         }
         else
         {
-            planets[i].profile = RandomizePlanet();
+            planets[i].profile = GetRandomProfile();
         }
+
         planets[i].Regenerate();
 
         return planets[i].transform.localScale.x;
     }
 
-    public void Regenerate()
-    {
-        // we clear the UI
-        planets.ForEach(x => PlanetGeneration(x));
-    }
-
-    void    PlanetGeneration(Planet sphere)
-    {
-        PlanetProfile profile = RandomizePlanet();
-        sphere.profile = profile;
-        sphere.Regenerate();
-    }
-
-    PlanetProfile RandomizePlanet(bool planet = true)
+    /// <summary>
+    /// Get a random profile depending on if the body is a star or a planet.
+    /// </summary>
+    /// <param name="planet"></param>
+    /// <returns></returns>
+    PlanetProfile GetRandomProfile(bool planet = true)
     {
         if (planet)
         {
@@ -116,4 +159,5 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
         }
     }
 
+    #endregion
 }

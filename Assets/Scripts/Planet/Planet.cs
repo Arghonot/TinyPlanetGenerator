@@ -47,6 +47,8 @@ public class Planet : MonoBehaviour
         {
             water.SetActive(true);
 
+            water.transform.localScale = Vector3.one * profile.SeaLevel;
+
             Material Watermaterial = water.GetComponent<MeshRenderer>().material;
 
             Watermaterial.SetColor("Color_109BE5B1", profile.WaterColor);

@@ -31,7 +31,7 @@ public class CustomPerlinGenerator : MonoBehaviour
 
     public void Generate(PlanetProfile profile)
     {
-        mapSize = 32;
+        //mapSize = 32;
         imgs = new List<Texture2D>();
         List<ModuleBase> generators = new List<ModuleBase>();
 

@@ -38,6 +38,7 @@ public class PlanetProfile : ScriptableObject
     public bool UseClouds = false;
     public bool UseAura = true;
 
+    public float SeaLevel = 1f;
     public Color WaterColor = new Color(44, 78, 79);
     public Color RippleColor = new Color(4, 18, 20);
 

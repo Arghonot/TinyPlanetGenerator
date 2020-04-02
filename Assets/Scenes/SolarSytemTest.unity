@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 45b76555fe031d447ab69a0cdbb47c03, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: a9b0ff17ba710534b88be94f577d5eea, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -10543,163 +10543,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
-      propertyPath: planets.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
-      propertyPath: profiles.Array.size
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
-      propertyPath: Suns.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
       propertyPath: PlanetProfiles.Array.size
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
-      propertyPath: PlanetAmount
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
-      propertyPath: PlanetSpacing
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
-      propertyPath: PlanetPrefab
+      propertyPath: Player
       value: 
-      objectReference: {fileID: 8028085928368238260, guid: a52e16f315b0e174b9cfb9a16816ddf9,
-        type: 3}
+      objectReference: {fileID: 1739546912}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
-      propertyPath: profiles.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: df7448adb974b5548b32a4d81ab8ac64,
-        type: 2}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
-      propertyPath: PlanetsSize.x
-      value: 8
+      propertyPath: RimWidth
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
-      propertyPath: PlanetsSize.y
-      value: 20
+      propertyPath: PlanetAmount
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
-      propertyPath: Suns.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 01587d81928540f4f845a5b63dce72f7,
-        type: 2}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
-      propertyPath: Suns.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 60ddc7dba8b21914f91e73e61c09bd90,
-        type: 2}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
       propertyPath: PlanetProfiles.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: df7448adb974b5548b32a4d81ab8ac64,
-        type: 2}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
-      propertyPath: PlanetProfiles.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 50f65c1470e37d742acd4bb7cdf95958,
-        type: 2}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
-      propertyPath: PlanetProfiles.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 201373bfe7992a249badb1e735e6408b,
-        type: 2}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
-      propertyPath: PlanetProfiles.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: c0b2b3b20622cfd448286e6e51ab1524,
-        type: 2}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
-      propertyPath: PlanetProfiles.Array.data[4]
-      value: 
-      objectReference: {fileID: 11400000, guid: d737d3696930d9d40b1c0c4a3e35b39c,
-        type: 2}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
-      propertyPath: PlanetProfiles.Array.data[5]
-      value: 
-      objectReference: {fileID: 11400000, guid: 3e2b60d60f0c2164d9e11228e058e3e0,
-        type: 2}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
-      propertyPath: PlanetProfiles.Array.data[6]
-      value: 
-      objectReference: {fileID: 11400000, guid: eec22f0f65f15cf49ac0abc37ae3193f,
-        type: 2}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
-      propertyPath: PlanetProfiles.Array.data[7]
-      value: 
-      objectReference: {fileID: 11400000, guid: b85771d39ec8f054f8775a67689bceee,
-        type: 2}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
-      propertyPath: PlanetProfiles.Array.data[8]
-      value: 
-      objectReference: {fileID: 11400000, guid: 4a53b251394748046a0386cc0c0b6d12,
-        type: 2}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
-      propertyPath: PlanetProfiles.Array.data[9]
-      value: 
-      objectReference: {fileID: 11400000, guid: e87a9b2e9d5092346853a5923723f51c,
-        type: 2}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
-      propertyPath: PlanetProfiles.Array.data[10]
-      value: 
-      objectReference: {fileID: 11400000, guid: e4768071c4cfc9b469107d89925cae21,
-        type: 2}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
-      propertyPath: PlanetProfiles.Array.data[11]
-      value: 
-      objectReference: {fileID: 11400000, guid: b2c15abc7fdc78445a9204d9e4813d49,
-        type: 2}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
-      propertyPath: PlanetProfiles.Array.data[12]
-      value: 
-      objectReference: {fileID: 11400000, guid: bfedcbbb6eaa990489efa36c7e46c3b4,
-        type: 2}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
-      propertyPath: PlanetProfiles.Array.data[13]
-      value: 
       objectReference: {fileID: 11400000, guid: b897db29d349fae4ea6cf5ba3c7ea6a9,
-        type: 2}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
-      propertyPath: PlanetProfiles.Array.data[14]
-      value: 
-      objectReference: {fileID: 11400000, guid: 409fbd4bc8380c8468fcac93cd332105,
-        type: 2}
-    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
-        type: 3}
-      propertyPath: PlanetProfiles.Array.data[15]
-      value: 
-      objectReference: {fileID: 11400000, guid: fabd327c55493184288a6827caabe323,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2c0d77b36df71e4bbdb5ffdcdc13731, type: 3}
