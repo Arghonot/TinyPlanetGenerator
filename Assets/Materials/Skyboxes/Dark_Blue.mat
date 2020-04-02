@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SKYBOITE
+  m_Name: Dark_Blue
   m_Shader: {fileID: 4800000, guid: bcef963c83ddaa444a53043198d1e533, type: 3}
   m_ShaderKeywords: _MAPPING_LATITUDE_LONGITUDE_LAYOUT _SUNDISK_HIGH_QUALITY
   m_LightmapFlags: 4
@@ -115,7 +115,7 @@ Material:
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color1: {r: 0, g: 0, b: 0, a: 0}
-    - _Color2: {r: 0, g: 0.24551032, b: 0.3018868, a: 0}
+    - _Color2: {r: 0, g: 0.14665519, b: 0.1792453, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GroundColor: {r: 1, g: 0.960322, b: 0, a: 1}
     - _SkyTint: {r: 1, g: 0, b: 0.84167385, a: 1}

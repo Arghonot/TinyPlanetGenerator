@@ -5,6 +5,14 @@ using LibNoise.Unity.Operator;
 using LibNoise.Unity.Generator;
 using System.Collections.Generic;
 
+public enum NoiseType
+{
+    Perlin,
+    Billow,
+    RiggedMultifractal,
+    Voronoi
+}
+
 public class CustomPerlinGenerator : MonoBehaviour
 {
     public float turbulence;
@@ -23,6 +31,7 @@ public class CustomPerlinGenerator : MonoBehaviour
 
     public void Generate(PlanetProfile profile)
     {
+        mapSize = 32;
         imgs = new List<Texture2D>();
         List<ModuleBase> generators = new List<ModuleBase>();
 

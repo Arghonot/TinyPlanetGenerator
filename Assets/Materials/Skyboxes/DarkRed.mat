@@ -7,9 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EclipticPlane
-  m_Shader: {fileID: -6465566751694194690, guid: 199e712e350c2cd44bda0e3b9cf64f04,
-    type: 3}
+  m_Name: DarkRed
+  m_Shader: {fileID: 4800000, guid: bcef963c83ddaa444a53043198d1e533, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -49,10 +48,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_47E49040: 0.93
-    - Vector1_4C80A4A8: 1000
-    - Vector1_AB830826: 0.25
-    - Vector1_EC401AF0: 0
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -60,9 +55,11 @@ Material:
     - _Cutoff: 0.5
     - _DstBlend: 0
     - _EnvironmentReflections: 1
+    - _Exponent: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Intensity: 1
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _QueueOffset: 0
@@ -72,15 +69,19 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
+    - _UpVectorPitch: 0
+    - _UpVectorYaw: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Vector2_239BCD14: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _Color1: {r: 0.29411766, g: 0, b: 0, a: 0}
+    - _Color2: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
---- !u!114 &8379590467470828605
+    - _UpVector: {r: 0, g: -1, b: 0, a: 0}
+--- !u!114 &3932532198603440025
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

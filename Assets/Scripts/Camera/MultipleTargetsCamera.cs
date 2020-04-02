@@ -83,10 +83,12 @@ public class MultipleTargetsCamera : MonoBehaviour
     {
         var bounds = new Bounds(Targets[0].position, Vector3.zero);
 
-        for (int i = 0; i < Targets[i].childCount; i++)
+        for (int i = 0; i < Targets.Count - 1; i++)
         {
-            bounds.Encapsulate(Targets[i].position);
-
+            for (int x = 0; x < Targets[i].childCount; x++)
+            {
+                bounds.Encapsulate(Targets[i].position);
+            }
         }
 
         return bounds.size.x;

@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sphere : MonoBehaviour
+public class Planet : MonoBehaviour
 {
     public PlanetProfile profile;
+
+    public Rotator Anchor;
 
     public GameObject water;
     public GameObject Aura;
@@ -131,7 +133,10 @@ public class Sphere : MonoBehaviour
 
     #region INIT
 
-    public void Generate()
+    /// <summary>
+    /// Initialize the planet, create it's mesh and base uv + required components.
+    /// </summary>
+    public void Initialize()
     {
         generator = GetComponent<CustomPerlinGenerator>();
 
