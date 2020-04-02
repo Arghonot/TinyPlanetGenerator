@@ -77,6 +77,34 @@ public class MultipleTargetsCamera : MonoBehaviour
 
     #endregion
 
+    #region Target management
+
+    /// <summary>
+    /// Add a new target to focus the camera to if it wasn't already on the camera's targets.
+    /// </summary>
+    /// <param name="newtarget">The new target.</param>
+    public void AddTarget(Transform newtarget)
+    {
+        if (!Targets.Contains(newtarget))
+        {
+            Targets.Add(newtarget);
+        }
+    }
+
+    /// <summary>
+    /// Remove a camera's target if.
+    /// </summary>
+    /// <param name="target">The target to be removed</param>
+    public void RemoveTarget(Transform target)
+    {
+        if (Targets.Contains(target))
+        {
+            Targets.Remove(target);
+        }
+    }
+
+    #endregion
+
     #region MISCS
 
     float GetGreatestDistance()

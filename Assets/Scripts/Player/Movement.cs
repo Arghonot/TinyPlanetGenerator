@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    public MultipleTargetsCamera cam;
     public float rotSpeed;
 
     [SerializeField, Range(0f, 100f)]
@@ -56,5 +57,25 @@ public class Movement : MonoBehaviour
         }
 
         transform.localPosition += displacement;
-    }    
+    }
+
+    #region Camera Management
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("POI"))
+        {
+            cam.AddTarget(other.transform);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("POI"))
+        {
+            cam.RemoveTarget(other.transform);
+        }
+    }
+
+    #endregion
 }
