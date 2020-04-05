@@ -17,6 +17,8 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
     public List<PlanetProfile> PlanetProfiles;
     public List<Planet> planets;
 
+    public MeshRenderer eclipticPlane;
+
     float planetSizes;
 
     private void Start()
@@ -87,6 +89,8 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
             planets[i].Initialize();
             planetSizes += GeneratePlanet(i, planetSizes);
         }
+
+        eclipticPlane.material.SetFloat("SolarSystemRadius", planets.Last().transform.position.magnitude + RimWidth);
     }
 
     /// <summary>
@@ -100,6 +104,10 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
         {
             planetSizes += GeneratePlanet(i, planetSizes);
         }
+
+        print(planets.Last().transform.position.magnitude + RimWidth);
+
+        eclipticPlane.material.SetFloat("SolarSystemRadius", planets.Last().transform.position.magnitude + RimWidth);
     }
 
     /// <summary>
