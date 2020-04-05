@@ -84,9 +84,9 @@ MonoBehaviour:
   useWater: 1
   UseClouds: 1
   UseAura: 1
-  SeaLevel: 0.74
-  WaterColor: {r: 0.17254902, g: 0.30588236, b: 0.30980393, a: 1}
-  RippleColor: {r: 0.015686275, g: 0.07058824, b: 0.078431375, a: 1}
+  SeaLevel: 0.735
+  WaterColor: {r: 0.21568629, g: 0.3529412, b: 0.35686275, a: 1}
+  RippleColor: {r: 0.121568635, g: 0.18823531, b: 0.18823531, a: 1}
   CliffIntensity: 0.1
   CliffLightColor: {r: 0.41568628, g: 0.3647059, b: 0.25490198, a: 1}
   CliffDarkColor: {r: 0.41568628, g: 0.34117648, b: 0.18039216, a: 1}

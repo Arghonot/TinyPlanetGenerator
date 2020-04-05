@@ -1257,6 +1257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56aa504e54f8dd645934c5442a550f64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 0}
   rotSpeed: 0
   maxSpeed: 10
   maxAcceleration: 17.3
@@ -2351,6 +2352,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 553922400, guid: 8cdef75da95f81249988b673f8bb7f6c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1729584017486478918, guid: 8cdef75da95f81249988b673f8bb7f6c,
         type: 3}
       propertyPath: m_Name

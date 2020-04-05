@@ -22,7 +22,7 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
     private void Start()
     {
         SetupSolarSytem();
-        LightEffect.Instance.Init();
+        //LightEffect.Instance.Init();
     }
 
     private void Update()

@@ -37,6 +37,9 @@ public class CustomPerlinGenerator : MonoBehaviour
 
         generators.Add(GetModule(profile));
 
+        // TODO USE A HEIGHTMAP THAT HAS THE SAME AMOUNT OF PXL THAN VERTICES
+        // e.g : 80 * 80
+        // if the map is 512 -> we get to have 6.4 planet's heightmap for the cost of a single map
         Noise2D map = new Noise2D(mapSize, mapSize / 2, generators[0]);
 
         map.GenerateSpherical(

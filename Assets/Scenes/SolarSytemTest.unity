@@ -403,8 +403,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea636dbad70c2940bbd7a5537b07268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planets: []
+  SearchRange: 20
   player: {fileID: 1739546912}
+  LerpDuration: 2
+  currentPointTolook: {x: 0, y: 0, z: 0}
+  NextPointToLook: {x: 0, y: 0, z: 0}
 --- !u!1 &760979145
 GameObject:
   m_ObjectHideFlags: 0
