@@ -403,9 +403,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea636dbad70c2940bbd7a5537b07268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SearchRange: 20
+  SearchRange: 60
   player: {fileID: 1739546912}
-  LerpDuration: 2
+  LerpDuration: 300
   currentPointTolook: {x: 0, y: 0, z: 0}
   NextPointToLook: {x: 0, y: 0, z: 0}
 --- !u!1 &760979145
@@ -5738,5 +5738,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: fabd327c55493184288a6827caabe323,
         type: 2}
+    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
+        type: 3}
+      propertyPath: eclipticPlane
+      value: 
+      objectReference: {fileID: 250598024}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2c0d77b36df71e4bbdb5ffdcdc13731, type: 3}

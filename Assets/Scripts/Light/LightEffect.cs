@@ -11,9 +11,6 @@ public class LightEffect : Singleton<LightEffect>
 
     Transform[] planets;
 
-    public Vector3 currentPointTolook = Vector3.zero;
-    public Vector3 NextPointToLook;
-
     Vector3 velocity = Vector3.zero;
 
     // TODO change this into a coroutine
@@ -22,17 +19,13 @@ public class LightEffect : Singleton<LightEffect>
         // TODO Ugly as F -> remove this asap
         planets = SolarSystemManager.Instance.planets.Select(x => x.transform).ToArray();
 
-        NextPointToLook = GetPlanetClusterCenter(getClosestPlanet());
+        transform.rotation = Quaternion.RotateTowards(
+            transform.rotation,
+            Quaternion.LookRotation(
+                GetPlanetClusterCenter(getClosestPlanet()),
+                Vector3.up),
+            Time.deltaTime * LerpDuration);
 
-        transform.LookAt(Vector3.SmoothDamp(player.transform.position, NextPointToLook, ref velocity, LerpDuration));
-
-        transform.LookAt(currentPointTolook);
-        //Vector3 newpoint = Vector3.Lerp(currentPointTolook, NextPointToLook, Time.deltaTime * LerpDuration);
-
-        //transform.LookAt(newpoint);
-        //print(newpoint);
-
-        //currentPointTolook = newpoint;
     }
 
     /// <summary>
@@ -81,14 +74,5 @@ public class LightEffect : Singleton<LightEffect>
         }
 
         return index;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(NextPointToLook, 20f);
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(currentPointTolook, 20f);
     }
 }
