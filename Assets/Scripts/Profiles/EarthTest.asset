@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EarthTest
   m_EditorClassIdentifier: 
   Name: 
-  TexturesSize: 2048
+  TexturesSize: 256
   ColorMap:
     serializedVersion: 2
     key0: {r: 0.1764706, g: 0.24313726, b: 0.5176471, a: 1}
