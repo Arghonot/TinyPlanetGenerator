@@ -34,6 +34,8 @@ public class PlanetProfile : ScriptableObject
 
     public Material material;
 
+    public Color SunFresnelColor;
+
     public bool useWater = false;
     public bool UseClouds = false;
     public bool UseAura = true;

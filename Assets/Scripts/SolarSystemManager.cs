@@ -78,7 +78,7 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
             // we setup the planet's rotation
             var anchor = new GameObject();
             var rotator = anchor.AddComponent<Rotator>();
-            rotator.rotation = Vector3.up * Random.Range(0.5f, 1f);
+            rotator.rotation = Vector3.zero; //Vector3.up * Random.Range(0.5f, 1f);
             anchor.transform.SetParent(transform);
             anchor.transform.position = Vector3.zero;
             anchor.name = "Planet_" + i;

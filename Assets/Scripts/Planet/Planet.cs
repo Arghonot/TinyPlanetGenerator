@@ -87,7 +87,7 @@ public class Planet : MonoBehaviour
             Material auramat = Aura.GetComponent<MeshRenderer>().material;
 
             auramat.SetColor("Color_C8024A4F", profile.Aura);
-            auramat.SetFloat("Vector1_F80876CD", profile.AuraIntensity);
+            auramat.SetFloat("Vector1_733A9945", profile.AuraIntensity);
         }
         else
         {
@@ -110,6 +110,7 @@ public class Planet : MonoBehaviour
         else if (render.material.shader.name.Contains("Magma"))
         {
             render.material.SetTexture("Texture2D_D98FF2C8", generator.ColorMap);
+            render.material.SetColor("Color_F4940654", profile.SunFresnelColor);
         }
         else if (render.material.shader.name.Contains("PlanetGround"))
         {
