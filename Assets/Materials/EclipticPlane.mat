@@ -49,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - SolarSystemRadius: 1
+    - SolarSystemRadius: 100
     - Vector1_47E49040: 0.93
     - Vector1_4C80A4A8: 1000
     - Vector1_AB830826: 223

@@ -90,5 +90,5 @@ MonoBehaviour:
   CliffIntensity: 0.1
   CliffLightColor: {r: 0.59607846, g: 0.44705883, b: 0.49803922, a: 1}
   CliffDarkColor: {r: 0.5568628, g: 0.40784314, b: 0.45882353, a: 1}
-  AuraIntensity: 7.73
-  Aura: {r: 0, g: 0, b: 1, a: 1}
+  AuraIntensity: 0.5
+  Aura: {r: 0, g: 0, b: 1, a: 0.050980393}
