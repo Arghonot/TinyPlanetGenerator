@@ -226,6 +226,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 553922400, guid: 8cdef75da95f81249988b673f8bb7f6c, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729584017344151771, guid: 8cdef75da95f81249988b673f8bb7f6c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3ebd9fa922953364e98721e977286414, type: 2}
+    - target: {fileID: 1729584017344151772, guid: 8cdef75da95f81249988b673f8bb7f6c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 64d627902f420c148bfd5aba0375137f, type: 2}
     - target: {fileID: 1729584017486478918, guid: 8cdef75da95f81249988b673f8bb7f6c,
         type: 3}
       propertyPath: m_Name
@@ -296,6 +310,21 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1938269579}
+    - target: {fileID: 1729584018396981877, guid: 8cdef75da95f81249988b673f8bb7f6c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 64d627902f420c148bfd5aba0375137f, type: 2}
+    - target: {fileID: 1729584019209612052, guid: 8cdef75da95f81249988b673f8bb7f6c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3ebd9fa922953364e98721e977286414, type: 2}
+    - target: {fileID: 1729584019209612053, guid: 8cdef75da95f81249988b673f8bb7f6c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 64d627902f420c148bfd5aba0375137f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cdef75da95f81249988b673f8bb7f6c, type: 3}
 --- !u!1 &717473370
@@ -406,8 +435,6 @@ MonoBehaviour:
   SearchRange: 60
   player: {fileID: 1739546912}
   LerpDuration: 300
-  currentPointTolook: {x: 0, y: 0, z: 0}
-  NextPointToLook: {x: 0, y: 0, z: 0}
 --- !u!1 &760979145
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,7 +474,7 @@ MonoBehaviour:
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4096
   m_VolumeTrigger: {fileID: 0}
   m_RenderPostProcessing: 0
   m_Antialiasing: 0
@@ -488,7 +515,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1335
+    m_Bits: 4096
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -5690,6 +5717,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
+      propertyPath: Suns.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
+        type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 1739546912}
@@ -5743,5 +5775,54 @@ PrefabInstance:
       propertyPath: eclipticPlane
       value: 
       objectReference: {fileID: 250598024}
+    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
+        type: 3}
+      propertyPath: Suns.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: d737d3696930d9d40b1c0c4a3e35b39c,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2c0d77b36df71e4bbdb5ffdcdc13731, type: 3}
+--- !u!1 &2109635159
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2109635160}
+  - component: {fileID: 2109635161}
+  m_Layer: 0
+  m_Name: FPSDisplay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2109635160
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109635159}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -50.10547, y: -2.2001953, z: -84.26953}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2109635161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109635159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c413e685bb6eb5645b083980493fd0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

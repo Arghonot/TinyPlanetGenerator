@@ -285,7 +285,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 7
+      scalar: 4
       minScalar: 3
       maxCurve:
         serializedVersion: 2
@@ -4861,13 +4861,13 @@ GameObject:
   - component: {fileID: 2688970669867554262}
   - component: {fileID: 4124354381228066516}
   - component: {fileID: 1203877713700169539}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: EnterPlanet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5693770805750530724
 Transform:
   m_ObjectHideFlags: 0
@@ -4908,7 +4908,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: cb263fb4ccf4125488d521270c7bf09c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
