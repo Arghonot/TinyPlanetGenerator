@@ -20,11 +20,15 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
 
     public MeshRenderer eclipticPlane;
 
-    float planetSizes;
+    public float planetSizes;
 
-    private void Start()
+    private void Awake()
     {
         SetupSolarSytem();
+        PlaceLastPlanetForTutorial();
+
+        eclipticPlane.material.SetFloat("SolarSystemRadius", planets.Last().transform.position.magnitude + RimWidth / 3);
+
         //LightEffect.Instance.Init();
     }
 
@@ -64,6 +68,12 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
 
     #region Bodies management
 
+    void    PlaceLastPlanetForTutorial()
+    {
+        planets[PlanetAmount - 1].transform.parent.transform.eulerAngles = Vector3.zero;
+        planets[PlanetAmount - 1].transform.position = new Vector3(45f, 0f, 210f);
+    }
+
     /// <summary>
     /// Use at executable initialization.
     /// Create X planets, setup their hierarchy and base datas then give them a
@@ -91,7 +101,6 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
             planetSizes += GeneratePlanet(i, planetSizes);
         }
 
-        eclipticPlane.material.SetFloat("SolarSystemRadius", planets.Last().transform.position.magnitude + RimWidth);
     }
 
     /// <summary>
@@ -170,6 +179,27 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
             RenderSettings.skybox = SolarSystems[index].Skybox;
             return SolarSystems[index].Sun;
         }
+    }
+
+    #endregion
+
+    #region Getters
+
+    public Vector3 GetPlanetPosition(int index)
+    {
+        if (index > planets.Count)
+        {
+            return Vector3.zero;
+        }
+        else
+        {
+            return planets[index].transform.position;
+        }
+    }
+
+    public int AmountOfPlanets()
+    {
+        return planets.Count;
     }
 
     #endregion

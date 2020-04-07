@@ -73,7 +73,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   ElevationMultiplier: 0
-  BaseElevation: 0.35
+  BaseElevation: 1
   type: 2
   frequency: 30
   lacunarity: 4
