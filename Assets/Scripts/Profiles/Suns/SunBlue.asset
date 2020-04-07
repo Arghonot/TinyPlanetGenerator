@@ -74,16 +74,18 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   ElevationMultiplier: 0
   BaseElevation: 0.35
-  type: 3
+  type: 2
   frequency: 30
   lacunarity: 4
   persistence: 0
   displacement: 0
   octaves: 6
   material: {fileID: 2100000, guid: 369463bff25aaeb499f6c345ce75be30, type: 2}
+  SunFresnelColor: {r: 0, g: 0, b: 0, a: 0}
   useWater: 0
   UseClouds: 0
   UseAura: 0
+  SeaLevel: 1
   WaterColor: {r: 0.17254902, g: 0.30588236, b: 0.30980393, a: 1}
   RippleColor: {r: 0.015686275, g: 0.07058824, b: 0.078431375, a: 1}
   CliffIntensity: 0.7

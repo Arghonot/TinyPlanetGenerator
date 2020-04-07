@@ -13,7 +13,8 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
 
     public float RimWidth;
     public Transform Player;
-    public List<PlanetProfile> Suns;
+    public List<SolarSystemProfile> SolarSystems;
+    //public List<PlanetProfile> Suns;
     public List<PlanetProfile> PlanetProfiles;
     public List<Planet> planets;
 
@@ -164,7 +165,10 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
         }
         else
         {
-            return Suns[(int)Random.Range(0, Suns.Count)];
+            var index = (int)Random.Range(0, SolarSystems.Count);
+
+            RenderSettings.skybox = SolarSystems[index].Skybox;
+            return SolarSystems[index].Sun;
         }
     }
 

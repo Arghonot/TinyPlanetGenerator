@@ -81,6 +81,7 @@ MonoBehaviour:
   displacement: 0
   octaves: 6
   material: {fileID: 2100000, guid: d67ef3262ca8dc74eaec1d940bbfd15c, type: 2}
+  SunFresnelColor: {r: 0, g: 0, b: 0, a: 0}
   useWater: 1
   UseClouds: 1
   UseAura: 1
@@ -90,5 +91,5 @@ MonoBehaviour:
   CliffIntensity: 0.1
   CliffLightColor: {r: 0.41568628, g: 0.3647059, b: 0.25490198, a: 1}
   CliffDarkColor: {r: 0.41568628, g: 0.34117648, b: 0.18039216, a: 1}
-  AuraIntensity: 0.5
-  Aura: {r: 0.227451, g: 0, b: 1, a: 0.1764706}
+  AuraIntensity: 3.5
+  Aura: {r: 0.12735847, g: 0.39808095, b: 0.5, a: 0.1764706}
