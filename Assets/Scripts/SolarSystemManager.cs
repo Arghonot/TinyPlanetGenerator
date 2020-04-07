@@ -12,7 +12,7 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
     public Planet PlanetPrefab;
 
     public float RimWidth;
-    public Transform Player;
+    public Movement Player;
     public List<SolarSystemProfile> SolarSystems;
     //public List<PlanetProfile> Suns;
     public List<PlanetProfile> PlanetProfiles;
@@ -47,7 +47,7 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
     /// <returns></returns>
     bool isPlayerOutsideSolarSytem()
     {
-        if (Player.position.magnitude > planets.Last().transform.position.magnitude + RimWidth)
+        if (Player.transform.position.magnitude > planets.Last().transform.position.magnitude + RimWidth)
         {
             return true;
         }
@@ -57,7 +57,7 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
 
     void RepositionPlayer()
     {
-        Player.position = Vector3.left * planetSizes;
+        Player.Reposition(Vector3.left * planetSizes);
     }
 
     #endregion

@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
     public MultipleTargetsCamera cam;
     public float rotSpeed;
+
+    public TrailRenderer[] trails;
 
     [SerializeField, Range(0f, 100f)]
     float maxSpeed = 10f;
@@ -58,6 +58,20 @@ public class Movement : MonoBehaviour
 
         transform.localPosition += displacement;
     }
+
+    #region Reposition
+
+    public void Reposition(Vector3 position)
+    {
+        transform.position = position;
+
+        for (int i = 0; i < trails.Length; i++)
+        {
+            trails[i].Clear();
+        }
+    }
+
+    #endregion
 
     #region Camera Management
 
