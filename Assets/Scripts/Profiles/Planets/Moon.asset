@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Moon
   m_EditorClassIdentifier: 
   Name: 
-  TexturesSize: 256
+  TexturesSize: 2048
   ColorMap:
     serializedVersion: 2
     key0: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}

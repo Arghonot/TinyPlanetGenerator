@@ -18,6 +18,7 @@ public class Planet : MonoBehaviour
     public int AmountOfVertices;
     MeshFilter filter;
     MeshRenderer render;
+    MeshCollider Terrain;
 
     #region UNITY
 
@@ -36,6 +37,8 @@ public class Planet : MonoBehaviour
         HandleWater();
         HandleClouds();
         HandleAura();
+
+        Terrain.sharedMesh = filter.mesh;
     }
 
     /// <summary>
@@ -151,6 +154,7 @@ public class Planet : MonoBehaviour
         filter = GetComponent<MeshFilter>();
         filter.mesh = mesh;
         render = GetComponent<MeshRenderer>();
+        Terrain = gameObject.AddComponent<MeshCollider>();
     }
 
     #endregion
