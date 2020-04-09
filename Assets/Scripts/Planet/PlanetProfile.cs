@@ -28,7 +28,7 @@ public class PlanetProfile : ScriptableObject
     // Noise relative
     public double frequency = 1d;
     public double lacunarity = 2d;
-    public double persistence = .5d;
+    public double persistence = 0.5d;
     public double displacement = 0d;
     public int octaves = 6;
 
