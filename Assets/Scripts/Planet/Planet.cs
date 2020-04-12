@@ -20,7 +20,22 @@ public class Planet : MonoBehaviour
     MeshRenderer render;
     MeshCollider Terrain;
 
+    Texture2D tex;
+    public bool save;
+
     #region UNITY
+
+    private void Update()
+    {
+        if (save)
+        {
+            save = false;
+
+            var bytes = tex.EncodeToPNG();
+            System.IO.File.WriteAllBytes(
+                "C:/Users/loriv/OneDrive/Pictures/Tiny_planet_generator/GeneratedPlanet/planet.png", bytes);
+        }
+    }
 
     #endregion
 
@@ -39,6 +54,8 @@ public class Planet : MonoBehaviour
         HandleAura();
 
         Terrain.sharedMesh = filter.mesh;
+
+        tex = generator.HeightMap;
     }
 
     /// <summary>
