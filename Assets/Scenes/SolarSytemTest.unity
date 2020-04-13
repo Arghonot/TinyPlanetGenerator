@@ -7677,7 +7677,7 @@ PrefabInstance:
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
       propertyPath: PlanetAmount
-      value: 1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
@@ -7744,7 +7744,7 @@ PrefabInstance:
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
       propertyPath: PlanetsSize.x
-      value: 8
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}

@@ -55,7 +55,7 @@ public class Planet : MonoBehaviour
 
         Terrain.sharedMesh = filter.mesh;
 
-        tex = generator.HeightMap;
+        tex = generator.ColorMap;
     }
 
     /// <summary>
@@ -122,6 +122,8 @@ public class Planet : MonoBehaviour
     {
         render.material = profile.material;
 
+        print(render.material.shader.name);
+
         // if lit
         if (render.material.shader.name == "Universal Render Pipeline/Lit")
         {
@@ -140,6 +142,10 @@ public class Planet : MonoBehaviour
 
             render.material.SetColor("Color_5EBF6256", profile.CliffLightColor);
             render.material.SetColor("Color_863EF5B8", profile.CliffDarkColor);
+        }
+        else if (render.material.shader.name.Contains("EnhancedGroundV2"))
+        {
+            render.material.SetTexture("Texture2D_4FCE4029", generator.ColorMap);
         }
         else if (render.material.shader.name.Contains("WeirdFresnel"))
         {
