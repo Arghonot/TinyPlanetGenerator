@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-using LibNoise.Unity;
-using LibNoise.Unity.Operator;
-using LibNoise.Unity.Generator;
+using LibNoise;
+using LibNoise.Operator;
+using LibNoise.Generator;
 using System.Collections.Generic;
 
 public enum NoiseType
@@ -18,8 +18,8 @@ public class CustomPerlinGenerator : MonoBehaviour
     public float turbulence;
     public int mapSize;
 
-    public float south = -90.0f;
-    public float north = 90.0f;
+    public float south = 90.0f;
+    public float north = -90.0f;
 
     public float west = -180.0f;
     public float east = 180.0f;
@@ -41,6 +41,8 @@ public class CustomPerlinGenerator : MonoBehaviour
         // e.g : 80 * 80
         // if the map is 512 -> we get to have 6.4 planet's heightmap for the cost of a single map
         Noise2D map = new Noise2D(mapSize, mapSize / 2, generators[0]);
+
+        Debug.Log(south + " " + north + "   " + west + "    " + east);
 
         map.GenerateSpherical(
             south,
@@ -128,7 +130,7 @@ public class CustomPerlinGenerator : MonoBehaviour
 
                 break;
             case NoiseType.RiggedMultifractal:
-                Generator = new RiggedMultifractal(profile.frequency,
+                Generator = new RidgedMultifractal(profile.frequency,
                     profile.lacunarity,
                     profile.octaves,
                     Random.Range(0, int.MaxValue),
@@ -186,7 +188,7 @@ public class CustomPerlinGenerator : MonoBehaviour
 
                 break;
             case NoiseType.RiggedMultifractal:
-                Generator = new RiggedMultifractal(
+                Generator = new RidgedMultifractal(
                     1d,
                     2d,
                     6,

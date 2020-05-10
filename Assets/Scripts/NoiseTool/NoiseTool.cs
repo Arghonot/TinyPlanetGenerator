@@ -1,8 +1,8 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 
-using LibNoise.Unity;
-using LibNoise.Unity.Generator;
+using LibNoise;
+using LibNoise.Generator;
 using System.Globalization;
 
 using TMPro;
@@ -364,7 +364,7 @@ public class NoiseTool : MonoBehaviour
 
                 break;
             case NoiseType.RiggedMultifractal:
-                Generator = new RiggedMultifractal(
+                Generator = new RidgedMultifractal(
                     frequency,
                     lacunarity,
                     octaves,

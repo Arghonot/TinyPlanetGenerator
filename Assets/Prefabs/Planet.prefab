@@ -5142,8 +5142,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turbulence: 0
   mapSize: 256
-  south: -90
-  north: 90
+  south: 90
+  north: -90
   west: -180
   east: 180
   ColorMap: {fileID: 0}

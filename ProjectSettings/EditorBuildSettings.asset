@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Demo.unity
     guid: bdb8d5bcc78ca483aa3342bf8d5ab834
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/SolarSytemTest.unity
     guid: 60325655294c5bf4ba4b9d901b51c210
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NoiseToolScene.unity
     guid: 8062f1a1338acba44822d8ae612d8a9f
   m_configObjects: {}

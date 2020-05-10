@@ -7652,7 +7652,7 @@ PrefabInstance:
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
       propertyPath: PlanetProfiles.Array.size
-      value: 1
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
@@ -7683,7 +7683,7 @@ PrefabInstance:
         type: 3}
       propertyPath: PlanetProfiles.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 864393b5f8a9e1147be67ac427c99bc9,
+      objectReference: {fileID: 11400000, guid: df7448adb974b5548b32a4d81ab8ac64,
         type: 2}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
@@ -7791,7 +7791,7 @@ PrefabInstance:
         type: 3}
       propertyPath: PlanetProfiles.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: d737d3696930d9d40b1c0c4a3e35b39c,
+      objectReference: {fileID: 11400000, guid: 50f65c1470e37d742acd4bb7cdf95958,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2c0d77b36df71e4bbdb5ffdcdc13731, type: 3}

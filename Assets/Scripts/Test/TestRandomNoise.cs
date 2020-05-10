@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using LibNoise.Unity;
-using LibNoise.Unity.Generator;
-using LibNoise.Unity.Operator;
+using LibNoise;
+using LibNoise.Generator;
+using LibNoise.Operator;
 
 
 public class TestRandomNoise : MonoBehaviour
