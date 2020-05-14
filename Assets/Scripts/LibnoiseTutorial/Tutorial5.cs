@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using LibNoise;
-using LibNoise;
 using LibNoise.Generator;
 using LibNoise.Operator;
 

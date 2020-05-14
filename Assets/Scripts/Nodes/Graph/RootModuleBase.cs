@@ -1,11 +1,9 @@
-﻿using LibNoise;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using XNode;
+﻿
+using System;
 
 namespace NoiseGraph
 {
+    [Serializable]
     public class RootModuleBase : Graph.Root<SerializableModuleBase>
     {
         public override object Run()

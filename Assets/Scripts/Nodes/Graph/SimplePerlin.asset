@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56683249f3ed8cd4a9909d21d2a976eb, type: 3}
+  m_Name: SimplePerlin
+  m_EditorClassIdentifier: 
+  Frequency: 1
+  Lacunarity: 2
+  Persistence: 4
+  Octaves: 8
+  Seed: 7000
+  Min: 0
+  Max: 42
+  Quality: 0
