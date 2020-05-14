@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace NoiseGraph
 {
-    [CreateNodeMenu("NoiseGraph/Operator/Blend")]
-    public class BlendNode : LibnoiseNode
+    [CreateNodeMenu("NoiseGraph/Operator/Select")]
+    public class SelectNode : LibnoiseNode
     {
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public SerializableModuleBase SourceA;
@@ -19,7 +19,7 @@ namespace NoiseGraph
 
         public override object Run()
         {
-            return new Blend(
+            return new Select(
                 GetInputValue<SerializableModuleBase>("SourceA", this.SourceA),
                 GetInputValue<SerializableModuleBase>("SourceB", this.SourceB),
                 GetInputValue<SerializableModuleBase>("Controller", this.Controller));
