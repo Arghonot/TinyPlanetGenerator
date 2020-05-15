@@ -31,6 +31,8 @@ public class AddTry : MonoBehaviour
 
     public bool Do;
 
+    public AnimationCurve Acurve;
+
     public double Frequency = 4;
     public double Displacement = .1;
 
@@ -39,7 +41,7 @@ public class AddTry : MonoBehaviour
         if (Do)
         {
             Do = false;
-            GenerateOwnTests();
+            GenerateOwnBlend();
         }
     }
 
@@ -47,7 +49,17 @@ public class AddTry : MonoBehaviour
     {
         ModuleBase perlin = new Perlin(1, 2, .5, 6, 42, QualityMode.Medium);
         ModuleBase voronoi = new Voronoi(Frequency, Displacement, 42, true);
-        ModuleBase blend = new Add(perlin, voronoi);
+        //ModuleBase blend = new Add(perlin, voronoi);
+        Curve curve = new Curve(perlin);
+
+        foreach (var point in Acurve.keys)
+        {
+            curve.Add(point.time, point.value);
+        }
+
+        //curve.Add(0d, .1d);
+        //curve.Add(.5d, .5d);
+        //curve.Add(1.9d, .9d);
 
         var perlinbuilder = new Noise2D(Size, Size / 2, perlin);
         perlinbuilder.GeneratePlanar(_left, _right, _top, _bottom);
@@ -55,7 +67,7 @@ public class AddTry : MonoBehaviour
         var voronoibuilder = new Noise2D(Size, Size / 2, voronoi);
         voronoibuilder.GeneratePlanar(_left, _right, _top, _bottom);
 
-        var blendbuilder = new Noise2D(Size, Size / 2, blend);
+        var blendbuilder = new Noise2D(Size, Size / 2, curve);
         blendbuilder.GeneratePlanar(_left, _right, _top, _bottom);
 
         Perlin.material.SetTexture("_BaseMap", perlinbuilder.GetTexture(_gradient));

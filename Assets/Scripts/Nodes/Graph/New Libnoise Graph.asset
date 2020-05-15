@@ -693,25 +693,16 @@ MonoBehaviour:
   width: 300
   container:
     keys:
-    - ce3c4a25-06b8-4677-89cd-e91e31c77dde
-    - c67d04e9-ae38-4d52-b88c-f7e2d827e80e
-    - e7820f9f-60ae-43d1-a7b8-5aaca840b6f2
-    - 8cff6aaf-b481-4810-a280-0b730ca8316a
-    - f55a42b5-b8dc-4ca9-a13a-1d60e82307d3
-    - d4bc3a8a-b563-4385-816b-c3d757154d59
+    - 1e90abdb-536e-4008-9ffa-b5dc6049ffaf
+    - d4d1e2d2-1c20-4e9e-8468-c5eeda660144
+    - 1211e584-4970-42f4-a80d-55cdcfbf6498
     values:
-    - Name: Min
-      TypeName: int
-    - Name: Max
-      TypeName: int
-    - Name: Frequency
-      TypeName: double
-    - Name: Lacunarity
-      TypeName: double
-    - Name: Persistence
-      TypeName: double
-    - Name: Octaves
-      TypeName: int
+    - Name: yo1
+      TypeName: GameObject
+    - Name: yoyo2
+      TypeName: Transform
+    - Name: 3
+      TypeName: Vector3
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
