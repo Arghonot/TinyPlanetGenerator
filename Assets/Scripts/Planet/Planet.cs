@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// V(x) = ((x - 2) * x ) + 2
+// T(x) = (x * 2) + ((x - 3) * (x * 2))
+
 public class Planet : MonoBehaviour
 {
     public PlanetProfile profile;
@@ -15,7 +18,8 @@ public class Planet : MonoBehaviour
 
     public CustomPerlinGenerator generator;
 
-    public int AmountOfVertices;
+    public int AmountOfVerticesX;
+
     MeshFilter filter;
     MeshRenderer render;
     MeshCollider Terrain;
@@ -187,14 +191,14 @@ public class Planet : MonoBehaviour
     void ReScale()
     {
         Vector3[] vertices = new Vector3[
-            ((AmountOfVertices + 1) * (AmountOfVertices + 1))];
+            ((AmountOfVerticesX + 1) * (AmountOfVerticesX + 1))];
         Vector3[] normals = new Vector3[vertices.Length];
-        float latPadding = 180f / (float)AmountOfVertices;
-        float lonPadding = 360f / (float)AmountOfVertices;
+        float latPadding = 180f / (float)AmountOfVerticesX;
+        float lonPadding = 360f / (float)AmountOfVerticesX;
 
-        for (int x = 0, i = 0; x <= AmountOfVertices; x++)
+        for (int x = 0, i = 0; x <= AmountOfVerticesX; x++)
         {
-            for (int y = 0; y <= AmountOfVertices; y++, i++)
+            for (int y = 0; y <= AmountOfVerticesX; y++, i++)
             {
                 vertices[i] = CoordinatesProjector.InverseMercatorProjector(
                     (((x * lonPadding) - 180f) * Mathf.Deg2Rad),
@@ -206,14 +210,6 @@ public class Planet : MonoBehaviour
             }
         }
 
-        //for (int x = 0, i = 0; x <= AmountOfVertices; x++)
-        //{
-        //    for (int y = 0; y <= AmountOfVertices; y++, i++)
-        //    {
-        //        normals[i] = getNormal(i, vertices);
-        //    }
-        //}
-
         filter.mesh.vertices = vertices;
         filter.mesh.RecalculateNormals();
         Vector3[] copied_normals = filter.mesh.normals;
@@ -224,9 +220,9 @@ public class Planet : MonoBehaviour
 
     Vector3[] CalCulateNormals(Vector3[] normals, Vector3[] vertices)
     {
-        for (int i = 0; i <= AmountOfVertices; i++)
+        for (int i = 0; i <= AmountOfVerticesX; i++)
         {
-            int endindex = ((1 + AmountOfVertices) * (1 + AmountOfVertices)) - (AmountOfVertices) + i - 1;
+            int endindex = ((1 + AmountOfVerticesX) * (1 + AmountOfVerticesX)) - (AmountOfVerticesX) + i - 1;
 
             Vector3 leftvector = vertices[endindex] + vertices[endindex - 1];
             Vector3 rightvector = vertices[i] + vertices[i + 1];
@@ -243,14 +239,14 @@ public class Planet : MonoBehaviour
 
     float GetGrayScale(Texture2D tex, int x, int y)
     {
-        if (x == AmountOfVertices && y == AmountOfVertices)
+        if (x == AmountOfVerticesX && y == AmountOfVerticesX)
         {
             return tex.GetPixel(tex.width - 1, tex.height - 1).grayscale;
         }
 
         return tex.GetPixel(
-            (int)((float)tex.width * ((float)x / (float)AmountOfVertices)),
-            (int)((float)tex.height * ((float)y / (float)AmountOfVertices))).grayscale;
+            (int)((float)tex.width * ((float)x / (float)AmountOfVerticesX)),
+            (int)((float)tex.height * ((float)y / (float)AmountOfVerticesX))).grayscale;
     }
 
     #endregion
@@ -260,47 +256,53 @@ public class Planet : MonoBehaviour
     void SetupVerticesAndUV(Mesh mesh)
     {
         Vector3[] vertices = new Vector3[
-            ((AmountOfVertices + 1) * (AmountOfVertices + 1))];
+            ((AmountOfVerticesX - 2) * AmountOfVerticesX) + 2];
         Vector2[] uv = new Vector2[vertices.Length];
-        float latPadding = 180f / (float)AmountOfVertices;
-        float lonPadding = 360f / (float)AmountOfVertices;
+        float latPadding = 180f / ((float)AmountOfVerticesX);
+        float lonPadding = 360f / (float)AmountOfVerticesX;
 
-        for (int x = 0, i = 0; x <= AmountOfVertices; x++)
+        for (int x = 0, i = 0; x <= AmountOfVerticesX; x++)
         {
-            for (int y = 0; y <= AmountOfVertices; y++, i++)
+            for (int y = 1; y <= AmountOfVerticesX - 1; y++, i++)
             {
                     vertices[i] = CoordinatesProjector.InverseMercatorProjector(
                         (((x * lonPadding) - 180f) * Mathf.Deg2Rad),
                         (((y * latPadding) - 90f) * Mathf.Deg2Rad),
                         .96f);
 
-                //print("[X][DEG]" + x + " " + (x * lonPadding) + "    [Y][DEG]" + y + " " + (y * latPadding));
-
                 uv[i] = new Vector2(
-                    (float)x / (float)AmountOfVertices,
-                    (float)y / (float)AmountOfVertices);
+                    (float)x / (float)AmountOfVerticesX,
+                    (float)y / (float)AmountOfVerticesX);
             }
+
+            Debug.Log(i);
         }
 
         mesh.RecalculateNormals();
         mesh.vertices = vertices;
         mesh.uv = uv;
+
+        Debug.Log(vertices.Length);
     }
 
     int[] ProcessTriangles()
     {
-        int[] triangles = new int[((AmountOfVertices * AmountOfVertices) + AmountOfVertices) * 6];
+        int[] triangles = new int[(((AmountOfVerticesX * (AmountOfVerticesX)) + AmountOfVerticesX) * 6)];
 
-        for (int ti = 0, vi = 0, y = 0; y < AmountOfVertices; y++, vi++)
+        for (int ti = 0, vi = 0, y = 0; y < AmountOfVerticesX; y++, vi++)
         {
-            for (int x = 0; x < AmountOfVertices; x++, ti += 6, vi++)
+            for (int x = 0; x < (AmountOfVerticesX / 2) - 1; x++, ti += 6, vi++)
             {
                 triangles[ti] = vi;
                 triangles[ti + 3] = triangles[ti + 2] = vi + 1;
-                triangles[ti + 4] = triangles[ti + 1] = vi + AmountOfVertices + 1;
-                triangles[ti + 5] = vi + AmountOfVertices + 2;
+                triangles[ti + 4] = triangles[ti + 1] = vi + AmountOfVerticesX + 1;
+                triangles[ti + 5] = vi + AmountOfVerticesX + 2;
             }
+
+            Debug.Log(ti);
         }
+
+        Debug.Log(triangles.Length);
 
         return triangles;
     }

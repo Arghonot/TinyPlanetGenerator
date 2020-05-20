@@ -5126,7 +5126,7 @@ MonoBehaviour:
   Aura: {fileID: 7843671739224271363}
   Clouds: {fileID: 9125559891162841896}
   generator: {fileID: 8028085928368238264}
-  AmountOfVertices: 80
+  AmountOfVertices: 10
   save: 0
 --- !u!114 &8028085928368238264
 MonoBehaviour:

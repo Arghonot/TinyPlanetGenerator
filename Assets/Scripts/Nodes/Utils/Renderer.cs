@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using UnityEngine;
 using XNode;
+using System.IO;
 
 namespace NoiseGraph
 {
@@ -10,10 +11,12 @@ namespace NoiseGraph
     [NodeTint(Graph.ColorProfile.Debug)]
     public class Renderer : Node
     {
-        float south = 90.0f;
-        float north = -90.0f;
-        float west = -180.0f;
-        float east = 180.0f;
+        public string DataPath;
+
+        public float south = 90.0f;
+        public float north = -90.0f;
+        public float west = -180.0f;
+        public float east = 180.0f;
         public int size = 512;
 
         public float Space = 110;
@@ -21,9 +24,9 @@ namespace NoiseGraph
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public SerializableModuleBase Input;
 
-        public Rect TexturePosition = new Rect(14, 130, 180, 90);
+        public Rect TexturePosition = new Rect(14, 225, 180, 90);
         public Texture2D tex = null;
-        public Gradient grad;
+        public Gradient grad = new Gradient();
 
         public long RenderTime;
 
@@ -49,6 +52,13 @@ namespace NoiseGraph
 
             watch.Stop();
             RenderTime = watch.ElapsedMilliseconds;
+        }
+
+        public void Save()
+        {
+            if (tex == null) return;
+
+            File.WriteAllBytes(Application.dataPath + DataPath, tex.EncodeToPNG());
         }
     }
 }    

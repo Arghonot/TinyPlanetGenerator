@@ -16,7 +16,8 @@ namespace NoiseGraph
             typeof(Graph.Leaf),
             typeof(Graph.Branch),
             typeof(Graph.Blackboard),
-            typeof(LibnoiseNode)
+            typeof(LibnoiseNode),
+            typeof(Graph.NodeBase)
         };
 
         public override void RemoveNode(Node node)

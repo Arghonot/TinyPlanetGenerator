@@ -34,6 +34,10 @@ namespace NoiseGraph
             {
                 rend.Render();
             }
+            if (GUILayout.Button("Save"))
+            {
+                rend.Save();
+            }
 
             //GUILayout.Label("Render time (ms) : " + rend.RenderTime.ToString());
         }

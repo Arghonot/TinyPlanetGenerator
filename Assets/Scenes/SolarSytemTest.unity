@@ -958,29 +958,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72b10c1a86acd9043abbfe81e4de8e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  So: {fileID: 11400000, guid: 28c4e75103eec914b8f8e6401c416f40, type: 2}
-  graph: {fileID: 11400000, guid: 2c2f960e47fd4724a9c2389855ce302b, type: 2}
-  values:
-    keys:
-    - ce3c4a25-06b8-4677-89cd-e91e31c77dde
-    - c67d04e9-ae38-4d52-b88c-f7e2d827e80e
-    - e7820f9f-60ae-43d1-a7b8-5aaca840b6f2
-    - 8cff6aaf-b481-4810-a280-0b730ca8316a
-    - f55a42b5-b8dc-4ca9-a13a-1d60e82307d3
-    - d4bc3a8a-b563-4385-816b-c3d757154d59
-    values:
-    - Name: Min
-      TypeName: int
-    - Name: Max
-      TypeName: int
-    - Name: Frequency
-      TypeName: double
-    - Name: Lacunarity
-      TypeName: double
-    - Name: Persistence
-      TypeName: double
-    - Name: Octaves
-      TypeName: int
 --- !u!1 &619768015
 GameObject:
   m_ObjectHideFlags: 0

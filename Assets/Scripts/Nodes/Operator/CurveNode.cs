@@ -12,6 +12,7 @@ namespace NoiseGraph
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public SerializableModuleBase Input;
 
+        [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public AnimationCurve InputCurve;
 
         public override object Run()

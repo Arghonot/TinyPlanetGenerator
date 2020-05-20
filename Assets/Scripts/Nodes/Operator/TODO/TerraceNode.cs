@@ -11,22 +11,21 @@ namespace NoiseGraph
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public SerializableModuleBase Input;
 
-        [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
-        public double Terrace1;
-        [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
-        public double Terrace2;
-        [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
-        public double Terrace3;
-
+        [Input(dynamicPortList = true)]
+        public List<double> Terrace = new List<double>();
 
         public override object Run()
         {
             Terrace terr = new Terrace(
                 GetInputValue<SerializableModuleBase>("Input", this.Input));
 
-            terr.Add(GetInputValue<double>("Terrace1", this.Terrace1));
-            terr.Add(GetInputValue<double>("Terrace2", this.Terrace2));
-            terr.Add(GetInputValue<double>("Terrace3", this.Terrace3));
+            for (int i = 0; i < Terrace.Count; i++)
+            {
+                terr.Add
+                    (GetInputValue<double>(
+                        "Terrace " + i.ToString(),
+                        this.Terrace[i]));
+            }
 
             return terr;
         }

@@ -13,6 +13,32 @@ public static class CoordinatesProjector {
             radius * Mathf.Cos(latitude) * Mathf.Cos(longitude));
     }
 
+    public static float CartesianToRadius(Vector3 pos)
+    {
+        return Mathf.Sqrt(
+            (pos.x * pos.x) +
+            (pos.y * pos.y) +
+            (pos.z * pos.z));
+    }
+
+
+    /// <summary>
+    /// To be inputed into InverseMercatorProjector
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <returns></returns>
+    public static float CartesianToLat(Vector3 pos)
+    {
+        return Mathf.Asin(pos.z / CartesianToRadius(pos)) * Mathf.Rad2Deg;
+        //return Mathf.Atan(pos.y / pos.x);
+    }
+
+    public static float CartesianToLon(Vector3 pos)
+    {
+        return Mathf.Atan2(pos.y, pos.x) * Mathf.Rad2Deg;
+        //return Mathf.Atan(Mathf.Sqrt((pos.x * pos.x) + (pos.y * pos.y)) / pos.z);
+    }
+
     public static float GetSimpleLatitude(int y, int meshsize)
     {
         float percentage = (float)y / meshsize;

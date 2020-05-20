@@ -17,5 +17,10 @@ namespace NoiseGraph
                 TypeConstraint.Strict,
                 "");
         }
+
+        public override object Run()
+        {
+            return null;
+        }
     }
 }
