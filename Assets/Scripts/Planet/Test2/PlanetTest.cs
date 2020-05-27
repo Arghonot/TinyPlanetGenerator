@@ -59,10 +59,11 @@ public class PlanetTest : MonoBehaviour
 
     void GenerateMesh()
     {
-        Perlin perlin = new Perlin(1d, .1d, 1d, 6, 7, QualityMode.High);
+        Perlin perlin = new Perlin(1d, 2d, .1d, 6, 7, QualityMode.High);
         Voronoi voro = new Voronoi(1, 2, 4, true);
         Turbulence turb = new Turbulence(.3d, perlin);
-        Noise2D noise = new Noise2D(512, 256, turb);
+        //Noise2D noise = new Noise2D(512, 256, turb);
+        Noise2D noise = new Noise2D(512, 256, perlin);
         noise.GenerateSpherical(
             south,
             north,
