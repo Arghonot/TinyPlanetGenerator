@@ -26,14 +26,24 @@ public class TerrainFace
 
     public void ConstructMesh()
     {
+        // we make sure resolution becomes pair
+        // so a 3x3 stays a 3x3 visually but become a 4x4
+        if (resolution % 2 != 0)
+        {
+            resolution += 1;
+        }
+
+        //Debug.Log(resolution);
+
         Vector3[] vertices = new Vector3[resolution * resolution];
         Vector2[] uvs = new Vector2[vertices.Length];
-        int[] triangles = new int[(resolution - 1) * (resolution - 1) * 6];
+        int[] triangles = new int[(resolution - 1) * (resolution) * 6];
         int triIndex = 0;
         float ln = 0f;
         float lat = 0f;
         float lnOffset = 360f / (float)((resolution - 1) * 4);
         float latOffset = 180f / (float)((resolution - 1) * 4);
+        //int i = 0;
 
         for (int y = 0; y < resolution; y++)
         {
@@ -41,27 +51,108 @@ public class TerrainFace
             {
                 int i = x + y * resolution;
 
-                if (mesh.name.Contains("2"))
+                Vector2 percent = new Vector2(x, y) / (resolution - 1);
+
+                if (mesh.name.Contains("2") || mesh.name.Contains("3"))
                 {
-                    Debug.Log(ln + "    " + lat);
+                    //Debug.Log("x " + x + "  y " + y);
+                    if (y == (resolution / 2) - 1 || y == resolution / 2)
+                    {
+                        percent = new Vector2(percent.x, .5f);
+                        //Debug.Log("         x " + x + "  y " + y);
+                    }
+                }
+                else
+                {
+                    //Debug.Log("x " + x + "  y " + y);
+                    if (x == (resolution / 2) - 1 || x == resolution / 2)
+                    {
+                        percent = new Vector2(.5f, percent.y);
+                        //Debug.Log("         x " + x + "  y " + y);
+                    }
                 }
 
-                Vector2 percent = new Vector2(x, y) / (resolution - 1);
                 Vector3 pointOnUnitCube = localUp + (percent.x - .5f) * 2 * axisA + (percent.y - .5f) * 2 * axisB;
                 Vector3 pointOnUnitSphere = pointOnUnitCube.normalized;
-                vertices[i] = pointOnUnitSphere;
+                ln = CoordinatesProjector.CartesianToLon(pointOnUnitSphere);
+                lat = CoordinatesProjector.CartesianToLat(pointOnUnitSphere);
 
-                ln = CoordinatesProjector.CartesianToLon(vertices[i].normalized);
-                lat = CoordinatesProjector.CartesianToLat(vertices[i].normalized);
+                vertices[i] = pointOnUnitSphere;
                 uvs[i] = new Vector2(
                     ((ln + 180f) / (360f)),
                     ((lat + 90f) / (180f)));
 
-                //uvs[i] = new Vector2(
-                //     ((ln + 180f) / (360f)) + (lnOffset * y),
-                //     ((lat + 90f) / (180f)) + (latOffset * x));
+                if ((ln <= -180f || ln >= 180f) ||
+                    (lat <= -180f || lat >= 180f))
+                {
+                    // y pole face
+                    if (mesh.name.Contains("5"))
+                    {
 
-                if (x != resolution - 1 && y != resolution - 1)
+                    }
+                    // middle face where there is a separation
+                    if (mesh.name.Contains("2"))
+                    {
+                        if (y == resolution / 2)
+                        {
+                            uvs[i] = new Vector2(0f, uvs[i].y);
+                        }
+                    }
+                    // -y pole face
+                    if (mesh.name.Contains("4"))
+                    {
+
+                    }
+                }
+
+                if (mesh.name.Contains("5") && x == 0)
+                {
+                    Debug.Log(vertices[i]);
+                    Debug.Log(uvs[i] + "    " + ln + "  " + lat);
+                }
+
+                    //if ((ln <= -180f || ln >= 180f) ||
+                    //    (lat <= -180f || lat >= 180f))
+                    //{
+                    //    if (mesh.name.Contains("4"))
+                    //    {
+                    //        Debug.Log("double " + ln + "    " + lat);
+
+                    //    }
+                    //    vertices[i] = pointOnUnitSphere;
+                    //    uvs[i] = new Vector2(
+                    //        ((ln + 180f) / (360f)),
+                    //        ((lat + 90f) / (180f)));
+
+                    //    //uvs.Add(new Vector2(
+                    //    //    ((ln + 180f) / (360f)),
+                    //    //    ((lat + 90f) / (180f))));
+                    //    //vertices.Add(pointOnUnitSphere);
+                    //    if (x != resolution - 1 && y != resolution - 1)
+                    //    {
+                    //        triangles[triIndex] = i;
+                    //        triangles[triIndex + 1] = i + resolution + 1;
+                    //        triangles[triIndex + 2] = i + resolution;
+
+                    //        triangles[triIndex + 3] = i;
+                    //        triangles[triIndex + 4] = i + 1;
+                    //        triangles[triIndex + 5] = i + resolution + 1;
+                    //        triIndex += 6;
+                    //    }
+                    //}
+
+
+                    //if (mesh.name.Contains("2"))
+                    //{
+                    //    Debug.Log((ln + 180f) + "    " + (lat + 90f));
+                    //}
+
+                    //uvs.Add(new Vector2(
+                    //    ((ln + 180f) / (360f)),
+                    //    ((lat + 90f) / (180f))));
+                    //vertices.Add(pointOnUnitSphere);
+
+                    if (x != resolution - 1 && y != resolution - 1)
                 {
                     triangles[triIndex] = i;
                     triangles[triIndex + 1] = i + resolution + 1;
@@ -76,22 +167,12 @@ public class TerrainFace
         }
 
         mesh.Clear();
+        //mesh.vertices = vertices;
         mesh.vertices = vertices;
+        //mesh.uv = uvs;
         mesh.uv = uvs;
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
-    }
-
-    public void AddVertex(Vector3 vertexPosition, Vector2 uv, int vertexIndex)
-    {
-        if (vertexIndex < 0)
-        {
-            //OutOfBoundVertices[-vertexIndex - 1] = vertexPosition;
-        }
-        else
-        {
-            vertices[vertexIndex] = vertexPosition;
-        }
     }
 
     public void ElevateMesh(Texture2D noise, float meanElevation)

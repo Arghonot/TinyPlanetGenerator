@@ -18,7 +18,7 @@ namespace NoiseGraph
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public int Seed;
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
-        public Quality Quality;
+        public QualityMode Quality;
 
         //[Output(ShowBackingValue.Always, ConnectionType.Multiple, TypeConstraint.Strict)]
         //public SerializableModuleBase Generator;
@@ -34,13 +34,25 @@ namespace NoiseGraph
 
         public override object Run()
         {
+            // if editing the graph -> we stick to current variables
+            if (Application.isEditor && !Application.isPlaying)
+            {
+                return new Perlin(
+                    this.frequency,
+                    this.lacunarity,
+                    this.persistence,
+                    this.Octaves,
+                    this.Seed,
+                    this.Quality);
+            }
+
             return new Perlin(
                 GetInputValue<double>("frequency", this.frequency),
                 GetInputValue<double>("lacunarity", this.lacunarity),
                 GetInputValue<double>("persistence", this.persistence),
                 GetInputValue<int>("Octaves", this.Octaves),
                 GetInputValue<int>("Seed", this.Seed),
-                GetInputValue<QualityMode>("Quality", (QualityMode)this.Quality));
+                GetInputValue<QualityMode>("Quality", this.Quality));
         }
     }
 }

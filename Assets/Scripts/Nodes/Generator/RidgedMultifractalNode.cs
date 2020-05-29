@@ -18,7 +18,7 @@ namespace NoiseGraph
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public int Seed;
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
-        public Quality Quality;
+        public QualityMode Quality;
 
         [Output(ShowBackingValue.Always, ConnectionType.Multiple, TypeConstraint.Strict)]
         public ModuleBase GeneratorOutput;
@@ -34,6 +34,16 @@ namespace NoiseGraph
 
         public override object Run()
         {
+            // if editing the graph -> we stick to current variables
+            if (Application.isEditor && !Application.isPlaying)
+            {
+                return new RidgedMultifractal(
+                    this.frequency,
+                    this.lacunarity,
+                    this.Octaves,
+                    this.Seed,
+                    (QualityMode)this.Quality);
+            }
             return new RidgedMultifractal(
                 GetInputValue<double>("frequency", this.frequency),
                 GetInputValue<double>("lacunarity", this.lacunarity),

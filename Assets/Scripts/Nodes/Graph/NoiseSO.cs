@@ -12,5 +12,5 @@ public class NoiseSO : ScriptableObject
     public int Seed;
     public int Min;
     public int Max;
-    public NoiseGraph.Quality Quality;
+    public LibNoise.QualityMode Quality;
 }

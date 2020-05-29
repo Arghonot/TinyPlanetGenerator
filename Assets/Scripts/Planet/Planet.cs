@@ -6,6 +6,13 @@ using UnityEngine;
 // V(x) = ((x - 2) * x ) + 2
 // T(x) = (x * 2) + ((x - 3) * (x * 2))
 
+public class PlanetGenerationData
+{
+    public int mapSize;
+    public PlanetProfile profile;
+    public Action Callback;
+}
+
 public class Planet : MonoBehaviour
 {
     public PlanetProfile profile;
@@ -16,15 +23,14 @@ public class Planet : MonoBehaviour
     public GameObject Aura;
     public Cloud Clouds;
 
-    public CustomPerlinGenerator generator;
-
     public int AmountOfVerticesX;
 
     MeshFilter filter;
     MeshRenderer render;
     MeshCollider Terrain;
 
-    Texture2D tex;
+    Texture2D ColorMap;
+    Texture2D HeightMap;
     public bool save;
 
     #region UNITY
@@ -35,7 +41,7 @@ public class Planet : MonoBehaviour
         {
             save = false;
 
-            var bytes = tex.EncodeToPNG();
+            var bytes = ColorMap.EncodeToPNG();
             System.IO.File.WriteAllBytes(
                 "C:/Users/loriv/OneDrive/Pictures/Tiny_planet_generator/GeneratedPlanet/planet.png", bytes);
         }
@@ -47,8 +53,19 @@ public class Planet : MonoBehaviour
 
     public void Regenerate()
     {
-        generator.mapSize = profile.TexturesSize;
-        generator.Generate(profile);
+        //CustomPerlinGenerator.Instance.mapSize = profile.TexturesSize;
+        //CustomPerlinGenerator.Instance.Generate(profile);
+        CustomPerlinGenerator.Instance.Generate(new PlanetGenerationData()
+        {
+            mapSize = profile.TexturesSize,
+            profile = this.profile,
+            Callback = () =>
+            {
+                ColorMap = CustomPerlinGenerator.Instance.ColorMap;
+                HeightMap = CustomPerlinGenerator.Instance.HeightMap;
+            }
+        });
+
         ReScale();
 
         SetGroundMaterialValues();
@@ -59,7 +76,6 @@ public class Planet : MonoBehaviour
 
         Terrain.sharedMesh = filter.mesh;
 
-        tex = generator.ColorMap;
     }
 
     /// <summary>
@@ -126,21 +142,25 @@ public class Planet : MonoBehaviour
     {
         render.material = profile.material;
 
-        print(render.material.shader.name);
-
         // if lit
         if (render.material.shader.name == "Universal Render Pipeline/Lit")
         {
-            render.material.SetTexture("_BaseMap", generator.ColorMap);
+            render.material.SetTexture(
+                "_BaseMap",
+                ColorMap);
         }
         else if (render.material.shader.name.Contains("Magma"))
         {
-            render.material.SetTexture("Texture2D_D98FF2C8", generator.ColorMap);
+            render.material.SetTexture(
+                "Texture2D_D98FF2C8",
+                ColorMap);
             render.material.SetColor("Color_F4940654", profile.SunFresnelColor);
         }
         else if (render.material.shader.name.Contains("PlanetGround"))
         {
-            render.material.SetTexture("Texture2D_10E80854", generator.ColorMap);
+            render.material.SetTexture(
+                "Texture2D_10E80854",
+                ColorMap);
 
             render.material.SetFloat("Vector1_AC9353BB", profile.CliffIntensity);
 
@@ -149,16 +169,22 @@ public class Planet : MonoBehaviour
         }
         else if (render.material.shader.name.Contains("EnhancedGroundV2"))
         {
-            render.material.SetTexture("Texture2D_4FCE4029", generator.ColorMap);
+            render.material.SetTexture(
+                "Texture2D_4FCE4029",
+                ColorMap);
         }
         else if (render.material.shader.name.Contains("WeirdFresnel"))
         {
-            render.material.SetTexture("Texture2D_C9B692E6", generator.ColorMap);
+            render.material.SetTexture(
+                "Texture2D_C9B692E6",
+                ColorMap);
         }
         // if unlit
         else
         {
-            render.material.SetTexture("_MainTex", generator.ColorMap);
+            render.material.SetTexture(
+                "_MainTex",
+                ColorMap);
         }
     }
 
@@ -171,8 +197,6 @@ public class Planet : MonoBehaviour
     /// </summary>
     public void Initialize()
     {
-        generator = GetComponent<CustomPerlinGenerator>();
-
         Mesh mesh = new Mesh();
 
         SetupVerticesAndUV(mesh);
@@ -204,7 +228,7 @@ public class Planet : MonoBehaviour
                     (((x * lonPadding) - 180f) * Mathf.Deg2Rad),
                     (((y * latPadding) - 90f) * Mathf.Deg2Rad),
                     profile.BaseElevation + (GetGrayScale(
-                            generator.HeightMap,
+                            HeightMap,
                             x,
                             y) * profile.ElevationMultiplier));
             }
@@ -256,7 +280,7 @@ public class Planet : MonoBehaviour
     void SetupVerticesAndUV(Mesh mesh)
     {
         Vector3[] vertices = new Vector3[
-            ((AmountOfVerticesX - 2) * AmountOfVerticesX) + 2];
+            ((AmountOfVerticesX) * AmountOfVerticesX) + 2];
         Vector2[] uv = new Vector2[vertices.Length];
         float latPadding = 180f / ((float)AmountOfVerticesX);
         float lonPadding = 360f / (float)AmountOfVerticesX;
@@ -274,15 +298,11 @@ public class Planet : MonoBehaviour
                     (float)x / (float)AmountOfVerticesX,
                     (float)y / (float)AmountOfVerticesX);
             }
-
-            Debug.Log(i);
         }
 
         mesh.RecalculateNormals();
         mesh.vertices = vertices;
         mesh.uv = uv;
-
-        Debug.Log(vertices.Length);
     }
 
     int[] ProcessTriangles()
@@ -298,11 +318,7 @@ public class Planet : MonoBehaviour
                 triangles[ti + 4] = triangles[ti + 1] = vi + AmountOfVerticesX + 1;
                 triangles[ti + 5] = vi + AmountOfVerticesX + 2;
             }
-
-            Debug.Log(ti);
         }
-
-        Debug.Log(triangles.Length);
 
         return triangles;
     }

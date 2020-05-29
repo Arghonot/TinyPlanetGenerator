@@ -25,6 +25,9 @@ public class PlanetProfile : ScriptableObject
     public float BaseElevation = .35f;
     public NoiseType type;
 
+    public NoiseGraph.LibnoiseGraph graph;
+
+
     // Noise relative
     public double frequency = 1d;
     public double lacunarity = 2d;

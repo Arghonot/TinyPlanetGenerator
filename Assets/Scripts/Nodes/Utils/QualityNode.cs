@@ -4,18 +4,18 @@ using UnityEngine;
 
 namespace NoiseGraph
 {
-    public enum Quality
-    {
-        Low,
-        Medium,
-        High
-    }
+    //public enum Quality
+    //{
+    //    Low,
+    //    Medium,
+    //    High
+    //}
 
     [CreateNodeMenu("NoiseGraph/Input/Quality")]
     public class QualityNode : Graph.Leaf
     {
         [Output(ShowBackingValue.Always, ConnectionType.Multiple, TypeConstraint.Strict)]
-        public Quality Quality;
+        public LibNoise.QualityMode Quality;
 
         public override object Run()
         {

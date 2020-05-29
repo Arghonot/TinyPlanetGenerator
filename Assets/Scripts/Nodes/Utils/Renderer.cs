@@ -11,13 +11,14 @@ namespace NoiseGraph
     [NodeTint(Graph.ColorProfile.Debug)]
     public class Renderer : Node
     {
-        public string DataPath;
-
-        public float south = 90.0f;
-        public float north = -90.0f;
-        public float west = -180.0f;
-        public float east = 180.0f;
-        public int size = 512;
+        [SerializeField] public string DataPath;
+        [SerializeField] public float south = 90.0f;
+        [SerializeField] public float north = -90.0f;
+        [SerializeField] public float west = -180.0f;
+        [SerializeField] public float east = 180.0f;
+        [SerializeField] public int size = 512;
+        [SerializeField] public Texture2D tex = null;
+        [SerializeField] public Gradient grad = new Gradient();
 
         public float Space = 110;
 
@@ -25,8 +26,6 @@ namespace NoiseGraph
         public SerializableModuleBase Input;
 
         public Rect TexturePosition = new Rect(14, 225, 180, 90);
-        public Texture2D tex = null;
-        public Gradient grad = new Gradient();
 
         public long RenderTime;
 

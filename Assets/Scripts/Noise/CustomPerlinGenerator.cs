@@ -13,7 +13,7 @@ public enum NoiseType
     Voronoi
 }
 
-public class CustomPerlinGenerator : MonoBehaviour
+public class CustomPerlinGenerator : Singleton<CustomPerlinGenerator>
 {
     public float turbulence;
     public int mapSize;
@@ -29,6 +29,15 @@ public class CustomPerlinGenerator : MonoBehaviour
     public Texture2D InverseHeightMap;
     public List<Texture2D> imgs;
 
+    public void Generate(PlanetGenerationData datas)
+    {
+        mapSize = datas.mapSize;
+
+        Generate(datas.profile);
+        // End
+        datas.Callback();
+    }
+
     public void Generate(PlanetProfile profile)
     {
         //mapSize = 32;
@@ -42,8 +51,6 @@ public class CustomPerlinGenerator : MonoBehaviour
         // if the map is 512 -> we get to have 6.4 planet's heightmap for the cost of a single map
         Noise2D map = new Noise2D(mapSize, mapSize / 2, generators[0]);
 
-        Debug.Log(south + " " + north + "   " + west + "    " + east);
-
         map.GenerateSpherical(
             south,
             north,
@@ -53,28 +60,8 @@ public class CustomPerlinGenerator : MonoBehaviour
         ColorMap = map.GetTexture(profile.ColorMap);
         ColorMap.Apply();
 
-        //HeightMap = map.GetTexture();
         HeightMap = map.GetTexture(profile.ElevationMap);
         HeightMap.Apply();
-
-        //InverseHeightMap = map.GetTexture(profile.InverseElevationMap);
-        //InverseHeightMap.Apply();
-
-        //UIMapManager.Instance.AddMap(ColorMap, string.Join(" ", new string[]
-        //{
-        //    profile.Name,
-        //    "Colormap"
-        //}));
-        //UIMapManager.Instance.AddMap(HeightMap, string.Join(" ", new string[]
-        //{
-        //    profile.Name,
-        //    "HeightMap"
-        //}));
-        //UIMapManager.Instance.AddMap(InverseHeightMap, string.Join(" ", new string[]
-        //{
-        //    profile.Name,
-        //    "InverseHeightMap"
-        //}));
     }
 
     public Texture2D GetCloudBase(UnityEngine.Gradient cloudGradient, int size, NoiseType type)

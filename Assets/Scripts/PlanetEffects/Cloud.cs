@@ -7,8 +7,6 @@ public class Cloud : MonoBehaviour
     public ParticleSystem system;
     private ParticleSystem.Particle[] particles = null;
 
-    public CustomPerlinGenerator generator;
-
     public int CloudAmount;
     public int PerCloud;
     public Vector2 CloudSize;
@@ -23,7 +21,7 @@ public class Cloud : MonoBehaviour
 
     public void Generate()
     {
-        cloudmap = generator.GetCloudBase(grad, textureSize, type);
+        cloudmap = CustomPerlinGenerator.Instance.GetCloudBase(grad, textureSize, type);
 
         system.Emit(CloudAmount);
 
