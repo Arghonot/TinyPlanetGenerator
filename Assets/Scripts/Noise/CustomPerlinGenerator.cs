@@ -40,28 +40,45 @@ public class CustomPerlinGenerator : Singleton<CustomPerlinGenerator>
 
     public void Generate(PlanetProfile profile)
     {
-        //mapSize = 32;
-        imgs = new List<Texture2D>();
-        List<ModuleBase> generators = new List<ModuleBase>();
+        Noise2D noise = new Noise2D(
+            mapSize,
+            mapSize / 2,
+            profile.graph.GetGenerator(profile.GetArguments()));
 
-        generators.Add(GetModule(profile));
-
-        // TODO USE A HEIGHTMAP THAT HAS THE SAME AMOUNT OF PXL THAN VERTICES
-        // e.g : 80 * 80
-        // if the map is 512 -> we get to have 6.4 planet's heightmap for the cost of a single map
-        Noise2D map = new Noise2D(mapSize, mapSize / 2, generators[0]);
-
-        map.GenerateSpherical(
+        noise.GenerateSpherical(
             south,
             north,
             west,
             east);
 
-        ColorMap = map.GetTexture(profile.ColorMap);
+        ColorMap = noise.GetTexture(profile.ColorMap);
         ColorMap.Apply();
 
-        HeightMap = map.GetTexture(profile.ElevationMap);
+        HeightMap = noise.GetTexture(profile.ElevationMap);
         HeightMap.Apply();
+
+        ////mapSize = 32;
+        //imgs = new List<Texture2D>();
+        //List<ModuleBase> generators = new List<ModuleBase>();
+
+        //generators.Add(GetModule(profile));
+
+        //// TODO USE A HEIGHTMAP THAT HAS THE SAME AMOUNT OF PXL THAN VERTICES
+        //// e.g : 80 * 80
+        //// if the map is 512 -> we get to have 6.4 planet's heightmap for the cost of a single map
+        //Noise2D map = new Noise2D(mapSize, mapSize / 2, generators[0]);
+
+        //map.GenerateSpherical(
+        //    south,
+        //    north,
+        //    west,
+        //    east);
+
+        //ColorMap = map.GetTexture(profile.ColorMap);
+        //ColorMap.Apply();
+
+        //HeightMap = map.GetTexture(profile.ElevationMap);
+        //HeightMap.Apply();
     }
 
     public Texture2D GetCloudBase(UnityEngine.Gradient cloudGradient, int size, NoiseType type)

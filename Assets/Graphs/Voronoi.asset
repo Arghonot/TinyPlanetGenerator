@@ -23,8 +23,8 @@ MonoBehaviour:
       _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: 
-        node: {fileID: -2263221274537709676}
+      - fieldName: Output
+        node: {fileID: 3329607849768578907}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
@@ -74,105 +74,6 @@ MonoBehaviour:
     width: 180
     height: 90
   RenderTime: 2054
---- !u!114 &-2263221274537709676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 170e33635b1c23e4e82a1992a7978e95, type: 3}
-  m_Name: Voronoi
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 120, y: 344}
-  ports:
-    keys:
-    - 
-    - frequency
-    - displacement
-    - Seed
-    - distance
-    - GeneratorOutput
-    values:
-    - _fieldName: 
-      _node: {fileID: -2263221274537709676}
-      _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: Input
-        node: {fileID: -4746058761617565015}
-        reroutePoints: []
-      - fieldName: Input
-        node: {fileID: 1358759186728139638}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 2
-      _dynamic: 1
-    - _fieldName: frequency
-      _node: {fileID: -2263221274537709676}
-      _typeQualifiedName: System.Double, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: 3118616462940266743}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: displacement
-      _node: {fileID: -2263221274537709676}
-      _typeQualifiedName: System.Double, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: 6046112866725022987}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: Seed
-      _node: {fileID: -2263221274537709676}
-      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: -696117891413374711}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: distance
-      _node: {fileID: -2263221274537709676}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: 3781553892416262209}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: GeneratorOutput
-      _node: {fileID: -2263221274537709676}
-      _typeQualifiedName: LibNoise.ModuleBase, Assembly-CSharp, Version=1.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 2
-      _dynamic: 0
-  frequency: 8
-  displacement: 2
-  Seed: 4
-  distance: 0
 --- !u!114 &-696117891413374711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,7 +98,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: Seed
-        node: {fileID: -2263221274537709676}
+        node: {fileID: 3329607849768578907}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -225,10 +126,11 @@ MonoBehaviour:
   - {fileID: 3781553892416262209}
   - {fileID: 6046112866725022987}
   - {fileID: -696117891413374711}
-  - {fileID: -2263221274537709676}
   - {fileID: 3118616462940266743}
   - {fileID: -4746058761617565015}
+  - {fileID: 3329607849768578907}
   blackboard: {fileID: 8081220813334914783}
+  CanRun: 0
   Root: {fileID: 1358759186728139638}
 --- !u!114 &1358759186728139638
 MonoBehaviour:
@@ -253,8 +155,8 @@ MonoBehaviour:
       _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: 
-        node: {fileID: -2263221274537709676}
+      - fieldName: Output
+        node: {fileID: 3329607849768578907}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
@@ -284,7 +186,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: frequency
-        node: {fileID: -2263221274537709676}
+        node: {fileID: 3329607849768578907}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -294,6 +196,105 @@ MonoBehaviour:
   VariableIndex: 0
   Name: Frequency
   Blackboard: {fileID: 8081220813334914783}
+--- !u!114 &3329607849768578907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 170e33635b1c23e4e82a1992a7978e95, type: 3}
+  m_Name: Voronoi
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 120, y: 344}
+  ports:
+    keys:
+    - Output
+    - frequency
+    - displacement
+    - Seed
+    - distance
+    - GeneratorOutput
+    values:
+    - _fieldName: Output
+      _node: {fileID: 3329607849768578907}
+      _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Input
+        node: {fileID: 1358759186728139638}
+        reroutePoints: []
+      - fieldName: Input
+        node: {fileID: -4746058761617565015}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 1
+    - _fieldName: frequency
+      _node: {fileID: 3329607849768578907}
+      _typeQualifiedName: System.Double, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 3118616462940266743}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: displacement
+      _node: {fileID: 3329607849768578907}
+      _typeQualifiedName: System.Double, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 6046112866725022987}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: Seed
+      _node: {fileID: 3329607849768578907}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: -696117891413374711}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: distance
+      _node: {fileID: 3329607849768578907}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 3781553892416262209}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: GeneratorOutput
+      _node: {fileID: 3329607849768578907}
+      _typeQualifiedName: LibNoise.ModuleBase, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 0
+  frequency: 8
+  displacement: 2
+  Seed: 4
+  distance: 0
 --- !u!114 &3781553892416262209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,7 +319,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: distance
-        node: {fileID: -2263221274537709676}
+        node: {fileID: 3329607849768578907}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -352,7 +353,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: displacement
-        node: {fileID: -2263221274537709676}
+        node: {fileID: 3329607849768578907}
         reroutePoints: []
       _direction: 1
       _connectionType: 0

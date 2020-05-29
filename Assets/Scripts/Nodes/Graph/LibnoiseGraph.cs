@@ -9,8 +9,13 @@ namespace NoiseGraph
     {
         public RootModuleBase Root;
 
-        public SerializableModuleBase GetGenerator()
+        public SerializableModuleBase GetGenerator(GenericDicionnary newgd = null)
         {
+            if (newgd != null)
+            {
+                this.gd = newgd;
+            }
+
             return (SerializableModuleBase)Root.GetValue(Root.Ports.First());
         }
     }

@@ -1,6 +1,7 @@
 ﻿using LibNoise;
 using LibNoise.Generator;
 using UnityEngine;
+using XNode;
 
 namespace NoiseGraph
 {
@@ -29,7 +30,12 @@ namespace NoiseGraph
                 typeof(SerializableModuleBase),
                 ConnectionType.Multiple,
                 TypeConstraint.Strict,
-                "");
+                "Output");
+        }
+
+        public override object GetValue(NodePort port)
+        {
+            return Run();
         }
 
         public override object Run()

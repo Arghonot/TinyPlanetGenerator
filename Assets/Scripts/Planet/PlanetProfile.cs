@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public enum PlanetType
@@ -10,6 +11,11 @@ public enum PlanetType
     Magma,
     water,
     MoonLike
+}
+
+public class NoiseValues
+{
+    public int toto;
 }
 
 [CreateAssetMenu(fileName = "Profile", menuName = "Planets/Profile", order = 1)]
@@ -54,4 +60,19 @@ public class PlanetProfile : ScriptableObject
 
     public float AuraIntensity = 7.73f;
     public Color Aura = Color.blue;
+
+    public Graph.GenericDicionnary GetArguments()
+    {
+        Graph.GenericDicionnary gd = new Graph.GenericDicionnary();
+
+        foreach (var item in this.GetType().GetFields())
+        {
+            gd.Add(item.Name, item.GetValue(this));
+            //Debug.Log(item.Name);
+        }
+
+        //Debug.Log("there are : " + gd.Count.ToString() + " keys in the dictionnary");
+
+        return gd;
+    }
 }

@@ -18,7 +18,7 @@ namespace NoiseGraph
                 typeof(SerializableModuleBase),
                 ConnectionType.Multiple,
                 TypeConstraint.Strict,
-                "");
+                "Output");
         }
 
         public override object Run()

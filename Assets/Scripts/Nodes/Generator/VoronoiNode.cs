@@ -27,7 +27,7 @@ namespace NoiseGraph
                 typeof(SerializableModuleBase),
                 ConnectionType.Multiple,
                 TypeConstraint.Strict,
-                "");
+                "Output");
         }
 
         public override object Run()
@@ -41,6 +41,7 @@ namespace NoiseGraph
                     this.Seed,
                     this.distance);
             }
+
             //return new Voronoi(frequency, displacement, Seed, distance);
             return new Voronoi(
                 GetInputValue<double>("frequency", this.frequency),

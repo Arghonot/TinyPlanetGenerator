@@ -31,7 +31,7 @@ namespace NoiseGraph
                 typeof(SerializableModuleBase),
                 ConnectionType.Multiple,
                 TypeConstraint.Strict,
-                "");
+                "Output");
         }
 
         public override object Run()
@@ -47,6 +47,7 @@ namespace NoiseGraph
                     this.Seed,
                     this.Quality);
             }
+
             return new Billow(
                 GetInputValue<double>("frequency", this.frequency),
                 GetInputValue<double>("lacunarity", this.lacunarity),

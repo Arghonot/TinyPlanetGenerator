@@ -24,7 +24,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: lacunarity
-        node: {fileID: -4604869615221694695}
+        node: {fileID: 4467568007066760317}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: frequency
-        node: {fileID: -4604869615221694695}
+        node: {fileID: 4467568007066760317}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -68,133 +68,6 @@ MonoBehaviour:
   VariableIndex: 0
   Name: Frequency
   Blackboard: {fileID: 1722022602849792750}
---- !u!114 &-4604869615221694695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7346f6ff5247ccf43825ef31c024591b, type: 3}
-  m_Name: Billow
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 184, y: 344}
-  ports:
-    keys:
-    - 
-    - frequency
-    - lacunarity
-    - persistence
-    - Octaves
-    - Seed
-    - Quality
-    - GeneratorOutput
-    values:
-    - _fieldName: 
-      _node: {fileID: -4604869615221694695}
-      _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: Input
-        node: {fileID: -4003560954165868777}
-        reroutePoints: []
-      - fieldName: Input
-        node: {fileID: -4219008219967936630}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 2
-      _dynamic: 1
-    - _fieldName: frequency
-      _node: {fileID: -4604869615221694695}
-      _typeQualifiedName: System.Double, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: -4661322998138842621}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: lacunarity
-      _node: {fileID: -4604869615221694695}
-      _typeQualifiedName: System.Double, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: -6789851664220042921}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: persistence
-      _node: {fileID: -4604869615221694695}
-      _typeQualifiedName: System.Double, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: 241912351730073866}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: Octaves
-      _node: {fileID: -4604869615221694695}
-      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: 1512569109907683283}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: Seed
-      _node: {fileID: -4604869615221694695}
-      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: -3592474873285135439}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: Quality
-      _node: {fileID: -4604869615221694695}
-      _typeQualifiedName: LibNoise.QualityMode, Assembly-CSharp, Version=1.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: 
-        node: {fileID: 187402179641730688}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: GeneratorOutput
-      _node: {fileID: -4604869615221694695}
-      _typeQualifiedName: LibNoise.ModuleBase, Assembly-CSharp, Version=1.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 2
-      _dynamic: 0
-  frequency: 1
-  lacunarity: 1
-  persistence: 1
-  Octaves: 1
-  Seed: 1
-  Quality: 2
 --- !u!114 &-4219008219967936630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,8 +91,8 @@ MonoBehaviour:
       _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: 
-        node: {fileID: -4604869615221694695}
+      - fieldName: Output
+        node: {fileID: 4467568007066760317}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
@@ -268,7 +141,7 @@ MonoBehaviour:
     y: 225
     width: 180
     height: 90
-  RenderTime: 145
+  RenderTime: 466
 --- !u!114 &-4003560954165868777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,8 +165,8 @@ MonoBehaviour:
       _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: 
-        node: {fileID: -4604869615221694695}
+      - fieldName: Output
+        node: {fileID: 4467568007066760317}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
@@ -323,7 +196,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: Seed
-        node: {fileID: -4604869615221694695}
+        node: {fileID: 4467568007066760317}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -348,7 +221,6 @@ MonoBehaviour:
   nodes:
   - {fileID: 1722022602849792750}
   - {fileID: -4003560954165868777}
-  - {fileID: -4604869615221694695}
   - {fileID: -4219008219967936630}
   - {fileID: -4661322998138842621}
   - {fileID: -6789851664220042921}
@@ -356,7 +228,9 @@ MonoBehaviour:
   - {fileID: 1512569109907683283}
   - {fileID: -3592474873285135439}
   - {fileID: 187402179641730688}
+  - {fileID: 4467568007066760317}
   blackboard: {fileID: 1722022602849792750}
+  CanRun: 0
   Root: {fileID: -4003560954165868777}
 --- !u!114 &187402179641730688
 MonoBehaviour:
@@ -382,7 +256,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: Quality
-        node: {fileID: -4604869615221694695}
+        node: {fileID: 4467568007066760317}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -416,7 +290,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: persistence
-        node: {fileID: -4604869615221694695}
+        node: {fileID: 4467568007066760317}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -450,7 +324,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: Octaves
-        node: {fileID: -4604869615221694695}
+        node: {fileID: 4467568007066760317}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -503,3 +377,130 @@ MonoBehaviour:
       TypeName: int
     - Name: Quality
       TypeName: QualityMode
+--- !u!114 &4467568007066760317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7346f6ff5247ccf43825ef31c024591b, type: 3}
+  m_Name: Billow
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 184, y: 360}
+  ports:
+    keys:
+    - Output
+    - frequency
+    - lacunarity
+    - persistence
+    - Octaves
+    - Seed
+    - Quality
+    - GeneratorOutput
+    values:
+    - _fieldName: Output
+      _node: {fileID: 4467568007066760317}
+      _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Input
+        node: {fileID: -4003560954165868777}
+        reroutePoints: []
+      - fieldName: Input
+        node: {fileID: -4219008219967936630}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 1
+    - _fieldName: frequency
+      _node: {fileID: 4467568007066760317}
+      _typeQualifiedName: System.Double, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: -4661322998138842621}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: lacunarity
+      _node: {fileID: 4467568007066760317}
+      _typeQualifiedName: System.Double, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: -6789851664220042921}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: persistence
+      _node: {fileID: 4467568007066760317}
+      _typeQualifiedName: System.Double, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 241912351730073866}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: Octaves
+      _node: {fileID: 4467568007066760317}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 1512569109907683283}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: Seed
+      _node: {fileID: 4467568007066760317}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: -3592474873285135439}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: Quality
+      _node: {fileID: 4467568007066760317}
+      _typeQualifiedName: LibNoise.QualityMode, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: 
+        node: {fileID: 187402179641730688}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: GeneratorOutput
+      _node: {fileID: 4467568007066760317}
+      _typeQualifiedName: LibNoise.ModuleBase, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 0
+  frequency: 2
+  lacunarity: 2
+  persistence: 0.4
+  Octaves: 6
+  Seed: 1
+  Quality: 0
