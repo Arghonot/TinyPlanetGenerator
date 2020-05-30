@@ -53,22 +53,18 @@ public class TerrainFace
 
                 Vector2 percent = new Vector2(x, y) / (resolution - 1);
 
-                if (mesh.name.Contains("2") || mesh.name.Contains("3"))
+                if (mesh.name.Contains("2"))
                 {
-                    //Debug.Log("x " + x + "  y " + y);
                     if (y == (resolution / 2) - 1 || y == resolution / 2)
                     {
                         percent = new Vector2(percent.x, .5f);
-                        //Debug.Log("         x " + x + "  y " + y);
                     }
                 }
-                else
+                else if (mesh.name.Contains("4") || mesh.name.Contains("5"))
                 {
-                    //Debug.Log("x " + x + "  y " + y);
                     if (x == (resolution / 2) - 1 || x == resolution / 2)
                     {
                         percent = new Vector2(.5f, percent.y);
-                        //Debug.Log("         x " + x + "  y " + y);
                     }
                 }
 
@@ -88,7 +84,10 @@ public class TerrainFace
                     // y pole face
                     if (mesh.name.Contains("5"))
                     {
-
+                        if (x == resolution / 2)
+                        {
+                            uvs[i] = new Vector2(0f, uvs[i].y);
+                        }
                     }
                     // middle face where there is a separation
                     if (mesh.name.Contains("2"))
@@ -101,58 +100,18 @@ public class TerrainFace
                     // -y pole face
                     if (mesh.name.Contains("4"))
                     {
-
+                        if (x == resolution / 2)
+                        {
+                            uvs[i] = new Vector2(1f, uvs[i].y);
+                        }
+                        if (x == (resolution / 2) - 1)
+                        {
+                            uvs[i] = new Vector2(0f, uvs[i].y);
+                        }
                     }
                 }
 
-                if (mesh.name.Contains("5") && x == 0)
-                {
-                    Debug.Log(vertices[i]);
-                    Debug.Log(uvs[i] + "    " + ln + "  " + lat);
-                }
-
-                    //if ((ln <= -180f || ln >= 180f) ||
-                    //    (lat <= -180f || lat >= 180f))
-                    //{
-                    //    if (mesh.name.Contains("4"))
-                    //    {
-                    //        Debug.Log("double " + ln + "    " + lat);
-
-                    //    }
-                    //    vertices[i] = pointOnUnitSphere;
-                    //    uvs[i] = new Vector2(
-                    //        ((ln + 180f) / (360f)),
-                    //        ((lat + 90f) / (180f)));
-
-                    //    //uvs.Add(new Vector2(
-                    //    //    ((ln + 180f) / (360f)),
-                    //    //    ((lat + 90f) / (180f))));
-                    //    //vertices.Add(pointOnUnitSphere);
-                    //    if (x != resolution - 1 && y != resolution - 1)
-                    //    {
-                    //        triangles[triIndex] = i;
-                    //        triangles[triIndex + 1] = i + resolution + 1;
-                    //        triangles[triIndex + 2] = i + resolution;
-
-                    //        triangles[triIndex + 3] = i;
-                    //        triangles[triIndex + 4] = i + 1;
-                    //        triangles[triIndex + 5] = i + resolution + 1;
-                    //        triIndex += 6;
-                    //    }
-                    //}
-
-
-                    //if (mesh.name.Contains("2"))
-                    //{
-                    //    Debug.Log((ln + 180f) + "    " + (lat + 90f));
-                    //}
-
-                    //uvs.Add(new Vector2(
-                    //    ((ln + 180f) / (360f)),
-                    //    ((lat + 90f) / (180f))));
-                    //vertices.Add(pointOnUnitSphere);
-
-                    if (x != resolution - 1 && y != resolution - 1)
+                if (x != resolution - 1 && y != resolution - 1)
                 {
                     triangles[triIndex] = i;
                     triangles[triIndex + 1] = i + resolution + 1;
@@ -167,9 +126,7 @@ public class TerrainFace
         }
 
         mesh.Clear();
-        //mesh.vertices = vertices;
         mesh.vertices = vertices;
-        //mesh.uv = uvs;
         mesh.uv = uvs;
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
