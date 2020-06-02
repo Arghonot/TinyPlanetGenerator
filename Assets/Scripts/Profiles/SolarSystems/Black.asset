@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b3db35d5d265de4d93b99cc77f3fa5a, type: 3}
   m_Name: Black
   m_EditorClassIdentifier: 
-  Sun: {fileID: 11400000, guid: d737d3696930d9d40b1c0c4a3e35b39c, type: 2}
+  Sun: {fileID: 11400000, guid: 6001e7604aa6d3a48809bddbe0952957, type: 2}
   Skybox: {fileID: 2100000, guid: 97e4149730826124ca5feccc081f949b, type: 2}

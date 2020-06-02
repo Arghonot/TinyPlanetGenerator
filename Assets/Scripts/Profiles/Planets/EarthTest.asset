@@ -72,7 +72,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  ElevationMultiplier: 0.07
+  ElevationMultiplier: 0.1
   BaseElevation: 0.35
   type: 0
   graph: {fileID: 11400000, guid: 15dcdf8bb4ef9d141b84741eb10469a8, type: 2}

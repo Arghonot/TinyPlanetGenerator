@@ -131,7 +131,7 @@ public class TerrainFace
         mesh.RecalculateNormals();
     }
 
-    public void ElevateMesh(Texture2D noise, float meanElevation)
+    public void ElevateMesh(Texture2D noise, float baseElevation, float meanElevation)
     {
         tex = noise;
         vertices = mesh.vertices;
@@ -148,7 +148,7 @@ public class TerrainFace
                 ln = CoordinatesProjector.CartesianToLon(vertices[i].normalized);
                 lat = CoordinatesProjector.CartesianToLat(vertices[i].normalized);
 
-                intensity = 1 + (GetGrayScale(ln + 180f, lat + 90f) * meanElevation);
+                intensity = baseElevation + (GetGrayScale(ln + 180f, lat + 90f) * meanElevation);
 
                 vertices[i] = CoordinatesProjector.InverseMercatorProjector(
                     ln * Mathf.Deg2Rad,
@@ -159,6 +159,8 @@ public class TerrainFace
 
         mesh.vertices = vertices;
         //mesh.RecalculateNormals();
+        mesh.RecalculateTangents();
+        mesh.RecalculateBounds();
         mesh.normals = CalculateNormals();
     }
 

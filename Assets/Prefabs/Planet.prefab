@@ -5118,6 +5118,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7113f9dba8eecad4e81740c0f71accd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tex: {fileID: 0}
+  resolution: 10
+  meanElevation: 1
+  meshFilters: []
   profile: {fileID: 11400000, guid: 409fbd4bc8380c8468fcac93cd332105, type: 2}
   Anchor: {fileID: 0}
   water: {fileID: 2206070000954144448}
