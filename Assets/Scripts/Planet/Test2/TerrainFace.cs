@@ -13,6 +13,7 @@ public class TerrainFace
     Vector3 axisB;
 
     Vector3[] vertices;
+    Texture2D tex;
 
     public TerrainFace(Mesh mesh, int resolution, Vector3 localUp)
     {
@@ -26,14 +27,13 @@ public class TerrainFace
 
     public void ConstructMesh()
     {
+        // TODO put this in planettest.cs
         // we make sure resolution becomes pair
         // so a 3x3 stays a 3x3 visually but become a 4x4
         if (resolution % 2 != 0)
         {
             resolution += 1;
         }
-
-        //Debug.Log(resolution);
 
         Vector3[] vertices = new Vector3[resolution * resolution];
         Vector2[] uvs = new Vector2[vertices.Length];
@@ -43,7 +43,6 @@ public class TerrainFace
         float lat = 0f;
         float lnOffset = 360f / (float)((resolution - 1) * 4);
         float latOffset = 180f / (float)((resolution - 1) * 4);
-        //int i = 0;
 
         for (int y = 0; y < resolution; y++)
         {
@@ -134,6 +133,7 @@ public class TerrainFace
 
     public void ElevateMesh(Texture2D noise, float meanElevation)
     {
+        tex = noise;
         vertices = mesh.vertices;
         Vector3[] normals = new Vector3[vertices.Length];
 
@@ -148,7 +148,7 @@ public class TerrainFace
                 ln = CoordinatesProjector.CartesianToLon(vertices[i].normalized);
                 lat = CoordinatesProjector.CartesianToLat(vertices[i].normalized);
 
-                intensity = 1 + (GetGrayScale(noise, ln + 180f, lat + 90f) * meanElevation);
+                intensity = 1 + (GetGrayScale(ln + 180f, lat + 90f) * meanElevation);
 
                 vertices[i] = CoordinatesProjector.InverseMercatorProjector(
                     ln * Mathf.Deg2Rad,
@@ -158,8 +158,8 @@ public class TerrainFace
         }
 
         mesh.vertices = vertices;
-        mesh.RecalculateNormals();
-//        mesh.normals = CalculateNormals();
+        //mesh.RecalculateNormals();
+        mesh.normals = CalculateNormals();
     }
 
     Vector3 SurfaceNormalFromIndices(Vector3 pointA, Vector3 pointB, Vector3 pointC)
@@ -173,8 +173,10 @@ public class TerrainFace
     Vector3[] CalculateNormals()
     {
         Vector3[] vertexNormals = new Vector3[vertices.Length];
-        
         int triangleCount = mesh.triangles.Length / 3;
+        float lnOffset = 360f / (float)((resolution - 1) * 4);
+        float latOffset = 180f / (float)((resolution - 1) * 4);
+
         for (int i = 0; i < triangleCount; i++)
         {
             int normalTriangleIndex = i * 3;
@@ -192,6 +194,26 @@ public class TerrainFace
             vertexNormals[vertexIndexC] += triangleNormal;
         }
 
+        for (int i = 0; i < resolution; i++)
+        {
+            break;
+            // do first line
+            vertexNormals[i] += GetNormal(vertexNormals[i]);
+
+            if (i > 0 && i < resolution - 1)
+            {
+                // do begin and last from line
+                //vertexNormals[resolution * i] +=
+                //    GetNormal(vertexNormals[resolution * i]);
+                vertexNormals[resolution * i + resolution] +=
+                    GetNormal(vertexNormals[resolution * i + resolution]);
+            }
+
+            //// do last line
+            //vertexNormals[(resolution * resolution) - resolution + i] +=
+            //    GetNormal(vertexNormals[(resolution * resolution) - resolution + i]);
+        }
+
         for (int i = 0; i < vertexNormals.Length; i++)
         {
             vertexNormals[i].Normalize();
@@ -200,7 +222,32 @@ public class TerrainFace
         return vertexNormals;
     }
 
-    float GetGrayScale(Texture2D tex, float ln, float la)
+    public Vector3 GetNormal(Vector3 currentpos)
+    {
+        float currentLn = CoordinatesProjector.CartesianToLon(currentpos);
+        float currentLat = CoordinatesProjector.CartesianToLat(currentpos);
+        float lnOffset = 360f / (float)((resolution - 1) * 4);
+        float latOffset = 180f / (float)((resolution - 1) * 4);
+        float newln = currentLn + lnOffset;
+        float newlat = currentLat + latOffset;
+
+        Vector3 PointB = CoordinatesProjector.InverseMercatorProjector(
+            newln,
+            newlat,
+            1 + GetGrayScale(
+                newln,
+                newlat));
+        Vector3 PointC = CoordinatesProjector.InverseMercatorProjector(
+             newln,
+             newlat,
+             1 + GetGrayScale(
+                 newln,
+                 currentLat));
+
+        return SurfaceNormalFromIndices(currentpos, PointB, PointC);
+    }
+
+    float GetGrayScale(float ln, float la)
     {
         return tex.GetPixel(
             (int)((float)tex.width * (ln / 360f)),
