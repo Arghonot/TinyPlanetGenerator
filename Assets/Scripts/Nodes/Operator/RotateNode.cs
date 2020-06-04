@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace NoiseGraph
 {
-    [CreateNodeMenu("NoiseGraph/Operator/Rotate")]
+    [CreateNodeMenu("NoiseGraph/Transformer/Rotate")]
     public class RotateNode : LibnoiseNode
     {
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]

@@ -24,8 +24,8 @@ MonoBehaviour:
     key5: {r: 0.78039217, g: 0.79607844, b: 0.78431374, a: 0}
     key6: {r: 0.78039217, g: 0.79607844, b: 0.78431374, a: 0}
     key7: {r: 0.78039217, g: 0.79607844, b: 0.78431374, a: 0}
-    ctime0: 0
-    ctime1: 9445
+    ctime0: 9830
+    ctime1: 32189
     ctime2: 65535
     ctime3: 65150
     ctime4: 65535
@@ -45,8 +45,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   ElevationMap:
     serializedVersion: 2
-    key0: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 1}
-    key1: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
     key2: {r: 1, g: 1, b: 1, a: 0}
     key3: {r: 1, g: 1, b: 1, a: 0}
     key4: {r: 0.5882249, g: 0.5882249, b: 0.5882249, a: 0}
@@ -72,10 +72,10 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  ElevationMultiplier: 0.1
-  BaseElevation: 0.35
+  ElevationMultiplier: 0.3
+  BaseElevation: 0.25
   type: 0
-  graph: {fileID: 11400000, guid: 15dcdf8bb4ef9d141b84741eb10469a8, type: 2}
+  graph: {fileID: 11400000, guid: 9b3ea58ca2a7cd347858ab9077990d19, type: 2}
   frequency: 2
   lacunarity: 2
   persistence: 0.4

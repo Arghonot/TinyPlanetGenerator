@@ -68,10 +68,7 @@ MonoBehaviour:
       _node: {fileID: -5632800159796905386}
       _typeQualifiedName: System.Double, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: persistence
-        node: {fileID: 606518311552397248}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 2
@@ -139,6 +136,7 @@ MonoBehaviour:
   - {fileID: -5632800159796905386}
   - {fileID: 2366714746875490501}
   - {fileID: 606518311552397248}
+  - {fileID: 5737185150912728371}
   blackboard: {fileID: -8131569606251227089}
   CanRun: 0
   Root: {fileID: 3447845468041643886}
@@ -164,10 +162,7 @@ MonoBehaviour:
       _node: {fileID: 289466843155107197}
       _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: Octaves
-        node: {fileID: 606518311552397248}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 2
@@ -219,10 +214,7 @@ MonoBehaviour:
       _node: {fileID: 606518311552397248}
       _typeQualifiedName: System.Double, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: 7862353021736025112}
-        reroutePoints: []
+      connections: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 2
@@ -231,10 +223,7 @@ MonoBehaviour:
       _node: {fileID: 606518311552397248}
       _typeQualifiedName: System.Double, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: 5646605705917913457}
-        reroutePoints: []
+      connections: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 2
@@ -243,10 +232,7 @@ MonoBehaviour:
       _node: {fileID: 606518311552397248}
       _typeQualifiedName: System.Double, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: -5632800159796905386}
-        reroutePoints: []
+      connections: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 2
@@ -255,10 +241,7 @@ MonoBehaviour:
       _node: {fileID: 606518311552397248}
       _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: 289466843155107197}
-        reroutePoints: []
+      connections: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 2
@@ -287,12 +270,12 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
-  frequency: 0
-  lacunarity: 0
-  persistence: 0
-  Octaves: 0
-  Seed: 0
-  Quality: 0
+  frequency: 1
+  lacunarity: 1
+  persistence: 1
+  Octaves: 1
+  Seed: 1
+  Quality: 2
 --- !u!114 &1883019994639227408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,7 +447,7 @@ MonoBehaviour:
     y: 225
     width: 180
     height: 90
-  RenderTime: 525
+  RenderTime: 145
 --- !u!114 &5646605705917913457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,10 +470,7 @@ MonoBehaviour:
       _node: {fileID: 5646605705917913457}
       _typeQualifiedName: System.Double, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: lacunarity
-        node: {fileID: 606518311552397248}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 2
@@ -498,6 +478,37 @@ MonoBehaviour:
   uid: 5dcf5a15-e52b-4471-bff1-76ec941ff53d
   VariableIndex: 4
   Name: Lacunarity
+  Blackboard: {fileID: -8131569606251227089}
+--- !u!114 &5737185150912728371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84310896f6bec6e46a8af01f19ac307c, type: 3}
+  m_Name: Black Board Variable
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -436.13086, y: -181.76382}
+  ports:
+    keys:
+    - 
+    values:
+    - _fieldName: 
+      _node: {fileID: 5737185150912728371}
+      _typeQualifiedName: System.Double, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 1
+  uid: ef02f4bf-428c-48a6-a2cd-31bc3b3b532e
+  VariableIndex: 3
+  Name: Frequency
   Blackboard: {fileID: -8131569606251227089}
 --- !u!114 &6986157792791794575
 MonoBehaviour:
@@ -556,7 +567,7 @@ MonoBehaviour:
       _typeConstraint: 2
       _dynamic: 0
   Min: 0
-  Max: 0
+  Max: 42
 --- !u!114 &7862353021736025112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,10 +590,7 @@ MonoBehaviour:
       _node: {fileID: 7862353021736025112}
       _typeQualifiedName: System.Double, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: frequency
-        node: {fileID: 606518311552397248}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 2

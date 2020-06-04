@@ -1,11 +1,9 @@
 ﻿using LibNoise.Operator;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace NoiseGraph
 {
-    [CreateNodeMenu("NoiseGraph/Operator/Blend")]
+    [CreateNodeMenu("NoiseGraph/Selector/Blend")]
     public class BlendNode : LibnoiseNode
     {
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]

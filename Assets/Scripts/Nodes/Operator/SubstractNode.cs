@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace NoiseGraph
 {
-    [CreateNodeMenu("NoiseGraph/Operator/Select")]
-    public class SelectNode : LibnoiseNode
+    [CreateNodeMenu("NoiseGraph/Combiner/Substract")]
+    public class SubstractNode : LibnoiseNode
     {
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public SerializableModuleBase SourceA;
@@ -14,15 +14,11 @@ namespace NoiseGraph
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public SerializableModuleBase SourceB;
 
-        [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
-        public SerializableModuleBase Controller;
-
         public override object Run()
         {
-            return new Select(
+            return new Subtract(
                 GetInputValue<SerializableModuleBase>("SourceA", this.SourceA),
-                GetInputValue<SerializableModuleBase>("SourceB", this.SourceB),
-                GetInputValue<SerializableModuleBase>("Controller", this.Controller));
+                GetInputValue<SerializableModuleBase>("SourceB", this.SourceB));
         }
     }
 }

@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using LibNoise.Operator;
 
 namespace NoiseGraph
 {
-    [CreateNodeMenu("NoiseGraph/Combiner/Add")]
-    public class AddNode : LibnoiseNode
+    [CreateNodeMenu("NoiseGraph/Combiner/Min")]
+    public class MinNode : LibnoiseNode
     {
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public SerializableModuleBase SourceA;
@@ -16,11 +14,11 @@ namespace NoiseGraph
 
         public override object Run()
         {
-            Add add = new Add(
+            Min min = new Min(
                 GetInputValue<SerializableModuleBase>("SourceA", this.SourceA),
                 GetInputValue<SerializableModuleBase>("SourceB", this.SourceB));
 
-            return add;
+            return min;
         }
     }
 }

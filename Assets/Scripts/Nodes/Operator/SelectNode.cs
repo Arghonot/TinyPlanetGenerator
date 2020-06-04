@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using LibNoise.Operator;
 using UnityEngine;
-using LibNoise.Operator;
 
 namespace NoiseGraph
 {
-    [CreateNodeMenu("NoiseGraph/Combiner/Add")]
-    public class AddNode : LibnoiseNode
+    [CreateNodeMenu("NoiseGraph/Selector/Select")]
+    public class SelectNode : LibnoiseNode
     {
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public SerializableModuleBase SourceA;
@@ -14,13 +12,15 @@ namespace NoiseGraph
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public SerializableModuleBase SourceB;
 
+        [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
+        public SerializableModuleBase Controller;
+
         public override object Run()
         {
-            Add add = new Add(
+            return new Select(
                 GetInputValue<SerializableModuleBase>("SourceA", this.SourceA),
-                GetInputValue<SerializableModuleBase>("SourceB", this.SourceB));
-
-            return add;
+                GetInputValue<SerializableModuleBase>("SourceB", this.SourceB),
+                GetInputValue<SerializableModuleBase>("Controller", this.Controller));
         }
     }
 }

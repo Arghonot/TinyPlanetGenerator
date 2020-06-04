@@ -5,27 +5,25 @@ using UnityEngine;
 
 namespace NoiseGraph
 {
-    [CreateNodeMenu("NoiseGraph/Operator/Translate")]
-    public class TranslateNode : LibnoiseNode
+    [CreateNodeMenu("NoiseGraph/Modifier/ScaleBias")]
+    public class ScaleBiasNode : LibnoiseNode
     {
-
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public SerializableModuleBase Input;
-
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
-        public double X;
+        public double Bias;
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
-        public double Y;
-        [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
-        public double Z;
+        public double Scale;
 
         public override object Run()
         {
-            return new Translate(
-                GetInputValue<double>("X", this.X),
-                GetInputValue<double>("Y", this.Y),
-                GetInputValue<double>("Z", this.Z),
+            ScaleBias bias = new ScaleBias(
                 GetInputValue<SerializableModuleBase>("Input", this.Input));
+
+            bias.Scale = GetInputValue<double>("Scale", this.Scale);
+            bias.Bias = GetInputValue<double>("Bias", this.Bias);
+
+            return bias;
         }
     }
 }

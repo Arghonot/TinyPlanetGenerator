@@ -6,7 +6,7 @@ using static XNode.Node;
 
 namespace NoiseGraph
 {
-    [CreateNodeMenu("NoiseGraph/Operator/Clamp")]
+    [CreateNodeMenu("NoiseGraph/Modifier/Clamp")]
     public class ClampNode : LibnoiseNode
     {
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]

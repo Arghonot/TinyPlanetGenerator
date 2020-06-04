@@ -5,17 +5,21 @@ using UnityEngine;
 
 namespace NoiseGraph
 {
-    [CreateNodeMenu("NoiseGraph/Operator/Exponent")]
-    public class ExponentNode : LibnoiseNode
+    [CreateNodeMenu("NoiseGraph/Transformer/Turbulence")]
+    public class TurbulenceNode : LibnoiseNode
     {
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public SerializableModuleBase Input;
 
+        [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
+        public double Power;
+
         public override object Run()
         {
-            return new Exponent(
+            Debug.Log("Run turbulence " + GetInputValue<double>("Power", this.Power));
+            return new Turbulence(
+                GetInputValue<double>("Power", this.Power),
                 GetInputValue<SerializableModuleBase>("Input", this.Input));
-
         }
     }
 }

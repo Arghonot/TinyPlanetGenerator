@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace NoiseGraph
 {
-    [CreateNodeMenu("NoiseGraph/Operator/Terrace")]
+    [CreateNodeMenu("NoiseGraph/Modifier/Terrace")]
     public class TerraceNode : LibnoiseNode
     {
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]

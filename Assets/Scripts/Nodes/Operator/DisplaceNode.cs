@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace NoiseGraph
 {
-    [CreateNodeMenu("NoiseGraph/Operator/Displace")]
+    [CreateNodeMenu("NoiseGraph/Transformer/Displace")]
     public class DisplaceNode : LibnoiseNode
     {
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]

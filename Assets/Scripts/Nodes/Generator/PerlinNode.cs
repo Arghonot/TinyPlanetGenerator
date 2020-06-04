@@ -33,16 +33,19 @@ namespace NoiseGraph
                 "Output");
         }
 
-        public override object GetValue(NodePort port)
-        {
-            return Run();
-        }
+        //public override object GetValue(NodePort port)
+        //{
+        //    return Run();
+        //}
 
         public override object Run()
         {
+            Debug.Log("Perlin node");
             // if editing the graph -> we stick to current variables
             if (Application.isEditor && !Application.isPlaying)
             {
+                Debug.Log("0");
+
                 return new Perlin(
                     this.frequency,
                     this.lacunarity,
@@ -51,6 +54,7 @@ namespace NoiseGraph
                     this.Seed,
                     this.Quality);
             }
+            Debug.Log("1 " + GetInputValue<double>("frequency", this.frequency));
 
             return new Perlin(
                 GetInputValue<double>("frequency", this.frequency),

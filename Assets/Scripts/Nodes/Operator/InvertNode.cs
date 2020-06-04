@@ -5,20 +5,17 @@ using UnityEngine;
 
 namespace NoiseGraph
 {
-    [CreateNodeMenu("NoiseGraph/Operator/Turbulence")]
-    public class TurbulenceNode : LibnoiseNode
+    [CreateNodeMenu("NoiseGraph/Modifier/Invert")]
+    public class InvertNode : LibnoiseNode
     {
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public SerializableModuleBase Input;
 
-        [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
-        public double Power;
-
         public override object Run()
         {
-            return new Turbulence(
-                GetInputValue<double>("Power", this.Power),
+            return new Invert(
                 GetInputValue<SerializableModuleBase>("Input", this.Input));
+
         }
     }
 }

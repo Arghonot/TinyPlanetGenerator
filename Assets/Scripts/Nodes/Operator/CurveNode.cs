@@ -6,7 +6,7 @@ using UnityEngine;
 namespace NoiseGraph
 {
     [System.Serializable]
-    [CreateNodeMenu("NoiseGraph/Operator/Curve")]
+    [CreateNodeMenu("NoiseGraph/Modifier/Curve")]
     public class CurveNode : LibnoiseNode
     {
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]

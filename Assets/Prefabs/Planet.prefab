@@ -5119,15 +5119,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tex: {fileID: 0}
-  resolution: 10
-  meanElevation: 1
+  resolution: 40
   meshFilters: []
   profile: {fileID: 11400000, guid: 409fbd4bc8380c8468fcac93cd332105, type: 2}
   Anchor: {fileID: 0}
   water: {fileID: 2206070000954144448}
   Aura: {fileID: 7843671739224271363}
   Clouds: {fileID: 9125559891162841896}
-  AmountOfVerticesX: 40
   save: 0
 --- !u!114 &8028085928368238267
 MonoBehaviour:

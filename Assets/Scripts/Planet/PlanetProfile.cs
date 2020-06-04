@@ -61,6 +61,7 @@ public class PlanetProfile : ScriptableObject
     public float AuraIntensity = 7.73f;
     public Color Aura = Color.blue;
 
+    // TODO build GD only based on noise attr
     public Graph.GenericDicionnary GetArguments()
     {
         Graph.GenericDicionnary gd = new Graph.GenericDicionnary();
@@ -68,7 +69,7 @@ public class PlanetProfile : ScriptableObject
         foreach (var item in this.GetType().GetFields())
         {
             gd.Add(item.Name, item.GetValue(this));
-            //Debug.Log(item.Name);
+            if (item.Name == "frequency") Debug.Log(item.Name + " " + (double)item.GetValue(this));
         }
 
         //Debug.Log("there are : " + gd.Count.ToString() + " keys in the dictionnary");

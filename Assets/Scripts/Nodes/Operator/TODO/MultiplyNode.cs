@@ -1,12 +1,10 @@
-﻿using LibNoise.Operator;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using LibNoise.Operator;
 
 namespace NoiseGraph
 {
-    [CreateNodeMenu("NoiseGraph/Operator/Substract")]
-    public class SubstractNode : LibnoiseNode
+    [CreateNodeMenu("NoiseGraph/Combiner/Multiply")]
+    public class MultiplyNode : LibnoiseNode
     {
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public SerializableModuleBase SourceA;
@@ -16,9 +14,11 @@ namespace NoiseGraph
 
         public override object Run()
         {
-            return new Subtract(
+            Multiply multiply = new Multiply(
                 GetInputValue<SerializableModuleBase>("SourceA", this.SourceA),
                 GetInputValue<SerializableModuleBase>("SourceB", this.SourceB));
+
+            return multiply;
         }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace NoiseGraph
 {
-    [CreateNodeMenu("NoiseGraph/Operator/Abs")]
+    [CreateNodeMenu("NoiseGraph/Modifier/Abs")]
     public class AbsNode : LibnoiseNode
     {
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
