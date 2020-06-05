@@ -20,10 +20,12 @@ namespace NoiseGraph
             Curve curve = new Curve(
                 GetInputValue<SerializableModuleBase>("Input", this.Input));
 
-            foreach (var point in InputCurve.keys)
-            {
-                curve.Add(point.time, point.value);
-            }
+            curve.SetCurve(InputCurve);
+
+            //foreach (var point in InputCurve.keys)
+            //{
+            //    curve.Add(point.time, point.value);
+            //}
 
             return curve;
         }
