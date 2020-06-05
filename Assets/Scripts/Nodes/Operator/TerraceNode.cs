@@ -16,6 +16,11 @@ namespace NoiseGraph
 
         public override object Run()
         {
+            if (Terrace.Count == 0)
+            {
+                return GetInputValue<SerializableModuleBase>("Input", this.Input);
+            }
+
             Terrace terr = new Terrace(
                 GetInputValue<SerializableModuleBase>("Input", this.Input));
 

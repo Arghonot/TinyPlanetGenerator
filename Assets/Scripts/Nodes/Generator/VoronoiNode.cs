@@ -18,8 +18,8 @@ namespace NoiseGraph
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public bool distance;
 
-        [Output(ShowBackingValue.Always, ConnectionType.Multiple, TypeConstraint.Strict)]
-        public ModuleBase GeneratorOutput;
+        //[Output(ShowBackingValue.Always, ConnectionType.Multiple, TypeConstraint.Strict)]
+        //public ModuleBase GeneratorOutput;
 
         public void Awake()
         {

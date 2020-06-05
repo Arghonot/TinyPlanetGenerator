@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: withoutMappingTest
   m_EditorClassIdentifier: 
   Name: 
-  TexturesSize: 256
+  TexturesSize: 512
   ColorMap:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -28,7 +28,7 @@ MonoBehaviour:
     ctime1: 2699
     ctime2: 12529
     ctime3: 17155
-    ctime4: 24865
+    ctime4: 65535
     ctime5: 45104
     ctime6: 56861
     ctime7: 65535
@@ -75,11 +75,11 @@ MonoBehaviour:
   ElevationMultiplier: 0.07
   BaseElevation: 0.35
   type: 0
-  graph: {fileID: 11400000, guid: e24e82829c780d846a784b50416eeb9c, type: 2}
-  frequency: 1
-  lacunarity: 2
+  graph: {fileID: 11400000, guid: 8307657e62592fe4ca42e6382e42c812, type: 2}
+  frequency: 2
+  lacunarity: 1
   persistence: 0.5
-  displacement: 0
+  displacement: 0.1
   octaves: 6
   material: {fileID: 2100000, guid: ff5469af096ca3643af76381d84d253d, type: 2}
   SunFresnelColor: {r: 0, g: 0, b: 0, a: 0}

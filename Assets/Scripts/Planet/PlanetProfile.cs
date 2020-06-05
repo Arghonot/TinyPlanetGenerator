@@ -69,7 +69,7 @@ public class PlanetProfile : ScriptableObject
         foreach (var item in this.GetType().GetFields())
         {
             gd.Add(item.Name, item.GetValue(this));
-            if (item.Name == "frequency") Debug.Log(item.Name + " " + (double)item.GetValue(this));
+            //if (item.Name == "frequency") Debug.Log(item.Name + " " + (double)item.GetValue(this));
         }
 
         //Debug.Log("there are : " + gd.Count.ToString() + " keys in the dictionnary");
