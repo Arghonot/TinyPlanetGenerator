@@ -5,8 +5,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class PlanetTest : MonoBehaviour
 {
+    public bool Regenerate = false;
     public Texture2D tex;
     [Range(2, 256)]
     public int resolution = 10;
@@ -28,6 +30,19 @@ public class PlanetTest : MonoBehaviour
     {
         Initialize();
         GenerateMesh();
+    }
+
+    private void Update()
+    {
+        if (Regenerate)
+        {
+            for (int i = 0; i < terrainFaces.Length; i++)
+            {
+                terrainFaces[i].ElevateMesh(tex, .5f, meanElevation);
+            }
+
+            Regenerate = false;
+        }
     }
 
     void Initialize()
@@ -88,7 +103,7 @@ public class PlanetTest : MonoBehaviour
 
         for (int i = 0; i < terrainFaces.Length; i++)
         {
-            //terrainFaces[i].ElevateMesh(tex, meanElevation);
+            terrainFaces[i].ElevateMesh(tex, .5f, meanElevation);
         }
     }
 }

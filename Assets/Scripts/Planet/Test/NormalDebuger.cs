@@ -10,7 +10,7 @@ public class NormalDebuger : MonoBehaviour
     public bool debugVertices;
     public bool debugNormals;
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         if (filter == null) return;
 

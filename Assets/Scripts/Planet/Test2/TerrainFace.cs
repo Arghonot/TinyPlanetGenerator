@@ -12,6 +12,9 @@ public class TerrainFace
     Vector3 axisA;
     Vector3 axisB;
 
+    float BaseElevation;
+    float MeanElevation;
+
     Vector3[] vertices;
     Texture2D tex;
 
@@ -23,6 +26,8 @@ public class TerrainFace
 
         axisA = new Vector3(localUp.y, localUp.z, localUp.x);
         axisB = Vector3.Cross(localUp, axisA);
+
+        //Debug.Log(mesh.name + " " + localUp + "   " + axisA + "   " + axisB);
     }
 
     public void ConstructMesh()
@@ -68,6 +73,7 @@ public class TerrainFace
                 }
 
                 Vector3 pointOnUnitCube = localUp + (percent.x - .5f) * 2 * axisA + (percent.y - .5f) * 2 * axisB;
+
                 Vector3 pointOnUnitSphere = pointOnUnitCube.normalized;
                 ln = CoordinatesProjector.CartesianToLon(pointOnUnitSphere);
                 lat = CoordinatesProjector.CartesianToLat(pointOnUnitSphere);
@@ -133,9 +139,12 @@ public class TerrainFace
 
     public void ElevateMesh(Texture2D noise, float baseElevation, float meanElevation)
     {
+        BaseElevation = baseElevation;
+        MeanElevation = meanElevation;
         tex = noise;
         vertices = mesh.vertices;
         Vector3[] normals = new Vector3[vertices.Length];
+        Color[] colors = new Color[normals.Length];
 
         float ln = 0f;
         float lat = 0f;
@@ -157,8 +166,27 @@ public class TerrainFace
             }
         }
 
+        for (int i = 0; i < colors.Length; i++)
+        {
+            colors[i] = Color.white;
+        }
+
+        for (int i = 0; i < resolution; i++)
+        {
+            colors[i] = Color.red;
+
+            if (i > 0 && i < resolution - 1)
+            {
+                colors[resolution * i] = Color.green;
+                colors[resolution * i + resolution - 1] = Color.blue;
+
+            }
+            colors[(resolution * resolution) - resolution + i] = Color.black;
+        }
+
         mesh.vertices = vertices;
-        //mesh.RecalculateNormals();
+        mesh.colors = colors;
+        mesh.RecalculateNormals();
         mesh.RecalculateTangents();
         mesh.RecalculateBounds();
         mesh.normals = CalculateNormals();
@@ -174,47 +202,87 @@ public class TerrainFace
 
     Vector3[] CalculateNormals()
     {
-        Vector3[] vertexNormals = new Vector3[vertices.Length];
+        Vector3[] vertexNormals = mesh.normals; // new Vector3[vertices.Length];
         int triangleCount = mesh.triangles.Length / 3;
         float lnOffset = 360f / (float)((resolution - 1) * 4);
         float latOffset = 180f / (float)((resolution - 1) * 4);
 
-        for (int i = 0; i < triangleCount; i++)
-        {
-            int normalTriangleIndex = i * 3;
-            int vertexIndexA = mesh.triangles[normalTriangleIndex];
-            int vertexIndexB = mesh.triangles[normalTriangleIndex + 1];
-            int vertexIndexC = mesh.triangles[normalTriangleIndex + 2];
+        //for (int i = 0; i < vertices.Length; i++)
+        //{
+        //    vertexNormals[i] = vertices[i].normalized;
+        //}
+        //return vertexNormals;
 
-            Vector3 triangleNormal = SurfaceNormalFromIndices(
-                vertices[vertexIndexA],
-                vertices[vertexIndexB],
-                vertices[vertexIndexC]);
+        //for (int i = 0; i < triangleCount; i++)
+        //{
+        //    int normalTriangleIndex = i * 3;
+        //    int vertexIndexA = mesh.triangles[normalTriangleIndex];
+        //    int vertexIndexB = mesh.triangles[normalTriangleIndex + 1];
+        //    int vertexIndexC = mesh.triangles[normalTriangleIndex + 2];
 
-            vertexNormals[vertexIndexA] += triangleNormal;
-            vertexNormals[vertexIndexB] += triangleNormal;
-            vertexNormals[vertexIndexC] += triangleNormal;
-        }
+        //    Vector3 triangleNormal = SurfaceNormalFromIndices(
+        //        vertices[vertexIndexA],
+        //        vertices[vertexIndexB],
+        //        vertices[vertexIndexC]);
 
+        //    vertexNormals[vertexIndexA] += triangleNormal;
+        //    vertexNormals[vertexIndexB] += triangleNormal;
+        //    vertexNormals[vertexIndexC] += triangleNormal;
+        //}
+
+        //if (mesh.name.Contains("2"))
+        //{
+        //    Debug.Log(resolution);
+
+        //    var sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        //    sphere.transform.localScale = Vector3.one * .1f;
+        //    sphere.transform.position = vertices[2];
+        //    sphere.name = "vertice2"; 
+        //}
         for (int i = 0; i < resolution; i++)
         {
-            break;
-            // do first line
-            vertexNormals[i] += GetNormal(vertexNormals[i]);
+            // red
+            vertexNormals[i] += GetNormal(i, 1, -1);
+            vertexNormals[i] += GetNormal2(i, -1, -1);
+            vertexNormals[i] += GetNormal2(i, 1, -1);
+            vertexNormals[i] += GetNormal(i, -1, -1);
 
             if (i > 0 && i < resolution - 1)
             {
                 // do begin and last from line
-                //vertexNormals[resolution * i] +=
-                //    GetNormal(vertexNormals[resolution * i]);
-                vertexNormals[resolution * i + resolution] +=
-                    GetNormal(vertexNormals[resolution * i + resolution]);
+                // green
+                vertexNormals[resolution * i] +=
+                    GetNormal(resolution * i, -1, -1);
+                vertexNormals[resolution * i] +=
+                    GetNormal2(resolution * i, -1, -1);
+                vertexNormals[resolution * i] +=
+                    GetNormal(resolution * i, -1, 1);
+                vertexNormals[resolution * i] +=
+                    GetNormal2(resolution * i, -1, 1);
+                //blue
+                vertexNormals[resolution * i + resolution - 1] +=
+                    GetNormal2(resolution * i + resolution - 1, 1, -1);
+                vertexNormals[resolution * i + resolution - 1] +=
+                    GetNormal(resolution * i + resolution - 1, 1, -1);
+                vertexNormals[resolution * i + resolution - 1] +=
+                    GetNormal(resolution * i + resolution - 1, 1, 1);
+                vertexNormals[resolution * i + resolution - 1] +=
+                    GetNormal2(resolution * i + resolution - 1, 1, 1);
+                //GetNormal(vertexNormals[resolution * i + resolution]); 
             }
 
-            //// do last line
-            //vertexNormals[(resolution * resolution) - resolution + i] +=
-            //    GetNormal(vertexNormals[(resolution * resolution) - resolution + i]);
+            ////// black
+            vertexNormals[(resolution * resolution) - resolution + i] +=
+                GetNormal((resolution * resolution) - resolution + i, 1, 1);
+            vertexNormals[(resolution * resolution) - resolution + i] +=
+                GetNormal2((resolution * resolution) - resolution + i, 1, 1);
+            vertexNormals[(resolution * resolution) - resolution + i] +=
+                GetNormal2((resolution * resolution) - resolution + i, -1, 1);
+            vertexNormals[(resolution * resolution) - resolution + i] +=
+                GetNormal((resolution * resolution) - resolution + i, -1, 1);
+            //GetNormal(vertexNormals[(resolution * resolution) - resolution + i]);
         }
+        ////}
 
         for (int i = 0; i < vertexNormals.Length; i++)
         {
@@ -222,6 +290,110 @@ public class TerrainFace
         }
 
         return vertexNormals;
+    }
+
+
+    public Vector3 GetNormal2(int index, int xoffset, int yoffset, bool debug = false)
+    {
+        int x = index % (resolution);
+        int y = index / (resolution);
+
+        float step = 1f / ((float)resolution - 1f);
+
+        Vector2 verticeAPercentage = GetPercentage(x, y);
+        Vector3 posA = vertices[index];
+
+        Vector3 posB = GetSpherifiedPositionFromXY(x, y + yoffset);
+        Vector3 posC = GetSpherifiedPositionFromXY(x + xoffset, y + yoffset);
+
+        //if (mesh.name.Contains("2"))
+        //{
+        //    if (debug)
+        //    {
+        //        Debug.Log(index);
+        //    }
+
+        //    if (index == 60 && debug)
+        //    {
+        //        Debug.Log("NORMAL2 : " +
+        //            GetPercentage(x + xoffset, y) +
+        //            "   " +
+        //            GetPercentage(x + xoffset, y + yoffset));
+        //        createSphere("A", posA);
+        //        createSphere("B", posB);
+        //        createSphere("C", posC);
+        //    }
+        //}
+
+        return SurfaceNormalFromIndices(posA, posB, posC);
+    }
+    public Vector3 GetNormal(int index, int xoffset, int yoffset, bool debug = false)
+    {
+        int x = index % (resolution);
+        int y = index / (resolution);
+
+        float step = 1f / ((float)resolution - 1f);
+
+        Vector2 verticeAPercentage = GetPercentage(x, y);
+        Vector3 posA = vertices[index];
+
+        Vector3 posB = GetSpherifiedPositionFromXY(x + xoffset, y);
+        Vector3 posC = GetSpherifiedPositionFromXY(x + xoffset, y + yoffset);
+
+        if (mesh.name.Contains("2"))
+        {
+            if (debug)
+            {
+                Debug.Log(index); 
+            }
+
+            if (index == 60 && debug)
+            {
+                Debug.Log(
+                    GetPercentage(x + xoffset, y) +
+                    "   " +
+                    GetPercentage(x + xoffset, y + yoffset));
+                createSphere("A", posA);
+                createSphere("B", posB);
+                createSphere("C", posC);
+            }
+        }
+
+        return SurfaceNormalFromIndices(posA, posB, posC);
+    }
+
+    public void createSphere(string name, Vector3 pos)
+    {
+        var sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+
+        sphere.name = name;
+        sphere.transform.localScale = Vector3.one * .1f;
+        sphere.transform.position = pos;
+    }
+
+    Vector3 GetSpherifiedPositionFromXY(int x, int y)
+    {
+        Vector3 pos = GetVerticePosition(GetPercentage(x, y));
+        float ln = CoordinatesProjector.CartesianToLon(pos);
+        float lat = CoordinatesProjector.CartesianToLat(pos);
+        float intensity = BaseElevation + (GetGrayScale(ln + 180f, lat + 90f) * MeanElevation);
+
+        Vector3 newpos = CoordinatesProjector.InverseMercatorProjector(
+            ln * Mathf.Deg2Rad,
+            lat * Mathf.Deg2Rad,
+            intensity);
+
+        return newpos;
+    }
+
+    public Vector2 GetPercentage(int x, int y)
+    {
+        return new Vector2(x, y) / (resolution - 1);
+    }
+
+    public Vector3 GetVerticePosition(Vector2 percent)
+    {
+        return (localUp + (percent.x - .5f) * 2 * axisA + (percent.y - .5f) * 2 * axisB).normalized;
     }
 
     public Vector3 GetNormal(Vector3 currentpos)
@@ -247,6 +419,11 @@ public class TerrainFace
                  currentLat));
 
         return SurfaceNormalFromIndices(currentpos, PointB, PointC);
+    }
+
+    float GetGrayScale(Vector2 pos)
+    {
+        return GetGrayScale(pos.x, pos.y);
     }
 
     float GetGrayScale(float ln, float la)

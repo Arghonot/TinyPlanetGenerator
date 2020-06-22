@@ -21,6 +21,12 @@ public static class CoordinatesProjector {
             (pos.z * pos.z));
     }
 
+    public static Vector2 GetLnLatFromPosition(Vector3 position)
+    {
+        return new Vector2(
+            CartesianToLon(position),
+            CartesianToLat(position));
+    }
 
     /// <summary>
     /// To be inputed into InverseMercatorProjector

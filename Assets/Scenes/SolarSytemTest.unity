@@ -7711,7 +7711,7 @@ PrefabInstance:
         type: 3}
       propertyPath: PlanetProfiles.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 44eb914b36e826b4ab98b3f667c89bf9,
+      objectReference: {fileID: 11400000, guid: 378e794329335e44c8a0e2339c238021,
         type: 2}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
@@ -7722,13 +7722,13 @@ PrefabInstance:
         type: 3}
       propertyPath: PlanetProfiles.Array.data[14]
       value: 
-      objectReference: {fileID: 11400000, guid: 409fbd4bc8380c8468fcac93cd332105,
+      objectReference: {fileID: 11400000, guid: c06d239173db3684f9f34d640506c2e9,
         type: 2}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
       propertyPath: PlanetProfiles.Array.data[15]
       value: 
-      objectReference: {fileID: 11400000, guid: fabd327c55493184288a6827caabe323,
+      objectReference: {fileID: 11400000, guid: 5a3709e1fa885fc4b9d62a649581c0b3,
         type: 2}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
@@ -7778,7 +7778,7 @@ PrefabInstance:
         type: 3}
       propertyPath: SolarSystems.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 6f23dcbdc7ece2846b4fc717df29fb17,
+      objectReference: {fileID: 11400000, guid: 51cc00172292e324daeb82a662505eb7,
         type: 2}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
@@ -7819,7 +7819,79 @@ PrefabInstance:
         type: 3}
       propertyPath: PlanetProfiles.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 50f65c1470e37d742acd4bb7cdf95958,
+      objectReference: {fileID: 11400000, guid: f92f7ae0337c03b4ebe0c23d7c51fc05,
+        type: 2}
+    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
+        type: 3}
+      propertyPath: PlanetProfiles.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3662de3cf8d8c364fa1bf2590c0d1f06,
+        type: 2}
+    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
+        type: 3}
+      propertyPath: PlanetProfiles.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: e6463099cfd4fb140b5f79cb1bcd3e53,
+        type: 2}
+    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
+        type: 3}
+      propertyPath: PlanetProfiles.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 378e794329335e44c8a0e2339c238021,
+        type: 2}
+    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
+        type: 3}
+      propertyPath: PlanetProfiles.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4f44fe764e2b8de43b1bd165af75a150,
+        type: 2}
+    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
+        type: 3}
+      propertyPath: PlanetProfiles.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: c142c570a78516e41b49de860ac9479c,
+        type: 2}
+    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
+        type: 3}
+      propertyPath: PlanetProfiles.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: d0a448573dfbead488191408c3dfa55a,
+        type: 2}
+    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
+        type: 3}
+      propertyPath: PlanetProfiles.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9eafe8cb795e2404899d49d1a33dad70,
+        type: 2}
+    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
+        type: 3}
+      propertyPath: PlanetProfiles.Array.data[9]
+      value: 
+      objectReference: {fileID: 11400000, guid: ba6bc3f4b6fd2d24dafd58c83e67e4ae,
+        type: 2}
+    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
+        type: 3}
+      propertyPath: PlanetProfiles.Array.data[10]
+      value: 
+      objectReference: {fileID: 11400000, guid: 69207c667e7f8754782169a1d8fbec55,
+        type: 2}
+    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
+        type: 3}
+      propertyPath: PlanetProfiles.Array.data[11]
+      value: 
+      objectReference: {fileID: 11400000, guid: 09544228658b1cb4bb04145d926f204b,
+        type: 2}
+    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
+        type: 3}
+      propertyPath: PlanetProfiles.Array.data[12]
+      value: 
+      objectReference: {fileID: 11400000, guid: cc50d683e1d4f1b4197ea146a12e046d,
+        type: 2}
+    - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
+        type: 3}
+      propertyPath: PlanetProfiles.Array.data[13]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0232ff01236b1e44a81f97a835ed01cd,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2c0d77b36df71e4bbdb5ffdcdc13731, type: 3}
