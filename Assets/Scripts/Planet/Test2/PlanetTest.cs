@@ -8,6 +8,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class PlanetTest : MonoBehaviour
 {
+    public Gradient grad;
     public bool Regenerate = false;
     public Texture2D tex;
     [Range(2, 256)]
@@ -93,8 +94,8 @@ public class PlanetTest : MonoBehaviour
             west,
             east);
 
-        tex = noise.GetTexture();
-        tex.Apply();
+        //tex = noise.GetTexture();
+        //tex.Apply();
 
         foreach (TerrainFace face in terrainFaces)
         {
@@ -103,7 +104,7 @@ public class PlanetTest : MonoBehaviour
 
         for (int i = 0; i < terrainFaces.Length; i++)
         {
-            terrainFaces[i].ElevateMesh(tex, .5f, meanElevation);
+            terrainFaces[i].ElevateMesh(tex, .5f, meanElevation, grad);
         }
     }
 }

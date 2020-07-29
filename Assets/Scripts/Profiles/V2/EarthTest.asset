@@ -40,7 +40,7 @@ MonoBehaviour:
     atime5: 0
     atime6: 0
     atime7: 0
-    m_Mode: 0
+    m_Mode: 1
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
   ElevationMap:
@@ -81,7 +81,7 @@ MonoBehaviour:
   persistence: 0.4
   displacement: 0
   octaves: 6
-  material: {fileID: 2100000, guid: ea7cabc5555fe3f4bb7f1c34e2415e7e, type: 2}
+  material: {fileID: 2100000, guid: cf383324885633a48910ff49eb4a9acc, type: 2}
   SunFresnelColor: {r: 0, g: 0, b: 0, a: 0}
   useWater: 0
   UseClouds: 0

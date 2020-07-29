@@ -57,21 +57,6 @@ public class TerrainFace
 
                 Vector2 percent = new Vector2(x, y) / (resolution - 1);
 
-                if (mesh.name.Contains("2"))
-                {
-                    if (y == (resolution / 2) - 1 || y == resolution / 2)
-                    {
-                        percent = new Vector2(percent.x, .5f);
-                    }
-                }
-                else if (mesh.name.Contains("4") || mesh.name.Contains("5"))
-                {
-                    if (x == (resolution / 2) - 1 || x == resolution / 2)
-                    {
-                        percent = new Vector2(.5f, percent.y);
-                    }
-                }
-
                 Vector3 pointOnUnitCube = localUp + (percent.x - .5f) * 2 * axisA + (percent.y - .5f) * 2 * axisB;
 
                 Vector3 pointOnUnitSphere = pointOnUnitCube.normalized;
@@ -79,42 +64,7 @@ public class TerrainFace
                 lat = CoordinatesProjector.CartesianToLat(pointOnUnitSphere);
 
                 vertices[i] = pointOnUnitSphere;
-                uvs[i] = new Vector2(
-                    ((ln + 180f) / (360f)),
-                    ((lat + 90f) / (180f)));
-
-                if ((ln <= -180f || ln >= 180f) ||
-                    (lat <= -180f || lat >= 180f))
-                {
-                    // y pole face
-                    if (mesh.name.Contains("5"))
-                    {
-                        if (x == resolution / 2)
-                        {
-                            uvs[i] = new Vector2(0f, uvs[i].y);
-                        }
-                    }
-                    // middle face where there is a separation
-                    if (mesh.name.Contains("2"))
-                    {
-                        if (y == resolution / 2)
-                        {
-                            uvs[i] = new Vector2(0f, uvs[i].y);
-                        }
-                    }
-                    // -y pole face
-                    if (mesh.name.Contains("4"))
-                    {
-                        if (x == resolution / 2)
-                        {
-                            uvs[i] = new Vector2(1f, uvs[i].y);
-                        }
-                        if (x == (resolution / 2) - 1)
-                        {
-                            uvs[i] = new Vector2(0f, uvs[i].y);
-                        }
-                    }
-                }
+                uvs[i] = percent;
 
                 if (x != resolution - 1 && y != resolution - 1)
                 {
@@ -137,8 +87,10 @@ public class TerrainFace
         mesh.RecalculateNormals();
     }
 
-    public void ElevateMesh(Texture2D noise, float baseElevation, float meanElevation)
+    public void ElevateMesh(Texture2D noise, float baseElevation, float meanElevation, Gradient grad = null)
     {
+        if (grad == null) return;
+
         BaseElevation = baseElevation;
         MeanElevation = meanElevation;
         tex = noise;
@@ -158,30 +110,19 @@ public class TerrainFace
                 lat = CoordinatesProjector.CartesianToLat(vertices[i].normalized);
 
                 intensity = baseElevation + (GetGrayScale(ln + 180f, lat + 90f) * meanElevation);
-
                 vertices[i] = CoordinatesProjector.InverseMercatorProjector(
                     ln * Mathf.Deg2Rad,
                     lat * Mathf.Deg2Rad,
                     intensity);
+
+                if (x < resolution && y == 0)
+                {
+
+                }
+                //if (x >)
+
+                colors[i] = GetColor(ln + 180f, lat + 90f); //grad.Evaluate(intensity);
             }
-        }
-
-        for (int i = 0; i < colors.Length; i++)
-        {
-            colors[i] = Color.white;
-        }
-
-        for (int i = 0; i < resolution; i++)
-        {
-            colors[i] = Color.red;
-
-            if (i > 0 && i < resolution - 1)
-            {
-                colors[resolution * i] = Color.green;
-                colors[resolution * i + resolution - 1] = Color.blue;
-
-            }
-            colors[(resolution * resolution) - resolution + i] = Color.black;
         }
 
         mesh.vertices = vertices;
@@ -424,6 +365,13 @@ public class TerrainFace
     float GetGrayScale(Vector2 pos)
     {
         return GetGrayScale(pos.x, pos.y);
+    }
+
+    Color GetColor(float ln, float la)
+    {
+        return tex.GetPixel(
+            (int)((float)tex.width * (ln / 360f)),
+            (int)((float)tex.height * (la / 180f)));
     }
 
     float GetGrayScale(float ln, float la)

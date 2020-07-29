@@ -260,7 +260,11 @@ public class Planet : MonoBehaviour
     {
         for (int i = 0; i < terrainFaces.Length; i++)
         {
-            terrainFaces[i].ElevateMesh(HeightMap,profile.BaseElevation, profile.ElevationMultiplier);
+            terrainFaces[i].ElevateMesh(
+                HeightMap,
+                profile.BaseElevation,
+                profile.ElevationMultiplier,
+                profile.ColorMap);
         }
     }
 
