@@ -76,7 +76,18 @@ public class PlanetTest : MonoBehaviour
                 meshFilters[i].sharedMesh.name = i.ToString();
             }
 
-            terrainFaces[i] = new TerrainFace(meshFilters[i].sharedMesh, resolution, directions[i]);
+            var face = meshFilters[i].GetComponent<TerrainFace>();
+
+            if (face == null)
+            {
+                terrainFaces[i] = meshFilters[i].gameObject.AddComponent<TerrainFace>();
+            }
+            else
+            {
+                terrainFaces[i] = face;
+            }
+            
+            terrainFaces[i].InitTerrainFace(meshFilters[i].sharedMesh, resolution, directions[i]);
         }
     }
 

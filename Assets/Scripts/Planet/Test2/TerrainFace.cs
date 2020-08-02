@@ -4,21 +4,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TerrainFace
+public class TerrainFace : MonoBehaviour
 {
     public Mesh mesh;
-    int resolution;
-    Vector3 localUp;
-    Vector3 axisA;
-    Vector3 axisB;
+    public  int resolution;
+    public  Vector3 localUp;
+    public  Vector3 axisA;
+    public  Vector3 axisB;
 
-    float BaseElevation;
-    float MeanElevation;
+    public  float BaseElevation;
+    public  float MeanElevation;
 
-    Vector3[] vertices;
-    Texture2D tex;
+    public  Vector3[] vertices;
+    public  Texture2D tex;
 
-    public TerrainFace(Mesh mesh, int resolution, Vector3 localUp)
+    public void InitTerrainFace(Mesh mesh, int resolution, Vector3 localUp)
     {
         this.mesh = mesh;
         this.resolution = resolution;

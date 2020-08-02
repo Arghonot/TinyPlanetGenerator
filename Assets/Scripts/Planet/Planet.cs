@@ -237,7 +237,9 @@ public class Planet : MonoBehaviour
                 meshObj.transform.localPosition = Vector3.zero;
             }
 
-            terrainFaces[i] = new TerrainFace(meshFilters[i].sharedMesh, resolution, directions[i]);
+            terrainFaces[i] = meshFilters[i].gameObject.AddComponent<TerrainFace>();
+                
+            terrainFaces[i].InitTerrainFace(meshFilters[i].sharedMesh, resolution, directions[i]);
         }
 
         //for (int i = 0; i < terrainFaces.Length; i++)

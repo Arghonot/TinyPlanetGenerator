@@ -1,10 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public static class CoordinatesProjector {
-
-    // Project mercator from 2d coordinates (map : longitude / latitude)
+public static class CoordinatesProjector
+{
+    /// <summary>
+    /// Take ln lat radius 2d positions and return a 3d cartesian position.
+    /// </summary>
+    /// <param name="longitude">The longitude variable in radian ([0;6.28319]rad, [0;360]deg).</param>
+    /// <param name="latitude">The latitude variable in radian ([0;3.14159]rad, [0;180]deg).</param>
+    /// <param name="radius">The radius of the sphere.</param>
+    /// <returns></returns>
     public static Vector3   InverseMercatorProjector(float longitude, float latitude, float radius)
     {
         return new Vector3(
@@ -13,14 +17,25 @@ public static class CoordinatesProjector {
             radius * Mathf.Cos(latitude) * Mathf.Cos(longitude));
     }
 
-    public static float CartesianToRadius(Vector3 pos)
+    /// <summary>
+    /// Return the radius of a sphere that extend from V3.zero to pos.
+    /// </summary>
+    /// <param name="point">A point at the surface of the sphere.</param>
+    /// <returns>The sphere radius.</returns>
+    public static float CartesianToRadius(Vector3 point)
     {
         return Mathf.Sqrt(
-            (pos.x * pos.x) +
-            (pos.y * pos.y) +
-            (pos.z * pos.z));
+            (point.x * point.x) +
+            (point.y * point.y) +
+            (point.z * point.z));
     }
 
+    /// <summary>
+    /// Take a 3d world position and scale it to a 2d ln[-180f;180f] lat[-90f; 90f] spherical coord in degrees.
+    /// the radius is lost in the process.
+    /// </summary>
+    /// <param name="position">The 3d cartesian position.</param>
+    /// <returns>The spherical coord (deg) based on the 3d pos.</returns>
     public static Vector2 GetLnLatFromPosition(Vector3 position)
     {
         return new Vector2(
@@ -29,21 +44,31 @@ public static class CoordinatesProjector {
     }
 
     /// <summary>
-    /// To be inputed into InverseMercatorProjector
+    /// Take a point at the surface of a sphere with a V3.zero origin and return the point's latitude in degrees.
+    /// We consider Vector3.Up to be equal to 180 of latitude.
     /// </summary>
-    /// <param name="pos"></param>
-    /// <returns></returns>
-    public static float CartesianToLat(Vector3 pos)
+    /// <param name="point">The point at the surface of the sphere.</param>
+    /// <returns>The latitude (deg) of the point.</returns>
+    public static float CartesianToLat(Vector3 point)
     {
-        return Mathf.Asin(pos.z / CartesianToRadius(pos)) * Mathf.Rad2Deg;
-        //return Mathf.Atan(pos.y / pos.x);
+        //return Mathf.Asin(point.y / CartesianToRadius(point)) * Mathf.Rad2Deg;
+        return Mathf.Asin(point.y / CartesianToRadius(point)) * Mathf.Rad2Deg;
+        //return Mathf.Asin(point.z / CartesianToRadius(point)) * Mathf.Rad2Deg;
     }
 
-    public static float CartesianToLon(Vector3 pos)
+    /// <summary>
+    /// Take a point at the surface of a sphere with a V3.zero origin and return the point's longitude in degrees.
+    /// We consider Vector3.forward to be equal to 0 or 360f of longitude.
+    /// </summary>
+    /// <param name="point">The point at the surface of the sphere.</param>
+    /// <returns>The longitude of the point (deg).</returns>
+    public static float CartesianToLon(Vector3 point)
     {
-        return Mathf.Atan2(pos.y, pos.x) * Mathf.Rad2Deg;
-        //return Mathf.Atan(Mathf.Sqrt((pos.x * pos.x) + (pos.y * pos.y)) / pos.z);
+        return Mathf.Atan2(point.x, point.z) * Mathf.Rad2Deg;
+        //return Mathf.Atan2(point.y, point.x) * Mathf.Rad2Deg;
     }
+
+    #region TO BE REMOVED
 
     public static float GetSimpleLatitude(int y, int meshsize)
     {
@@ -68,7 +93,7 @@ public static class CoordinatesProjector {
         return uncenteredlatitude - 90.0f;
     }
 
-    // take it from between [0;max] to [0;360], [-180;0]U[0;180] will not work with our inverse mercator projection
+    // take it from between [0;max] to [-180;0]U[0;180] will not work with our inverse mercator projection
     public static float GetLongitude(int x, int meshsize)
     {
         float percentage = (float)x / meshsize;
@@ -94,4 +119,5 @@ public static class CoordinatesProjector {
         return beginCoordinate + uncenteredlatitude;
     }
 
+    #endregion
 }
