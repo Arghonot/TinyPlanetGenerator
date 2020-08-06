@@ -5,6 +5,7 @@ using UnityEngine;
 public class SolarSystemManager : Singleton<SolarSystemManager>
 {
     public bool _Regenerate;
+    public bool _CheckDistance = true;
     public int PlanetAmount;
     public int PlanetSpacing;
     public Vector2 PlanetsSize;
@@ -34,7 +35,7 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
 
     private void Update()
     {
-        if (isPlayerOutsideSolarSytem() || _Regenerate)
+        if ((isPlayerOutsideSolarSytem() || _Regenerate) && _CheckDistance)
         {
             _Regenerate = false;
 

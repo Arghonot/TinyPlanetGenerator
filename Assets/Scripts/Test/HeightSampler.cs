@@ -14,6 +14,10 @@ using UnityEngine;
 public class HeightSampler : MonoBehaviour
 {
     public bool Run;
+    public bool Normal;
+
+    public float Distance = 1f;
+
     public Vector2 lnlatoffset;
     public int X;
     public int Y;
@@ -32,6 +36,7 @@ public class HeightSampler : MonoBehaviour
     MeshFilter filter;
 
     List<Transform> Points;
+    Vector3 _position = Vector3.zero;
 
     void Start()
     {
@@ -74,6 +79,7 @@ public class HeightSampler : MonoBehaviour
             filter.sharedMesh.vertices[(X * Resolution) + Y]);
 
         Vector3 pos = filter.sharedMesh.vertices[(X * Resolution) + Y];//GetSpherifiedPositionFromXY(X, Y);
+        _position = pos;
 
         // 1
         Points[0].transform.position = getpos(pos, -1, 1);
@@ -129,8 +135,8 @@ public class HeightSampler : MonoBehaviour
     {
         Vector2 posLnLat = CoordinatesProjector.GetLnLatFromPosition(pos);
         //posLnLat = new Vector2(posLnLat.x, posLnLat.y);
-        float lnOffset = 360f / ((float)Resolution * 4f);
-        float latOffset = 180f / ((float)Resolution * 4f) * 2f;
+        float lnOffset = (360f / ((float)Resolution * 4f) * Distance) / 2f;
+        float latOffset = 180f / ((float)Resolution * 4f) * Distance;
         Vector2 newpos = new Vector2(
             posLnLat.x + (lnOffset * XOffset),
             posLnLat.y + (latOffset * YOffset));
@@ -223,5 +229,48 @@ public class HeightSampler : MonoBehaviour
         BaseElevation = face.BaseElevation;
         MeanElevation = face.MeanElevation;
         tex = face.tex;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!Normal)
+        {
+            return;
+        }
+
+        Gizmos.DrawLine(_position, _position + GetNormal());
+    }
+
+    Vector3 GetNormal()
+    {
+        Vector3 vertice = _position;
+        Vector3[] Vectors = Points.Select(x => x.transform.position).ToArray();
+
+        Vector3 One = SurfaceNormalFromIndices(
+            vertice,
+            Vectors[0],
+            Vectors[1]);
+        Vector3 Two = SurfaceNormalFromIndices(
+            vertice,
+            Vectors[2],
+            Vectors[4]);
+        Vector3 Three = SurfaceNormalFromIndices(
+            vertice,
+            Vectors[7],
+            Vectors[6]);
+        Vector3 Four = SurfaceNormalFromIndices(
+            vertice,
+            Vectors[5],
+            Vectors[3]);
+
+        return -(One + Two + Three + Four) / 4;
+    }
+
+    Vector3 SurfaceNormalFromIndices(Vector3 pointA, Vector3 pointB, Vector3 pointC)
+    {
+        Vector3 sideAB = pointB - pointA;
+        Vector3 sideAC = pointC - pointA;
+
+        return Vector3.Cross(sideAB, sideAC).normalized;
     }
 }

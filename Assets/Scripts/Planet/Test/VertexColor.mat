@@ -25,27 +25,27 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_41E881E7:
-        m_Texture: {fileID: 2800000, guid: 46ae0649924b543a6bb192dd3c93b89e, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_4FCE4029:
-        m_Texture: {fileID: 2800000, guid: 7f04390d26c2f3041ae2c97df4ba9729, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_5BA614BC:
         m_Texture: {fileID: 2800000, guid: ca39d3c8cf9012e458f58622799d1cb0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - Texture2D_4FCE4029:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_5BA614BC:
+        m_Texture: {fileID: 2800000, guid: 3fb220f00006abe4c838017a922c642a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_836C367A:
-        m_Texture: {fileID: 2800000, guid: 9d5a367c7b85746008744fb5eb1c92be, type: 3}
+        m_Texture: {fileID: 2800000, guid: 58e0577615c6d407a81c5d0c67459545, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_AC368372:
-        m_Texture: {fileID: 2800000, guid: 7efad0933827d9f43a62f2ef43e1d151, type: 3}
+        m_Texture: {fileID: 2800000, guid: 440eb36db91ca410f800ff3cfe43572f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_D6062DC4:
-        m_Texture: {fileID: 2800000, guid: fcba80f514fe5c64f8d600b9b0342f00, type: 3}
+        m_Texture: {fileID: 2800000, guid: 17ce60bc10e844e5a99f5ec8937e6bac, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -78,10 +78,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_33881B9B: 100
-    - Vector1_4A89EB5E: 0.3
+    - Vector1_4A89EB5E: 1
     - Vector1_6F123F89: 0.1
     - Vector1_AC9353BB: 3
-    - Vector1_BC3A18C6: 0.6
+    - Vector1_BC3A18C6: 0
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1

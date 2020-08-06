@@ -5119,7 +5119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tex: {fileID: 0}
-  resolution: 80
+  resolution: 40
   meshFilters: []
   profile: {fileID: 11400000, guid: 409fbd4bc8380c8468fcac93cd332105, type: 2}
   Anchor: {fileID: 0}
