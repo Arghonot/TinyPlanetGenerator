@@ -11,7 +11,8 @@ namespace NoiseGraph
     [NodeTint(Graph.ColorProfile.Debug)]
     public class Renderer : Node
     {
-        [SerializeField] public string DataPath;
+        string DataPath = "/Materials/Planets/";
+        [SerializeField] public string PictureName = "Test";
         [SerializeField] public float south = 90.0f;
         [SerializeField] public float north = -90.0f;
         [SerializeField] public float west = -180.0f;
@@ -57,7 +58,9 @@ namespace NoiseGraph
         {
             if (tex == null) return;
 
-            File.WriteAllBytes(Application.dataPath + DataPath, tex.EncodeToPNG());
+            UnityEngine.Debug.Log(Application.dataPath + DataPath + PictureName + ".png");
+
+            File.WriteAllBytes(Application.dataPath + DataPath + PictureName + ".png", tex.EncodeToPNG());
         }
     }
 }    
