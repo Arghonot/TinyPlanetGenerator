@@ -110,8 +110,9 @@ public class TerrainFace : MonoBehaviour
                 ln = CoordinatesProjector.CartesianToLon(vertices[i].normalized);
                 lat = CoordinatesProjector.CartesianToLat(vertices[i].normalized);
                 var invertedln = Mathf.Abs(ln - 360f) + 90f;
-                
-                intensity = baseElevation + (GetGrayScale(ln, lat) * meanElevation);// ln, la are in [-180;180] - [-90;90] interval here
+                var invertedlat = Mathf.Abs(ln - 360f) + 90f;
+
+                intensity = baseElevation + (GetGrayScale(invertedln, lat) * meanElevation);// ln, la are in [-180;180] - [-90;90] interval here
                 vertices[i] = CoordinatesProjector.InverseMercatorProjector(
                     ln * Mathf.Deg2Rad,
                     lat * Mathf.Deg2Rad,
@@ -300,9 +301,17 @@ public class TerrainFace : MonoBehaviour
     {
         ln += 180f;
         la += 90f;
+        Color col = tex.GetPixel(
+            (int)((float)tex.width * (ln / 360f)),
+            (int)((float)tex.height * (la / 180f)));
+        float redval = (float)(col.r * 0.33);
+        float greenval = (float)(col.g * 0.66);
+        float blueval = (float)(col.b);
+
+        return redval + greenval + blueval;
 
         return tex.GetPixel(
-            (int)((float)tex.width * (ln / 360f)),
-            (int)((float)tex.height * (la / 180f))).grayscale;
+             (int)((float)tex.width * (ln / 360f)),
+             (int)((float)tex.height * (la / 180f))).grayscale;
     }
 }
