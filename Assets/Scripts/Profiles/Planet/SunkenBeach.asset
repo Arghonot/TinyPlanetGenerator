@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d581b5036d7911741ad01e8ca81765b9, type: 3}
+  m_Name: SunkenBeach
+  m_EditorClassIdentifier: 
+  Name: 
+  TexturesSize: 256
+  ColorMap:
+    serializedVersion: 2
+    key0: {r: 1, g: 0.9938807, b: 0.8490566, a: 1}
+    key1: {r: 0.9124406, g: 0.9528302, b: 0.63821644, a: 1}
+    key2: {r: 0.7134349, g: 0.8018868, b: 0.22694911, a: 0}
+    key3: {r: 0.67058825, g: 0.61689633, b: 0, a: 0}
+    key4: {r: 0.019935913, g: 0.3018868, b: 0.08294656, a: 0}
+    key5: {r: 1, g: 1, b: 1, a: 0}
+    key6: {r: 1, g: 1, b: 1, a: 0}
+    key7: {r: 1, g: 1, b: 1, a: 0}
+    ctime0: 0
+    ctime1: 7903
+    ctime2: 10987
+    ctime3: 18890
+    ctime4: 65535
+    ctime5: 65342
+    ctime6: 65535
+    ctime7: 65535
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 5
+    m_NumAlphaKeys: 2
+  ElevationMap:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  ElevationMultiplier: -0.04
+  BaseElevation: 0.37
+  type: 2
+  graph: {fileID: 11400000, guid: b955858b198dbac48b030262b15a9d03, type: 2}
+  frequency: 4
+  lacunarity: 2
+  persistence: 0.5
+  displacement: 0
+  octaves: 12
+  material: {fileID: 2100000, guid: 4dacbf83c4ddcac4786d71795885df8e, type: 2}
+  SunFresnelColor: {r: 0, g: 0, b: 0, a: 0}
+  useWater: 1
+  UseClouds: 1
+  UseAura: 1
+  SeaLevel: 0.76
+  WaterColor: {r: 0.12842648, g: 0.34275296, b: 0.3490566, a: 1}
+  RippleColor: {r: 0.015686275, g: 0.07058824, b: 0.078431375, a: 1}
+  CliffIntensity: 0.7
+  CliffLightColor: {r: 0.59607846, g: 0.44705883, b: 0.49803922, a: 1}
+  CliffDarkColor: {r: 0.5568628, g: 0.40784314, b: 0.45882353, a: 1}
+  AuraIntensity: 3.5
+  Aura: {r: 0.005161992, g: 0.5471698, b: 0.40878484, a: 0.23921569}

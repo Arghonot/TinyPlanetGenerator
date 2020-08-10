@@ -11,7 +11,7 @@ namespace NoiseGraph
     [NodeTint(Graph.ColorProfile.Debug)]
     public class Renderer : Node
     {
-        string DataPath = "/Materials/Planets/";
+        string DataPath = "/Textures/TestMaps/";
         [SerializeField] public string PictureName = "Test";
         [SerializeField] public float south = 90.0f;
         [SerializeField] public float north = -90.0f;

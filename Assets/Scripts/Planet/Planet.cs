@@ -13,6 +13,7 @@ public class PlanetGenerationData
     public Action Callback;
 }
 
+[ExecuteInEditMode]
 public class Planet : MonoBehaviour
 {
     public Texture2D tex;
@@ -239,14 +240,11 @@ public class Planet : MonoBehaviour
 
             terrainFaces[i] = meshFilters[i].gameObject.AddComponent<TerrainFace>();
                 
-            terrainFaces[i].InitTerrainFace(meshFilters[i].sharedMesh, resolution, directions[i]);
+            terrainFaces[i].InitTerrainFace(
+                meshFilters[i].sharedMesh,
+                resolution,
+                directions[i]);
         }
-
-        //for (int i = 0; i < terrainFaces.Length; i++)
-        //{
-        //    terrainFaces[i].ConstructMesh();
-        //    meshFilters[i].gameObject.transform.position = Vector3.zero;
-        //}
 
         foreach (TerrainFace face in terrainFaces)
         {
