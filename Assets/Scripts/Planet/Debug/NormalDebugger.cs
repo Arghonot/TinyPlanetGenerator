@@ -2,20 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class NormalDebugger : MonoBehaviour
 {
     public Mesh mesh;
     public float length;
     public Color color;
 
+    public bool Run;
+
+    void Update()
+    {
+        if (Run)
+        {
+            mesh = GetComponent<MeshFilter>().sharedMesh;
+            Run = false;
+        }
+    }
+
     private void OnDrawGizmos()
     {
-        mesh = GetComponent<MeshFilter>().sharedMesh;
+        //mesh = GetComponent<MeshFilter>().sharedMesh;
         Gizmos.color = color;
 
         if (mesh == null)
         {
-            print("yeyeyey");
             return;
         }
 

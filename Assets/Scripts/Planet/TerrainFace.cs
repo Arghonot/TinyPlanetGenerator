@@ -110,7 +110,6 @@ public class TerrainFace : MonoBehaviour
                 ln = CoordinatesProjector.CartesianToLon(vertices[i].normalized);
                 lat = CoordinatesProjector.CartesianToLat(vertices[i].normalized);
                 var invertedln = Mathf.Abs(ln - 360f) + 90f;
-                var invertedlat = Mathf.Abs(ln - 360f) + 90f;
 
                 intensity = baseElevation + (GetGrayScale(invertedln, lat) * meanElevation);// ln, la are in [-180;180] - [-90;90] interval here
                 vertices[i] = CoordinatesProjector.InverseMercatorProjector(
@@ -161,29 +160,20 @@ public class TerrainFace : MonoBehaviour
     {
         Vector3[] vertexNormals = mesh.normals;
         int triangleCount = mesh.triangles.Length / 3;
-        float lnOffset = (360f / (float)((resolution - 1)) * .75f) / 2f;
-        float latOffset = 180f / (float)((resolution - 1)) * .75f;
+        //float lnOffset = (360f / (float)((resolution - 1)) * .75f) / 2f;
+        //float latOffset = 180f / (float)((resolution - 1)) * .75f;
 
 
         for (int i = 0; i < resolution; i++)
         {
-            // red
-            //vertexNormals[i] += GetNormal(i, 1, -1);
             vertexNormals[i] = GetNormal(i);
             if (i > 0 && i < resolution - 1)
             {
-                // do begin and last from line
-                // green
-                //vertexNormals[resolution * i] +=
                 vertexNormals[resolution * i] = GetNormal(i * resolution);
 
-                //blue
-                //vertexNormals[resolution * i + resolution - 1] +=
                 vertexNormals[(resolution * i) + resolution - 1] = GetNormal((resolution * i) + resolution - 1, 3);
             }
 
-            ////// black
-            //vertexNormals[(resolution * resolution) - resolution + i] +=
             vertexNormals[(resolution * resolution) - resolution + i] = GetNormal((resolution * resolution) - resolution + i, 4);
         }
 
@@ -217,16 +207,7 @@ public class TerrainFace : MonoBehaviour
             Vectors[5],
             Vectors[3]);
 
-        //if (gameObject.name.Contains("5") ||
-        //    gameObject.name.Contains("2"))
-        //{
-        //    if (i == 39)
-        //    {
-        //        Debug.Log(gameObject.name + "   " + vertice);
-        //    }
-        //}
-
-        return -(One + Two + Three + Four);//+ Five + Six);
+        return -(One + Two + Three + Four);
     }
 
     Vector3[] SetupPositions(int i)
@@ -277,7 +258,8 @@ public class TerrainFace : MonoBehaviour
         Vector2 newpos = new Vector2(
             posLnLat.x + (lnOffset * (XOffset / 2f)),
             posLnLat.y + (latOffset * (YOffset / 2f)));
-        float elevation = BaseElevation + (GetGrayScale(newpos.x, newpos.y) * MeanElevation);
+        float MapLn = Mathf.Abs(newpos.x - 360f) + 90f;
+        float elevation = BaseElevation + (GetGrayScale(MapLn, newpos.y) * MeanElevation);
 
         Vector3 finalpos = CoordinatesProjector.InverseMercatorProjector(
                     (newpos.x) * Mathf.Deg2Rad,
@@ -310,8 +292,8 @@ public class TerrainFace : MonoBehaviour
 
         return redval + greenval + blueval;
 
-        return tex.GetPixel(
-             (int)((float)tex.width * (ln / 360f)),
-             (int)((float)tex.height * (la / 180f))).grayscale;
+        //return tex.GetPixel(
+        //     (int)((float)tex.width * (ln / 360f)),
+        //     (int)((float)tex.height * (la / 180f))).grayscale;
     }
 }
