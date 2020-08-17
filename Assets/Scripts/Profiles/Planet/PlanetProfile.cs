@@ -24,8 +24,8 @@ public class PlanetProfile : ScriptableObject
     public string Name;
 
     public int TexturesSize = 512;
-    public Gradient ColorMap;
-    public Gradient ElevationMap;
+    public Gradient ColorGradient;
+    public Gradient ElevationGradient;
 
     public float ElevationMultiplier;
     public float BaseElevation = .35f;

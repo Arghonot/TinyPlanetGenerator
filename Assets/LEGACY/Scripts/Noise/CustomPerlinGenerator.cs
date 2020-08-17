@@ -29,13 +29,18 @@ public class CustomPerlinGenerator : Singleton<CustomPerlinGenerator>
     public Texture2D InverseHeightMap;
     public List<Texture2D> imgs;
 
+    public Gradient colorGrad;
+
     public void Generate(PlanetGenerationData datas)
     {
-        mapSize = datas.mapSize;
+        mapSize = datas.PGDMapSize;
 
-        Generate(datas.profile);
+        colorGrad = datas.PGDProfile.ColorGradient;
+
+        Generate(datas.PGDProfile);
+
         // End
-        datas.Callback();
+        datas.PGDCallback(ColorMap);
     }
 
     public void Generate(PlanetProfile profile)
@@ -51,10 +56,13 @@ public class CustomPerlinGenerator : Singleton<CustomPerlinGenerator>
             west,
             east);
 
-        ColorMap = noise.GetTexture(profile.ColorMap);
+        ColorMap = new Texture2D(
+            mapSize,
+            (int)(mapSize / 2f));
+        ColorMap = noise.GetTexture(profile.ColorGradient);
         ColorMap.Apply();
 
-        HeightMap = noise.GetTexture(profile.ElevationMap);
+        HeightMap = noise.GetTexture(profile.ElevationGradient);
         HeightMap.Apply();
 
         ////mapSize = 32;

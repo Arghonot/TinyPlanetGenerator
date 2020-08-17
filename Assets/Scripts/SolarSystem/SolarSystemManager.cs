@@ -144,7 +144,8 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
                 (planetsize + (PlanetSpacing * i) + planets[i].transform.localScale.x);
         }
 
-        planets[i].Anchor.transform.rotation = Quaternion.Euler(new Vector3(0f, Random.Range(0f, 360f), 0f));
+        planets[i].Anchor.transform.rotation =
+            Quaternion.Euler(new Vector3(0f, Random.Range(0f, 360f), 0f));
 
 
         // planet profile generation
@@ -157,7 +158,7 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
             planets[i].profile = GetRandomProfile();
         }
 
-        planets[i].Regenerate();
+          planets[i].Regenerate();
 
         return planets[i].transform.localScale.x;
     }

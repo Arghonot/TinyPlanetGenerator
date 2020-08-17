@@ -98,7 +98,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
-  DataPath: 
+  PictureName: Test
   south: 90
   north: -90
   west: -180
@@ -141,7 +141,7 @@ MonoBehaviour:
     y: 225
     width: 180
     height: 90
-  RenderTime: 2051
+  RenderTime: 2121
 --- !u!114 &-2637141540052776717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,7 +318,7 @@ MonoBehaviour:
   frequency: 8
   displacement: 2
   Seed: 4
-  distance: 0
+  distance: 1
 --- !u!114 &7796421086264719261
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 // V(x) = ((x - 2) * x ) + 2
@@ -8,14 +9,20 @@ using UnityEngine;
 
 public class PlanetGenerationData
 {
-    public int mapSize;
-    public PlanetProfile profile;
-    public Action Callback;
+    public int PGDMapSize;
+    public PlanetProfile PGDProfile;
+    public Action<Texture2D> PGDCallback;
 }
 
 [ExecuteInEditMode]
 public class Planet : MonoBehaviour
 {
+    /// <summary>
+    /// For debug purpose, change the ColorMap at runtime then ask a 
+    /// "planet refresh" with this bool.
+    /// </summary>
+    public bool _customRegenerate;
+
     public Texture2D tex;
     [Range(2, 256)]
     public int resolution = 10;
@@ -34,7 +41,7 @@ public class Planet : MonoBehaviour
     public Cloud Clouds;
 
     Material mat;
-    Texture2D ColorMap;
+    public Texture2D ColorMap;
     Texture2D HeightMap;
     public bool save;
 
@@ -50,6 +57,19 @@ public class Planet : MonoBehaviour
             System.IO.File.WriteAllBytes(
                 "C:/Users/loriv/OneDrive/Pictures/Tiny_planet_generator/GeneratedPlanet/planet.png", bytes);
         }
+        if (_customRegenerate)
+        {
+            Debug.Log("_customRegenerate");
+            _customRegenerate = false;
+            ColorMap = tex;
+
+            ReScale();
+            //SetGroundMaterialValues();
+
+            //HandleWater();
+            //HandleClouds();
+            //HandleAura();
+        }
     }
 
     #endregion
@@ -58,17 +78,18 @@ public class Planet : MonoBehaviour
 
     public void Regenerate()
     {
-        //CustomPerlinGenerator.Instance.mapSize = profile.TexturesSize;
-        //CustomPerlinGenerator.Instance.Generate(profile);
+        Debug.Log("[REGENERATE] " + gameObject.transform.parent.name);
 
-        CustomPerlinGenerator.Instance.Generate(new PlanetGenerationData()
+        PlanetGenerationData PGDDatas = new PlanetGenerationData()
         {
-            mapSize = profile.TexturesSize,
-            profile = this.profile,
-            Callback = () =>
+            PGDMapSize = profile.TexturesSize,
+            PGDProfile = this.profile,
+            PGDCallback = (Texture2D GeneratedTex) =>
             {
-                ColorMap = CustomPerlinGenerator.Instance.ColorMap;
-                HeightMap = CustomPerlinGenerator.Instance.HeightMap;
+                ColorMap = new Texture2D(
+                    profile.TexturesSize,
+                    (int)(profile.TexturesSize / 2f));
+                ColorMap.SetPixels(GeneratedTex.GetPixels());
 
                 ReScale();
                 SetGroundMaterialValues();
@@ -76,8 +97,10 @@ public class Planet : MonoBehaviour
                 HandleWater();
                 HandleClouds();
                 HandleAura();
-            }    
-        });
+            }
+        };
+        
+        CustomPerlinGenerator.Instance.Generate(PGDDatas);
     }
 
     /// <summary>
@@ -204,6 +227,8 @@ public class Planet : MonoBehaviour
     /// </summary>
     public void Initialize()
     {
+        Debug.Log("[INITIALIZE PLANET] " + gameObject.transform.parent.name);
+
         if (meshFilters == null || meshFilters.Length == 0)
         {
             meshFilters = new MeshFilter[6];
@@ -220,7 +245,7 @@ public class Planet : MonoBehaviour
             Vector3.back
         };
 
-        mat = new Material(Shader.Find("Standard"));
+        //mat = new Material(Shader.Find("Standard"));
 
         for (int i = 0; i < 6; i++)
         {
@@ -230,7 +255,7 @@ public class Planet : MonoBehaviour
                 meshObj.transform.parent = transform;
 
                 meshRenderers[i] = meshObj.AddComponent<MeshRenderer>();
-                meshRenderers[i].sharedMaterial = mat;
+                //meshRenderers[i].sharedMaterial = mat;
                 meshRenderers[i].shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 meshFilters[i] = meshObj.AddComponent<MeshFilter>();
                 meshFilters[i].sharedMesh = new Mesh();
@@ -261,10 +286,10 @@ public class Planet : MonoBehaviour
         for (int i = 0; i < terrainFaces.Length; i++)
         {
             terrainFaces[i].ElevateMesh(
-                HeightMap,
-                profile.BaseElevation,
+                ColorMap,
+                .5f,
                 profile.ElevationMultiplier,
-                profile.ColorMap);
+                profile.ColorGradient);
         }
     }
 
