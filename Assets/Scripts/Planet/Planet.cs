@@ -90,6 +90,7 @@ public class Planet : MonoBehaviour
                     profile.TexturesSize,
                     (int)(profile.TexturesSize / 2f));
                 ColorMap.SetPixels(GeneratedTex.GetPixels());
+                ColorMap.Apply();
 
                 ReScale();
                 SetGroundMaterialValues();

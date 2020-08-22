@@ -20,6 +20,14 @@ public class TerrainFace : MonoBehaviour
 
     Gradient _grad;
 
+    #region Face Management
+    /// <summary>
+    /// Initialize all the data that will be used by this face in order to
+    /// compute all the vertices position + elevation.
+    /// </summary>
+    /// <param name="mesh">The mesh that will store all the datas.</param>
+    /// <param name="resolution">The amount of vertice per length. vertices.length = (resolution * resolution).</param>
+    /// <param name="localUp">The direction this face is facing, planet relative.</param>
     public void InitTerrainFace(Mesh mesh, int resolution, Vector3 localUp)
     {
         this.mesh = mesh;
@@ -30,6 +38,10 @@ public class TerrainFace : MonoBehaviour
         axisB = Vector3.Cross(localUp, axisA);
     }
 
+    /// <summary>
+    /// Create the face's mesh.
+    /// MUST be called after a InitTerrainFace.
+    /// </summary>
     public void ConstructMesh()
     {
         // TODO put this in planettest.cs
@@ -87,6 +99,13 @@ public class TerrainFace : MonoBehaviour
         mesh.RecalculateNormals();
     }
 
+    /// <summary>
+    /// Sample noise's pixels to compute every vertices elevation and vertex's color color.
+    /// </summary>
+    /// <param name="noise">The texture representing the planet.</param>
+    /// <param name="baseElevation">The minimum radius the planet can be.</param>
+    /// <param name="meanElevation">The maximum elevation the planet can have (base + mean).</param>
+    /// <param name="grad">The color gradient the texture is based on.</param>
     public void ElevateMesh(Texture2D noise, float baseElevation, float meanElevation, Gradient grad = null)
     {
         if (grad == null) return;
@@ -134,20 +153,17 @@ public class TerrainFace : MonoBehaviour
         mesh.normals = CalculateNormals();
     }
 
-    void CreateMarks()
-    {
-        for (int x = 0, i = 0; x < resolution; x++)
-        {
-            for (int y = 0; y < resolution; y++, i++)
-            {
-                var sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                sphere.name = i.ToString() + "___" + x.ToString() + "_" + y.ToString();
-                sphere.transform.position = mesh.vertices[i];
-                sphere.transform.localScale = Vector3.one * 0.01f;
-            }
-        }
-    }
+    #endregion
 
+    #region Normal Computation
+
+    /// <summary>
+    /// Return the normal of 3 points (AB AC).
+    /// </summary>
+    /// <param name="pointA">The point that is at the origin of both vectors.</param>
+    /// <param name="pointB">The point B.</param>
+    /// <param name="pointC">The point C.</param>
+    /// <returns>The normalized normal of the 3 points.</returns>
     Vector3 SurfaceNormalFromIndices(Vector3 pointA, Vector3 pointB, Vector3 pointC)
     {
         Vector3 sideAB = pointB - pointA;
@@ -156,13 +172,16 @@ public class TerrainFace : MonoBehaviour
         return Vector3.Cross(sideAB, sideAC).normalized;
     }
 
+    /// <summary>
+    /// Calculate the normals of the face.
+    /// </summary>
+    /// <returns>The computed normals.</returns>
     Vector3[] CalculateNormals()
     {
         Vector3[] vertexNormals = mesh.normals;
         int triangleCount = mesh.triangles.Length / 3;
         //float lnOffset = (360f / (float)((resolution - 1)) * .75f) / 2f;
         //float latOffset = 180f / (float)((resolution - 1)) * .75f;
-
 
         for (int i = 0; i < resolution; i++)
         {
@@ -171,21 +190,21 @@ public class TerrainFace : MonoBehaviour
             {
                 vertexNormals[resolution * i] = GetNormal(i * resolution);
 
-                vertexNormals[(resolution * i) + resolution - 1] = GetNormal((resolution * i) + resolution - 1, 3);
+                vertexNormals[(resolution * i) + resolution - 1] = GetNormal((resolution * i) + resolution - 1);
             }
 
-            vertexNormals[(resolution * resolution) - resolution + i] = GetNormal((resolution * resolution) - resolution + i, 4);
-        }
-
-        for (int i = 0; i < vertexNormals.Length; i++)
-        {
-            vertexNormals[i].Normalize();
+            vertexNormals[(resolution * resolution) - resolution + i] = GetNormal((resolution * resolution) - resolution + i);
         }
 
         return vertexNormals;
     }
 
-    Vector3 GetNormal(int i, int type = 0)
+    /// <summary>
+    /// Compute the normal for a vertice according to it's longitude latitude position.
+    /// </summary>
+    /// <param name="i">The vertice index.</param>
+    /// <returns>The vertice's normal.</returns>
+    Vector3 GetNormal(int i)
     {
         Vector3 vertice = mesh.vertices[i];
         Vector3[] Vectors = SetupPositions(i);
@@ -210,6 +229,11 @@ public class TerrainFace : MonoBehaviour
         return -(One + Two + Three + Four);
     }
 
+    /// <summary>
+    /// Get all 8 position on a grid sourrounding the I vertice.
+    /// </summary>
+    /// <param name="i">The index of the source vertice.</param>
+    /// <returns>All 8 positions.</returns>
     Vector3[] SetupPositions(int i)
     {
         Vector3[] Vectors = new Vector3[8];
@@ -250,6 +274,15 @@ public class TerrainFace : MonoBehaviour
         return Vectors;
     }
 
+    #endregion
+
+    /// <summary>
+    /// Get a position using a 3d position and x and y offsets.
+    /// </summary>
+    /// <param name="pos">The origin position.</param>
+    /// <param name="XOffset">the magnitude of the longitude offset.</param>
+    /// <param name="YOffset">the magnitude of the latitude offset.</param>
+    /// <returns>The 3D position of the offseted point.</returns>
     Vector3 GetPosition(Vector3 pos, int XOffset, int YOffset)
     {
         Vector2 posLnLat = CoordinatesProjector.GetLnLatFromPosition(pos);
@@ -269,6 +302,12 @@ public class TerrainFace : MonoBehaviour
         return finalpos;
     }
 
+    /// <summary>
+    /// Get the color of a position from the face's texture.
+    /// </summary>
+    /// <param name="ln">The longitude position.</param>
+    /// <param name="la">The latitude position.</param>
+    /// <returns>The color sampled at said position.</returns>
     Color GetColor(float ln, float la)
     {
         ln += 180f;
@@ -279,6 +318,12 @@ public class TerrainFace : MonoBehaviour
             (int)((float)tex.height * (la / 180f)));
     }
 
+    /// <summary>
+    /// Get the elevation of a position from the face's texture.
+    /// </summary>
+    /// <param name="ln">The longitude position.</param>
+    /// <param name="la">The latitude position.</param>
+    /// <returns>The height sampled at said position.</returns>
     float GetGrayScale(float ln, float la)
     {
         ln += 180f;

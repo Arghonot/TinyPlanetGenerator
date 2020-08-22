@@ -397,6 +397,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 553922403, guid: 8cdef75da95f81249988b673f8bb7f6c, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 553922403, guid: 8cdef75da95f81249988b673f8bb7f6c, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 553922403, guid: 8cdef75da95f81249988b673f8bb7f6c, type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1729584017344151771, guid: 8cdef75da95f81249988b673f8bb7f6c,
         type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.size
@@ -517,6 +529,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 64d627902f420c148bfd5aba0375137f, type: 2}
+    - target: {fileID: 1729584017344151772, guid: 8cdef75da95f81249988b673f8bb7f6c,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729584017344151772, guid: 8cdef75da95f81249988b673f8bb7f6c,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729584017344151772, guid: 8cdef75da95f81249988b673f8bb7f6c,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1729584017486478918, guid: 8cdef75da95f81249988b673f8bb7f6c,
         type: 3}
       propertyPath: m_Name
@@ -612,11 +639,46 @@ PrefabInstance:
       propertyPath: trails.Array.data[1]
       value: 
       objectReference: {fileID: 751902182}
+    - target: {fileID: 1729584017486478920, guid: 8cdef75da95f81249988b673f8bb7f6c,
+        type: 3}
+      propertyPath: rotSpeed
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 1729584018396981877, guid: 8cdef75da95f81249988b673f8bb7f6c,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 64d627902f420c148bfd5aba0375137f, type: 2}
+    - target: {fileID: 1729584018396981877, guid: 8cdef75da95f81249988b673f8bb7f6c,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729584018396981877, guid: 8cdef75da95f81249988b673f8bb7f6c,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729584018396981877, guid: 8cdef75da95f81249988b673f8bb7f6c,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729584019154392111, guid: 8cdef75da95f81249988b673f8bb7f6c,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729584019154392111, guid: 8cdef75da95f81249988b673f8bb7f6c,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729584019154392111, guid: 8cdef75da95f81249988b673f8bb7f6c,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1729584019209612052, guid: 8cdef75da95f81249988b673f8bb7f6c,
         type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.size
@@ -737,6 +799,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 64d627902f420c148bfd5aba0375137f, type: 2}
+    - target: {fileID: 1729584019209612053, guid: 8cdef75da95f81249988b673f8bb7f6c,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729584019209612053, guid: 8cdef75da95f81249988b673f8bb7f6c,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729584019209612053, guid: 8cdef75da95f81249988b673f8bb7f6c,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cdef75da95f81249988b673f8bb7f6c, type: 3}
 --- !u!1 &431356748
@@ -7740,7 +7817,7 @@ PrefabInstance:
         type: 3}
       propertyPath: PlanetProfiles.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 378e794329335e44c8a0e2339c238021,
+      objectReference: {fileID: 11400000, guid: e6463099cfd4fb140b5f79cb1bcd3e53,
         type: 2}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}

@@ -77,6 +77,55 @@ MonoBehaviour:
       TypeName: double
     - Name: qualityMode
       TypeName: QualityMode
+--- !u!114 &-6528761923892692712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2774b049e5979c340abdf34ceec5740c, type: 3}
+  m_Name: Random Int
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -344, y: 376}
+  ports:
+    keys:
+    - int
+    - Min
+    - Max
+    values:
+    - _fieldName: int
+      _node: {fileID: -6528761923892692712}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 1
+    - _fieldName: Min
+      _node: {fileID: -6528761923892692712}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: Max
+      _node: {fileID: -6528761923892692712}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  Min: 0
+  Max: 42
 --- !u!114 &-1572010335036815537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,6 +183,7 @@ MonoBehaviour:
   - {fileID: 4232000258908348857}
   - {fileID: -1572010335036815537}
   - {fileID: -9039218985870683626}
+  - {fileID: -6528761923892692712}
   blackboard: {fileID: -8131569606251227089}
   CanRun: 0
   Root: {fileID: 3447845468041643886}
@@ -399,7 +449,7 @@ MonoBehaviour:
   m_Name: Black Board Variable
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -72, y: 392}
+  position: {x: -328, y: 488}
   ports:
     keys:
     - Output
@@ -493,4 +543,4 @@ MonoBehaviour:
     y: 225
     width: 180
     height: 90
-  RenderTime: 527
+  RenderTime: 484

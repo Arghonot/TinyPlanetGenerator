@@ -141,7 +141,7 @@ MonoBehaviour:
     y: 225
     width: 180
     height: 90
-  RenderTime: 2121
+  RenderTime: 2090
 --- !u!114 &-2637141540052776717
 MonoBehaviour:
   m_ObjectHideFlags: 0
