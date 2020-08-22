@@ -98,7 +98,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
-  DataPath: 
+  PictureName: Test
   south: 90
   north: -90
   west: -180
@@ -164,6 +164,7 @@ MonoBehaviour:
   - {fileID: 6217460877768149103}
   - {fileID: 2003514831770485357}
   - {fileID: 7395181003961257452}
+  - {fileID: 4240895857281702191}
   blackboard: {fileID: 6502989267245199275}
   CanRun: 0
   Root: {fileID: 5766353169002889874}
@@ -189,10 +190,7 @@ MonoBehaviour:
       _node: {fileID: 2003514831770485357}
       _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: Seed
-        node: {fileID: 4483071233887593050}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 2
@@ -201,6 +199,58 @@ MonoBehaviour:
   VariableIndex: 1
   Name: seed
   Blackboard: {fileID: 6502989267245199275}
+--- !u!114 &4240895857281702191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2774b049e5979c340abdf34ceec5740c, type: 3}
+  m_Name: Random Int
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -424, y: 536}
+  ports:
+    keys:
+    - int
+    - Min
+    - Max
+    values:
+    - _fieldName: int
+      _node: {fileID: 4240895857281702191}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: Seed
+        node: {fileID: 4483071233887593050}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 1
+    - _fieldName: Min
+      _node: {fileID: 4240895857281702191}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: Max
+      _node: {fileID: 4240895857281702191}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  Min: 0
+  Max: 2147483640
 --- !u!114 &4483071233887593050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,8 +331,8 @@ MonoBehaviour:
       _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: Output
-        node: {fileID: 2003514831770485357}
+      - fieldName: int
+        node: {fileID: 4240895857281702191}
         reroutePoints: []
       _direction: 0
       _connectionType: 1

@@ -276,6 +276,8 @@ public class TerrainFace : MonoBehaviour
 
     #endregion
 
+    #region Misc
+
     /// <summary>
     /// Get a position using a 3d position and x and y offsets.
     /// </summary>
@@ -341,4 +343,6 @@ public class TerrainFace : MonoBehaviour
         //     (int)((float)tex.width * (ln / 360f)),
         //     (int)((float)tex.height * (la / 180f))).grayscale;
     }
+
+    #endregion
 }

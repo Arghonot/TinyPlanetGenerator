@@ -7786,7 +7786,7 @@ PrefabInstance:
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
       propertyPath: PlanetProfiles.Array.size
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
@@ -7925,19 +7925,19 @@ PrefabInstance:
         type: 3}
       propertyPath: PlanetProfiles.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: f92f7ae0337c03b4ebe0c23d7c51fc05,
+      objectReference: {fileID: 11400000, guid: 44e3478cfa317c14c8f67f79928274f6,
         type: 2}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
       propertyPath: PlanetProfiles.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 3662de3cf8d8c364fa1bf2590c0d1f06,
+      objectReference: {fileID: 11400000, guid: 515b6bef55ef89a4898de2104b92d9d8,
         type: 2}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
       propertyPath: PlanetProfiles.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: e6463099cfd4fb140b5f79cb1bcd3e53,
+      objectReference: {fileID: 11400000, guid: 2f13f855885338f459ed20f01a327e83,
         type: 2}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}

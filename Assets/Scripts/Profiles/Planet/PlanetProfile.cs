@@ -40,6 +40,7 @@ public class PlanetProfile : ScriptableObject
     public double persistence = 0.5d;
     public double displacement = 0d;
     public int octaves = 6;
+    public bool distance = true;
 
     public Material material;
 

@@ -288,7 +288,7 @@ public class Planet : MonoBehaviour
         {
             terrainFaces[i].ElevateMesh(
                 ColorMap,
-                .5f,
+                profile.BaseElevation,
                 profile.ElevationMultiplier,
                 profile.ColorGradient);
         }

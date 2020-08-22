@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: Random Int
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -344, y: 376}
+  position: {x: -552, y: 360}
   ports:
     keys:
     - int
@@ -101,7 +101,10 @@ MonoBehaviour:
       _node: {fileID: -6528761923892692712}
       _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: Seed
+        node: {fileID: 606518311552397248}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 2
@@ -125,7 +128,7 @@ MonoBehaviour:
       _typeConstraint: 2
       _dynamic: 0
   Min: 0
-  Max: 42
+  Max: 2147483640
 --- !u!114 &-1572010335036815537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,8 +282,8 @@ MonoBehaviour:
       _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: Output
-        node: {fileID: 4986280618675378532}
+      - fieldName: int
+        node: {fileID: -6528761923892692712}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
@@ -449,7 +452,7 @@ MonoBehaviour:
   m_Name: Black Board Variable
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -328, y: 488}
+  position: {x: -72, y: 392}
   ports:
     keys:
     - Output
@@ -458,10 +461,7 @@ MonoBehaviour:
       _node: {fileID: 4986280618675378532}
       _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: Seed
-        node: {fileID: 606518311552397248}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 2

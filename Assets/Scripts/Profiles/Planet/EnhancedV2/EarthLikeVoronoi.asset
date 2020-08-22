@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d581b5036d7911741ad01e8ca81765b9, type: 3}
-  m_Name: EarthTest
+  m_Name: EarthLikeVoronoi
   m_EditorClassIdentifier: 
   Name: 
   TexturesSize: 256
@@ -45,7 +45,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   ElevationGradient:
     serializedVersion: 2
-    key0: {r: 0, g: 0, b: 0, a: 1}
+    key0: {r: 1, g: 1, b: 1, a: 1}
     key1: {r: 1, g: 1, b: 1, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
@@ -73,12 +73,12 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   ElevationMultiplier: 0.07
-  BaseElevation: 0.35
+  BaseElevation: 0.2
   type: 0
-  graph: {fileID: 11400000, guid: 9b3ea58ca2a7cd347858ab9077990d19, type: 2}
-  frequency: 3
+  graph: {fileID: 11400000, guid: a36df5e8356fc5d4b829f15fdb4a95e8, type: 2}
+  frequency: 1
   lacunarity: 2
-  persistence: 0.4
+  persistence: 0.5
   displacement: 0
   octaves: 6
   material: {fileID: 2100000, guid: ea7cabc5555fe3f4bb7f1c34e2415e7e, type: 2}
@@ -86,11 +86,11 @@ MonoBehaviour:
   useWater: 1
   UseClouds: 0
   UseAura: 0
-  SeaLevel: 1.3
-  WaterColor: {r: 0.21568629, g: 0.3529412, b: 0.35686275, a: 1}
-  RippleColor: {r: 0.121568635, g: 0.18823531, b: 0.18823531, a: 1}
+  SeaLevel: 0.45
+  WaterColor: {r: 0.17254902, g: 0.30588236, b: 0.30980393, a: 1}
+  RippleColor: {r: 0.015686275, g: 0.07058824, b: 0.078431375, a: 1}
   CliffIntensity: 0.1
-  CliffLightColor: {r: 0.41568628, g: 0.3647059, b: 0.25490198, a: 1}
-  CliffDarkColor: {r: 0.41568628, g: 0.34117648, b: 0.18039216, a: 1}
-  AuraIntensity: 3.5
-  Aura: {r: 0.12735847, g: 0.39808095, b: 0.5, a: 0.1764706}
+  CliffLightColor: {r: 0.59607846, g: 0.44705883, b: 0.49803922, a: 1}
+  CliffDarkColor: {r: 0.5568628, g: 0.40784314, b: 0.45882353, a: 1}
+  AuraIntensity: 4
+  Aura: {r: 0.62264144, g: 0.45598143, b: 0.099857576, a: 0.050980393}
