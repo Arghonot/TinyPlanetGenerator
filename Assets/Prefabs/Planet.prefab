@@ -4768,7 +4768,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   system: {fileID: 6462671799072071238}
-  generator: {fileID: 8028085928368238264}
   CloudAmount: 100
   PerCloud: 10
   CloudSize: {x: 8, y: 8}
@@ -5033,7 +5032,6 @@ GameObject:
   - component: {fileID: 8028085928368238262}
   - component: {fileID: 8028085928368238265}
   - component: {fileID: 8028085928368238260}
-  - component: {fileID: 8028085928368238264}
   - component: {fileID: 8028085928368238267}
   m_Layer: 0
   m_Name: Planet
@@ -5120,35 +5118,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7113f9dba8eecad4e81740c0f71accd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tex: {fileID: 0}
+  resolution: 40
+  meshFilters: []
   profile: {fileID: 11400000, guid: 409fbd4bc8380c8468fcac93cd332105, type: 2}
   Anchor: {fileID: 0}
   water: {fileID: 2206070000954144448}
   Aura: {fileID: 7843671739224271363}
   Clouds: {fileID: 9125559891162841896}
-  generator: {fileID: 8028085928368238264}
-  AmountOfVertices: 80
---- !u!114 &8028085928368238264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8028085928368238261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90ca6853c663188478e12ec10619870c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turbulence: 0
-  mapSize: 256
-  south: -90
-  north: 90
-  west: -180
-  east: 180
-  ColorMap: {fileID: 0}
-  HeightMap: {fileID: 0}
-  InverseHeightMap: {fileID: 0}
-  imgs: []
+  save: 0
 --- !u!114 &8028085928368238267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5174,6 +5152,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Water
       objectReference: {fileID: 0}
+    - target: {fileID: 387905186461895265, guid: 50bc0159c1f25e3449105fe805f68377,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e6cf05ae215d464bbb9f312a841f116, type: 2}
     - target: {fileID: 387905186461895267, guid: 50bc0159c1f25e3449105fe805f68377,
         type: 3}
       propertyPath: m_LocalPosition.x

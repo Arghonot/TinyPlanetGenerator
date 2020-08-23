@@ -29,6 +29,9 @@ Assets/Plugins/Editor/JetBrains*
 [Aa]ssets/Scripts/BT/
 # 3Dparty
 [Aa]ssets/3DParty/*
+#SubModules
+[Aa]ssets/SubModules/
+[Aa]ssets/SubModules/Textures/Ground/
 
 # Gradle cache directory
 .gradle/

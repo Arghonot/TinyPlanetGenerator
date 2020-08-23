@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d581b5036d7911741ad01e8ca81765b9, type: 3}
+  m_Name: Funky
+  m_EditorClassIdentifier: 
+  Name: 
+  TexturesSize: 256
+  ColorMap:
+    serializedVersion: 2
+    key0: {r: 0, g: 0.5566038, b: 0.17303164, a: 1}
+    key1: {r: 0.061976314, g: 1, b: 0, a: 1}
+    key2: {r: 0, g: 0.8113208, b: 0.76489085, a: 0}
+    key3: {r: 0.6419161, g: 0.034689426, b: 0.611048, a: 0}
+    key4: {r: 0.67058825, g: 0, b: 0.60417634, a: 0}
+    key5: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 0}
+    key6: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 20624
+    ctime2: 22552
+    ctime3: 38165
+    ctime4: 56283
+    ctime5: 65535
+    ctime6: 65535
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 6
+    m_NumAlphaKeys: 2
+  ElevationMap:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  ElevationMultiplier: 0.1
+  BaseElevation: 0.35
+  type: 2
+  graph: {fileID: 11400000, guid: b955858b198dbac48b030262b15a9d03, type: 2}
+  frequency: 1
+  lacunarity: 2
+  persistence: 0
+  displacement: 0
+  octaves: 6
+  material: {fileID: 2100000, guid: 4dacbf83c4ddcac4786d71795885df8e, type: 2}
+  SunFresnelColor: {r: 0, g: 0, b: 0, a: 0}
+  useWater: 1
+  UseClouds: 0
+  UseAura: 1
+  SeaLevel: 0.72
+  WaterColor: {r: 0.30980393, g: 0.17254902, b: 0.19579558, a: 1}
+  RippleColor: {r: 0.078431375, g: 0.015686274, b: 0.02313726, a: 1}
+  CliffIntensity: 0.8
+  CliffLightColor: {r: 0.44705883, g: 0.59607846, b: 0.48431373, a: 1}
+  CliffDarkColor: {r: 0.40784314, g: 0.5568628, b: 0.43589702, a: 1}
+  AuraIntensity: 4
+  Aura: {r: 0, g: 0.26415092, b: 0.0812772, a: 1}

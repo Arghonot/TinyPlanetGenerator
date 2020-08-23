@@ -1,10 +1,37 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
+// V(x) = ((x - 2) * x ) + 2
+// T(x) = (x * 2) + ((x - 3) * (x * 2))
+
+public class PlanetGenerationData
+{
+    public int PGDMapSize;
+    public PlanetProfile PGDProfile;
+    public Action<Texture2D> PGDCallback;
+}
+
+[ExecuteInEditMode]
 public class Planet : MonoBehaviour
 {
+    /// <summary>
+    /// For debug purpose, change the ColorMap at runtime then ask a 
+    /// "planet refresh" with this bool.
+    /// </summary>
+    public bool _customRegenerate;
+
+    public Texture2D tex;
+    [Range(2, 256)]
+    public int resolution = 10;
+
+    [SerializeField, HideInInspector]
+    MeshFilter[] meshFilters;
+    MeshRenderer[] meshRenderers;
+    TerrainFace[] terrainFaces;
+
     public PlanetProfile profile;
 
     public Rotator Anchor;
@@ -13,14 +40,37 @@ public class Planet : MonoBehaviour
     public GameObject Aura;
     public Cloud Clouds;
 
-    public CustomPerlinGenerator generator;
-
-    public int AmountOfVertices;
-    MeshFilter filter;
-    MeshRenderer render;
-    MeshCollider Terrain;
+    Material mat;
+    public Texture2D ColorMap;
+    Texture2D HeightMap;
+    public bool save;
 
     #region UNITY
+
+    private void Update()
+    {
+        if (save)
+        {
+            save = false;
+
+            var bytes = ColorMap.EncodeToPNG();
+            System.IO.File.WriteAllBytes(
+                "C:/Users/loriv/OneDrive/Pictures/Tiny_planet_generator/GeneratedPlanet/planet.png", bytes);
+        }
+        if (_customRegenerate)
+        {
+            Debug.Log("_customRegenerate");
+            _customRegenerate = false;
+            ColorMap = tex;
+
+            ReScale();
+            //SetGroundMaterialValues();
+
+            //HandleWater();
+            //HandleClouds();
+            //HandleAura();
+        }
+    }
 
     #endregion
 
@@ -28,17 +78,35 @@ public class Planet : MonoBehaviour
 
     public void Regenerate()
     {
-        generator.mapSize = profile.TexturesSize;
-        generator.Generate(profile);
-        ReScale();
+        Debug.Log("[REGENERATE] " + gameObject.transform.parent.name);
 
-        SetGroundMaterialValues();
+        PlanetGenerationData PGDDatas = new PlanetGenerationData()
+        {
+            PGDMapSize = profile.TexturesSize,
+            PGDProfile = this.profile,
+            PGDCallback = (Texture2D GeneratedTex) =>
+            {
+                ColorMap = new Texture2D(
+                    profile.TexturesSize,
+                    (int)(profile.TexturesSize / 2f));
+                ColorMap.SetPixels(GeneratedTex.GetPixels());
+                ColorMap.Apply();
 
-        HandleWater();
-        HandleClouds();
-        HandleAura();
+                SetGroundActive(profile.UseGround);
 
-        Terrain.sharedMesh = filter.mesh;
+                if (profile.UseGround)
+                {
+                    ReScale();
+                    SetGroundMaterialValues();
+                }
+
+                HandleWater();
+                HandleClouds();
+                HandleAura();
+            }
+        };
+        
+        CustomPerlinGenerator.Instance.Generate(PGDDatas);
     }
 
     /// <summary>
@@ -46,16 +114,27 @@ public class Planet : MonoBehaviour
     /// </summary>
     void HandleWater()
     {
-        if (profile.useWater)
+        if (profile.UseWater)
         {
             water.SetActive(true);
-
             water.transform.localScale = Vector3.one * profile.SeaLevel;
+            Material WaterMaterial = 
+                (water.GetComponent<MeshRenderer>().material = profile.WaterMaterial);
 
-            Material Watermaterial = water.GetComponent<MeshRenderer>().material;
+            if (profile.WaterMaterial.shader.name.Contains("Water"))
+            {
 
-            Watermaterial.SetColor("Color_109BE5B1", profile.WaterColor);
-            Watermaterial.SetColor("Color_B902B901", profile.RippleColor);
+                WaterMaterial.SetColor("Color_109BE5B1", profile.WaterColor);
+                WaterMaterial.SetColor("Color_B902B901", profile.RippleColor);
+
+            }
+            else if (profile.WaterMaterial.shader.name.Contains("Magma"))
+            {
+                WaterMaterial.SetTexture(
+                    "Texture2D_D98FF2C8",
+                    ColorMap);
+                WaterMaterial.SetColor("Color_F4940654", profile.SunFresnelColor);
+            }
         }
         else
         {
@@ -103,40 +182,70 @@ public class Planet : MonoBehaviour
     /// </summary>
     void SetGroundMaterialValues()
     {
-        render.material = profile.material;
+        mat = profile.material;
+
+        foreach (var face in meshRenderers)
+        {
+            face.sharedMaterial = mat;
+        }
 
         // if lit
-        if (render.material.shader.name == "Universal Render Pipeline/Lit")
+        if (mat.shader.name == "Universal Render Pipeline/Lit")
         {
-            render.material.SetTexture("_BaseMap", generator.ColorMap);
+            mat.SetTexture(
+                "_BaseMap",
+                ColorMap);
         }
-        else if (render.material.shader.name.Contains("Magma"))
+        else if (mat.shader.name.Contains("Magma"))
         {
-            render.material.SetTexture("Texture2D_D98FF2C8", generator.ColorMap);
-            render.material.SetColor("Color_F4940654", profile.SunFresnelColor);
+            mat.SetTexture(
+                "Texture2D_D98FF2C8",
+                ColorMap);
+            mat.SetColor("Color_F4940654", profile.SunFresnelColor);
         }
-        else if (render.material.shader.name.Contains("PlanetGround"))
+        else if (mat.shader.name.Contains("PlanetGround"))
         {
-            render.material.SetTexture("Texture2D_10E80854", generator.ColorMap);
+            mat.SetTexture(
+                "Texture2D_10E80854",
+                ColorMap);
 
-            render.material.SetFloat("Vector1_AC9353BB", profile.CliffIntensity);
+            mat.SetFloat("Vector1_AC9353BB", profile.CliffIntensity);
 
-            render.material.SetColor("Color_5EBF6256", profile.CliffLightColor);
-            render.material.SetColor("Color_863EF5B8", profile.CliffDarkColor);
+            mat.SetColor("Color_5EBF6256", profile.CliffLightColor);
+            mat.SetColor("Color_863EF5B8", profile.CliffDarkColor);
         }
-        else if (render.material.shader.name.Contains("WeirdFresnel"))
+        else if (mat.shader.name.Contains("EnhancedGroundV2"))
         {
-            render.material.SetTexture("Texture2D_C9B692E6", generator.ColorMap);
+            mat.SetTexture(
+                "Texture2D_4FCE4029",
+                ColorMap);
+        }
+        else if (mat.shader.name.Contains("WeirdFresnel"))
+        {
+            mat.SetTexture(
+                "Texture2D_C9B692E6",
+                ColorMap);
         }
         // if unlit
         else
         {
-            render.material.SetTexture("_MainTex", generator.ColorMap);
+            mat.SetTexture(
+                "_MainTex",
+                ColorMap);
+        }
+    }
+
+
+    void SetGroundActive(bool isActive)
+    {
+        for (int i = 0; i < terrainFaces.Length; i++)
+        {
+            terrainFaces[i].gameObject.SetActive(isActive);
         }
     }
 
     #endregion
-
+    
     #region INIT
 
     /// <summary>
@@ -144,17 +253,54 @@ public class Planet : MonoBehaviour
     /// </summary>
     public void Initialize()
     {
-        generator = GetComponent<CustomPerlinGenerator>();
+        Debug.Log("[INITIALIZE PLANET] " + gameObject.transform.parent.name);
 
-        Mesh mesh = new Mesh();
+        if (meshFilters == null || meshFilters.Length == 0)
+        {
+            meshFilters = new MeshFilter[6];
+            meshRenderers = new MeshRenderer[6];
+        }
+        terrainFaces = new TerrainFace[6];
 
-        SetupVerticesAndUV(mesh);
+        Vector3[] directions = {
+            Vector3.up,
+            Vector3.down,
+            Vector3.left,
+            Vector3.right,
+            Vector3.forward,
+            Vector3.back
+        };
 
-        mesh.triangles = ProcessTriangles();
-        filter = GetComponent<MeshFilter>();
-        filter.mesh = mesh;
-        render = GetComponent<MeshRenderer>();
-        Terrain = gameObject.AddComponent<MeshCollider>();
+        //mat = new Material(Shader.Find("Standard"));
+
+        for (int i = 0; i < 6; i++)
+        {
+            if (meshFilters[i] == null)
+            {
+                GameObject meshObj = new GameObject("mesh " + i);
+                meshObj.transform.parent = transform;
+
+                meshRenderers[i] = meshObj.AddComponent<MeshRenderer>();
+                //meshRenderers[i].sharedMaterial = mat;
+                meshRenderers[i].shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                meshFilters[i] = meshObj.AddComponent<MeshFilter>();
+                meshFilters[i].sharedMesh = new Mesh();
+                meshFilters[i].sharedMesh.name = i.ToString();
+                meshObj.transform.localPosition = Vector3.zero;
+            }
+
+            terrainFaces[i] = meshFilters[i].gameObject.AddComponent<TerrainFace>();
+                
+            terrainFaces[i].InitTerrainFace(
+                meshFilters[i].sharedMesh,
+                resolution,
+                directions[i]);
+        }
+
+        foreach (TerrainFace face in terrainFaces)
+        {
+            face.ConstructMesh();
+        }
     }
 
     #endregion
@@ -163,123 +309,14 @@ public class Planet : MonoBehaviour
 
     void ReScale()
     {
-        Vector3[] vertices = new Vector3[
-            ((AmountOfVertices + 1) * (AmountOfVertices + 1))];
-        Vector3[] normals = new Vector3[vertices.Length];
-        float latPadding = 180f / (float)AmountOfVertices;
-        float lonPadding = 360f / (float)AmountOfVertices;
-
-        for (int x = 0, i = 0; x <= AmountOfVertices; x++)
+        for (int i = 0; i < terrainFaces.Length; i++)
         {
-            for (int y = 0; y <= AmountOfVertices; y++, i++)
-            {
-                vertices[i] = CoordinatesProjector.InverseMercatorProjector(
-                    (((x * lonPadding) - 180f) * Mathf.Deg2Rad),
-                    (((y * latPadding) - 90f) * Mathf.Deg2Rad),
-                    profile.BaseElevation + (GetGrayScale(
-                            generator.HeightMap,
-                            x,
-                            y) * profile.ElevationMultiplier));
-            }
+            terrainFaces[i].ElevateMesh(
+                ColorMap,
+                profile.BaseElevation,
+                profile.ElevationMultiplier,
+                profile.ColorGradient);
         }
-
-        //for (int x = 0, i = 0; x <= AmountOfVertices; x++)
-        //{
-        //    for (int y = 0; y <= AmountOfVertices; y++, i++)
-        //    {
-        //        normals[i] = getNormal(i, vertices);
-        //    }
-        //}
-
-        filter.mesh.vertices = vertices;
-        filter.mesh.RecalculateNormals();
-        Vector3[] copied_normals = filter.mesh.normals;
-        copied_normals = CalCulateNormals(copied_normals, vertices);
-        filter.mesh.RecalculateTangents();
-        filter.mesh.normals = copied_normals;
-    }
-
-    Vector3[] CalCulateNormals(Vector3[] normals, Vector3[] vertices)
-    {
-        for (int i = 0; i <= AmountOfVertices; i++)
-        {
-            int endindex = ((1 + AmountOfVertices) * (1 + AmountOfVertices)) - (AmountOfVertices) + i - 1;
-
-            Vector3 leftvector = vertices[endindex] + vertices[endindex - 1];
-            Vector3 rightvector = vertices[i] + vertices[i + 1];
-            Vector3 newnormal = (leftvector + rightvector).normalized;
-
-            if (newnormal.magnitude < 0)
-                newnormal *= -1f;
-
-            normals[i] = normals[endindex] = newnormal;
-        }
-
-        return normals;
-    }
-
-    float GetGrayScale(Texture2D tex, int x, int y)
-    {
-        if (x == AmountOfVertices && y == AmountOfVertices)
-        {
-            return tex.GetPixel(tex.width - 1, tex.height - 1).grayscale;
-        }
-
-        return tex.GetPixel(
-            (int)((float)tex.width * ((float)x / (float)AmountOfVertices)),
-            (int)((float)tex.height * ((float)y / (float)AmountOfVertices))).grayscale;
-    }
-
-    #endregion
-
-    #region MeshGeneration
-
-    void SetupVerticesAndUV(Mesh mesh)
-    {
-        Vector3[] vertices = new Vector3[
-            ((AmountOfVertices + 1) * (AmountOfVertices + 1))];
-        Vector2[] uv = new Vector2[vertices.Length];
-        float latPadding = 180f / (float)AmountOfVertices;
-        float lonPadding = 360f / (float)AmountOfVertices;
-
-        for (int x = 0, i = 0; x <= AmountOfVertices; x++)
-        {
-            for (int y = 0; y <= AmountOfVertices; y++, i++)
-            {
-                    vertices[i] = CoordinatesProjector.InverseMercatorProjector(
-                        (((x * lonPadding) - 180f) * Mathf.Deg2Rad),
-                        (((y * latPadding) - 90f) * Mathf.Deg2Rad),
-                        .96f);
-
-                //print("[X][DEG]" + x + " " + (x * lonPadding) + "    [Y][DEG]" + y + " " + (y * latPadding));
-
-                uv[i] = new Vector2(
-                    (float)x / (float)AmountOfVertices,
-                    (float)y / (float)AmountOfVertices);
-            }
-        }
-
-        mesh.RecalculateNormals();
-        mesh.vertices = vertices;
-        mesh.uv = uv;
-    }
-
-    int[] ProcessTriangles()
-    {
-        int[] triangles = new int[((AmountOfVertices * AmountOfVertices) + AmountOfVertices) * 6];
-
-        for (int ti = 0, vi = 0, y = 0; y < AmountOfVertices; y++, vi++)
-        {
-            for (int x = 0; x < AmountOfVertices; x++, ti += 6, vi++)
-            {
-                triangles[ti] = vi;
-                triangles[ti + 3] = triangles[ti + 2] = vi + 1;
-                triangles[ti + 4] = triangles[ti + 1] = vi + AmountOfVertices + 1;
-                triangles[ti + 5] = vi + AmountOfVertices + 2;
-            }
-        }
-
-        return triangles;
     }
 
     #endregion

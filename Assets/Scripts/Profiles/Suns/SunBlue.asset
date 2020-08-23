@@ -75,6 +75,7 @@ MonoBehaviour:
   ElevationMultiplier: 0
   BaseElevation: 1
   type: 2
+  graph: {fileID: 11400000, guid: 15dcdf8bb4ef9d141b84741eb10469a8, type: 2}
   frequency: 30
   lacunarity: 4
   persistence: 0
