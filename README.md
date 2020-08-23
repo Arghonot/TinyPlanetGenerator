@@ -1,5 +1,6 @@
 # TinyPlanetGenerator
-![alt text](https://github.com/Arghonot/TinyPlanetGenerator/tree/master/Assets/Textures/ReadmeTextures/test.png)
+![alt text](https://github.com/Arghonot/TinyPlanetGenerator/tree/master/Assets/Textures/ReadmeTextures/resizedgolfplanet.png)
+
 This is a WIP Spore like planet generator.
 It is intended as a demo for a nodal procedural texture generator.
 
