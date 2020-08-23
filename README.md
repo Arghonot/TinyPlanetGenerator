@@ -1,7 +1,6 @@
 # TinyPlanetGenerator
-<img src="https://github.com/Arghonot/TinyPlanetGenerator/tree/master/Assets/Textures/ReadmeTextures/resizedgolfplanet.png" alt="golfplanet.png" width="100" height="50">
 
-![](https://github.com/Arghonot/TinyPlanetGenerator/tree/master/Assets/Textures/ReadmeTextures/resizedgolfplanet.png?s=100)
+![](https://raw.githubusercontent.com/Arghonot/TinyPlanetGenerator/master/Assets/Textures/ReadmeTextures/resizedgolfplanet.png?raw=true)
 
 This is a WIP Spore like planet generator.
 It is intended as a demo for a nodal procedural texture generator.
@@ -37,6 +36,8 @@ It is a Scriptable Object that contains all the data needed for the planet gener
 ### Planet graph
 It is a Xnode graph that contain the logic for the texture generation like the amount of generator / combiners / ... and how they combine their output.
 
+![](https://raw.githubusercontent.com/Arghonot/TinyPlanetGenerator/master/Assets/Textures/ReadmeTextures/Graph.PNG?raw=true)
+
 
 ## Next updates
 The next commits will contain : 
@@ -47,3 +48,8 @@ The next commits will contain :
 * more complex planets
 
 ## Gallery
+![](https://raw.githubusercontent.com/Arghonot/TinyPlanetGenerator/master/Assets/Textures/ReadmeTextures/MagmaVoronoi.PNG?raw=true "From an old version")
+![](https://raw.githubusercontent.com/Arghonot/TinyPlanetGenerator/master/Assets/Textures/ReadmeTextures/RockStandard.png?raw=true "From current version")
+![](https://raw.githubusercontent.com/Arghonot/TinyPlanetGenerator/master/Assets/Textures/ReadmeTextures/crashedplanet.PNG?raw=true "From an old version")
+![](https://raw.githubusercontent.com/Arghonot/TinyPlanetGenerator/master/Assets/Textures/ReadmeTextures/magmaBillow.PNG?raw=true "From current version")
+![](https://raw.githubusercontent.com/Arghonot/TinyPlanetGenerator/master/Assets/Textures/ReadmeTextures/testIce.png?raw=true "From current version")
