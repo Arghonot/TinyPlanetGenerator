@@ -27,10 +27,6 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
     {
         SetupSolarSytem();
         PlaceLastPlanetForTutorial();
-
-        eclipticPlane.material.SetFloat("SolarSystemRadius", planets.Last().transform.position.magnitude + RimWidth / 3);
-
-        //LightEffect.Instance.Init();
     }
 
     private void Update()
@@ -71,8 +67,23 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
 
     void    PlaceLastPlanetForTutorial()
     {
+        planets[0].GetComponent<Rotator>().enabled = false;
+        planets[0].transform.rotation = Quaternion.Euler(45f, -35f, 0f);
+        planets[0].transform.GetChild(4).transform.rotation =
+            Quaternion.Euler(0f, 0f, 0f);
+
+        //planets[0].transform.rotation = new Quaternion(
+        //    -0.2601548f,
+        //    -0.1782163f,
+        //    -0.04892169f,
+        //    0.9477157f);
+
         planets[PlanetAmount - 1].transform.parent.transform.eulerAngles = Vector3.zero;
         planets[PlanetAmount - 1].transform.position = new Vector3(45f, 0f, 210f);
+
+        eclipticPlane.material.SetFloat(
+            "SolarSystemRadius",
+            planets.Last().transform.position.magnitude + RimWidth);
     }
 
     /// <summary>
@@ -116,9 +127,10 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
             planetSizes += GeneratePlanet(i, planetSizes);
         }
 
-        print(planets.Last().transform.position.magnitude + RimWidth);
 
-        eclipticPlane.material.SetFloat("SolarSystemRadius", planets.Last().transform.position.magnitude + RimWidth);
+        eclipticPlane.material.SetFloat(
+            "SolarSystemRadius",
+            planets.Last().transform.position.magnitude + RimWidth);
     }
 
     /// <summary>
@@ -142,10 +154,10 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
             planets[i].transform.position =
                 new Vector3(1f, 0f, 1f) *
                 (planetsize + (PlanetSpacing * i) + planets[i].transform.localScale.x);
+            planets[i].Anchor.transform.rotation =
+                Quaternion.Euler(new Vector3(0f, Random.Range(0f, 360f), 0f));
         }
 
-        planets[i].Anchor.transform.rotation =
-            Quaternion.Euler(new Vector3(0f, Random.Range(0f, 360f), 0f));
 
 
         // planet profile generation

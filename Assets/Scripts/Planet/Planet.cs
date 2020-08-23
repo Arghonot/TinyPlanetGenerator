@@ -92,8 +92,13 @@ public class Planet : MonoBehaviour
                 ColorMap.SetPixels(GeneratedTex.GetPixels());
                 ColorMap.Apply();
 
-                ReScale();
-                SetGroundMaterialValues();
+                SetGroundActive(profile.UseGround);
+
+                if (profile.UseGround)
+                {
+                    ReScale();
+                    SetGroundMaterialValues();
+                }
 
                 HandleWater();
                 HandleClouds();
@@ -109,16 +114,27 @@ public class Planet : MonoBehaviour
     /// </summary>
     void HandleWater()
     {
-        if (profile.useWater)
+        if (profile.UseWater)
         {
             water.SetActive(true);
-
             water.transform.localScale = Vector3.one * profile.SeaLevel;
+            Material WaterMaterial = 
+                (water.GetComponent<MeshRenderer>().material = profile.WaterMaterial);
 
-            Material Watermaterial = water.GetComponent<MeshRenderer>().material;
+            if (profile.WaterMaterial.shader.name.Contains("Water"))
+            {
 
-            Watermaterial.SetColor("Color_109BE5B1", profile.WaterColor);
-            Watermaterial.SetColor("Color_B902B901", profile.RippleColor);
+                WaterMaterial.SetColor("Color_109BE5B1", profile.WaterColor);
+                WaterMaterial.SetColor("Color_B902B901", profile.RippleColor);
+
+            }
+            else if (profile.WaterMaterial.shader.name.Contains("Magma"))
+            {
+                WaterMaterial.SetTexture(
+                    "Texture2D_D98FF2C8",
+                    ColorMap);
+                WaterMaterial.SetColor("Color_F4940654", profile.SunFresnelColor);
+            }
         }
         else
         {
@@ -216,6 +232,15 @@ public class Planet : MonoBehaviour
             mat.SetTexture(
                 "_MainTex",
                 ColorMap);
+        }
+    }
+
+
+    void SetGroundActive(bool isActive)
+    {
+        for (int i = 0; i < terrainFaces.Length; i++)
+        {
+            terrainFaces[i].gameObject.SetActive(isActive);
         }
     }
 

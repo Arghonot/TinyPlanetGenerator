@@ -43,10 +43,12 @@ public class PlanetProfile : ScriptableObject
     public bool distance = true;
 
     public Material material;
+    public Material WaterMaterial;
 
     public Color SunFresnelColor;
 
-    public bool useWater = false;
+    public bool UseGround = true;
+    public bool UseWater = false;
     public bool UseClouds = false;
     public bool UseAura = true;
 

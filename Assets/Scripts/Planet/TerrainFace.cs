@@ -180,21 +180,53 @@ public class TerrainFace : MonoBehaviour
     {
         Vector3[] vertexNormals = mesh.normals;
         int triangleCount = mesh.triangles.Length / 3;
-        //float lnOffset = (360f / (float)((resolution - 1)) * .75f) / 2f;
-        //float latOffset = 180f / (float)((resolution - 1)) * .75f;
+
+        //for (int i = resolution; i < (resolution * resolution) - resolution; i++)
+        //{
+        //    if (i % resolution > 0 && (i + 1) % resolution > 0)
+        //    {
+        //        var vector1 = SurfaceNormalFromIndices(
+        //            vertexNormals[i],
+        //            vertexNormals[i - resolution - 1],
+        //            vertexNormals[i - resolution]);
+        //        var vector2 = SurfaceNormalFromIndices(
+        //            vertexNormals[i],
+        //            vertexNormals[i - resolution + 1],
+        //            vertexNormals[i + 1]);
+        //        var vector3 = SurfaceNormalFromIndices(
+        //            vertexNormals[i],
+        //            vertexNormals[i + resolution + 1],
+        //            vertexNormals[i + resolution]);
+        //        var vector4 = SurfaceNormalFromIndices(
+        //            vertexNormals[i],
+        //            vertexNormals[i + resolution - 1],
+        //            vertexNormals[i - 1]);
+        //        vertexNormals[i] = -(vector1 + vector2 + vector3 + vector4);
+        //    }
+        //}
 
         for (int i = 0; i < resolution; i++)
         {
             vertexNormals[i] = GetNormal(i);
+
             if (i > 0 && i < resolution - 1)
             {
-                vertexNormals[resolution * i] = GetNormal(i * resolution);
+                vertexNormals[resolution * i] =
+                    GetNormal(i * resolution);
 
-                vertexNormals[(resolution * i) + resolution - 1] = GetNormal((resolution * i) + resolution - 1);
+                vertexNormals[(resolution * i) + resolution - 1] =
+                    GetNormal((resolution * i) + resolution - 1);
             }
 
-            vertexNormals[(resolution * resolution) - resolution + i] = GetNormal((resolution * resolution) - resolution + i);
+            vertexNormals[(resolution * resolution) - resolution + i] =
+                GetNormal((resolution * resolution) - resolution + i);
         }
+
+        //for (int i = 0; i < vertexNormals.Length; i++)
+        //{
+        //    //vertexNormals[i] = vertexNormals[i].normalized;
+        //    vertexNormals[i].Normalize();
+        //}
 
         return vertexNormals;
     }
@@ -226,7 +258,7 @@ public class TerrainFace : MonoBehaviour
             Vectors[5],
             Vectors[3]);
 
-        return -(One + Two + Three + Four);
+        return (-(One + Two + Three + Four)).normalized;
     }
 
     /// <summary>

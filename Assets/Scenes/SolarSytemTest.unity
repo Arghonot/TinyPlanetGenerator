@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -7796,7 +7796,7 @@ PrefabInstance:
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
       propertyPath: SolarSystems.Array.size
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
@@ -7806,18 +7806,18 @@ PrefabInstance:
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
       propertyPath: RimWidth
-      value: 90
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
       propertyPath: PlanetAmount
-      value: 2
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
       propertyPath: PlanetProfiles.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: e6463099cfd4fb140b5f79cb1bcd3e53,
+      objectReference: {fileID: 11400000, guid: 44e3478cfa317c14c8f67f79928274f6,
         type: 2}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
@@ -7884,37 +7884,37 @@ PrefabInstance:
         type: 3}
       propertyPath: SolarSystems.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 51cc00172292e324daeb82a662505eb7,
+      objectReference: {fileID: 11400000, guid: 2dc54a7b5c2644d49bfeb9cd641ccb69,
         type: 2}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
       propertyPath: SolarSystems.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: d19363e9cb825a940891037acc00dd93,
+      objectReference: {fileID: 11400000, guid: 6f23dcbdc7ece2846b4fc717df29fb17,
         type: 2}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
       propertyPath: SolarSystems.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: ea316f178c6371d4d86f7be2a19823aa,
+      objectReference: {fileID: 11400000, guid: d19363e9cb825a940891037acc00dd93,
         type: 2}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
       propertyPath: SolarSystems.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: 51cc00172292e324daeb82a662505eb7,
+      objectReference: {fileID: 11400000, guid: ea316f178c6371d4d86f7be2a19823aa,
         type: 2}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
       propertyPath: SolarSystems.Array.data[4]
       value: 
-      objectReference: {fileID: 11400000, guid: b92562c18bf95b841b32f4eb575e942d,
+      objectReference: {fileID: 11400000, guid: 51cc00172292e324daeb82a662505eb7,
         type: 2}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
       propertyPath: SolarSystems.Array.data[5]
       value: 
-      objectReference: {fileID: 11400000, guid: 2dc54a7b5c2644d49bfeb9cd641ccb69,
+      objectReference: {fileID: 11400000, guid: b92562c18bf95b841b32f4eb575e942d,
         type: 2}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}
@@ -7925,7 +7925,7 @@ PrefabInstance:
         type: 3}
       propertyPath: PlanetProfiles.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 44e3478cfa317c14c8f67f79928274f6,
+      objectReference: {fileID: 11400000, guid: e6463099cfd4fb140b5f79cb1bcd3e53,
         type: 2}
     - target: {fileID: 3137600328763015079, guid: f2c0d77b36df71e4bbdb5ffdcdc13731,
         type: 3}

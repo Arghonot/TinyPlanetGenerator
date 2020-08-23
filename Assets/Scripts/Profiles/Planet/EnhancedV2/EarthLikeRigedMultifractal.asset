@@ -81,9 +81,12 @@ MonoBehaviour:
   persistence: 0.5
   displacement: 0
   octaves: 6
+  distance: 1
   material: {fileID: 2100000, guid: ea7cabc5555fe3f4bb7f1c34e2415e7e, type: 2}
+  WaterMaterial: {fileID: 2100000, guid: 1e6cf05ae215d464bbb9f312a841f116, type: 2}
   SunFresnelColor: {r: 0, g: 0, b: 0, a: 0}
-  useWater: 1
+  UseGround: 1
+  UseWater: 1
   UseClouds: 0
   UseAura: 0
   SeaLevel: 0.45
