@@ -20,13 +20,6 @@ public class PlanetTester : MonoBehaviour
     MeshFilter[] meshFilters;
     TerrainFace[] terrainFaces;
 
-
-    float south = 90.0f;
-    float north = -90.0f;
-
-    float west = -180.0f;
-    float east = 180.0f;
-
     private void OnValidate()
     {
         Initialize();

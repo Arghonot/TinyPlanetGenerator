@@ -7,7 +7,7 @@ using UnityEngine;
 namespace NoiseGraph
 {
     [CreateNodeMenu("NoiseGraph/Generator/RidgedMultifractal")]
-    public class RidgedMultifractalNode : Graph.Branch
+    public class RidgedMultifractalNode : LibnoiseNode
     {
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public double frequency;
@@ -19,18 +19,6 @@ namespace NoiseGraph
         public int Seed;
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public QualityMode Quality;
-
-        [Output(ShowBackingValue.Always, ConnectionType.Multiple, TypeConstraint.Strict)]
-        public ModuleBase GeneratorOutput;
-
-        public void Awake()
-        {
-            AddDynamicOutput(
-                typeof(SerializableModuleBase),
-                ConnectionType.Multiple,
-                TypeConstraint.Strict,
-                "Output");
-        }
 
         public override object Run()
         {
@@ -44,6 +32,7 @@ namespace NoiseGraph
                     this.Seed,
                     (QualityMode)this.Quality);
             }
+
             return new RidgedMultifractal(
                 GetInputValue<double>("frequency", this.frequency),
                 GetInputValue<double>("lacunarity", this.lacunarity),

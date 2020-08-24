@@ -6,7 +6,7 @@ using XNode;
 namespace NoiseGraph
 {
     [CreateNodeMenu("NoiseGraph/Generator/Perlin")]
-    public class PerlinNode : Graph.Branch
+    public class PerlinNode : LibnoiseNode
     {
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public double frequency;
@@ -20,23 +20,6 @@ namespace NoiseGraph
         public int Seed;
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public QualityMode Quality;
-
-        //[Output(ShowBackingValue.Always, ConnectionType.Multiple, TypeConstraint.Strict)]
-        //public SerializableModuleBase Generator;
-
-        public void Awake()
-        {
-            AddDynamicOutput(
-                typeof(SerializableModuleBase),
-                ConnectionType.Multiple,
-                TypeConstraint.Strict,
-                "Output");
-        }
-
-        //public override object GetValue(NodePort port)
-        //{
-        //    return Run();
-        //}
 
         public override object Run()
         {

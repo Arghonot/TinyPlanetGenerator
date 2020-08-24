@@ -7,19 +7,10 @@ using UnityEngine;
 namespace NoiseGraph
 {
     [CreateNodeMenu("NoiseGraph/Generator/Checker")]
-    public class CheckerNode : Graph.Branch
+    public class CheckerNode : LibnoiseNode
     {
         [Output(ShowBackingValue.Always, ConnectionType.Multiple, TypeConstraint.Strict)]
         public ModuleBase GeneratorOutput;
-
-        public void Awake()
-        {
-            AddDynamicOutput(
-                typeof(SerializableModuleBase),
-                ConnectionType.Multiple,
-                TypeConstraint.Strict,
-                "Output");
-        }
 
         public override object Run()
         {

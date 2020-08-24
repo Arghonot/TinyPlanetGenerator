@@ -13,8 +13,8 @@ namespace NoiseGraph
         List<Type> HiddenTypes = new List<Type>()
         {
             typeof(RootModuleBase),
-            typeof(Graph.Leaf),
-            typeof(Graph.Branch),
+            typeof(Graph.Leaf<object>),
+            typeof(Graph.Branch<object>),
             typeof(Graph.Blackboard),
             typeof(LibnoiseNode),
             typeof(Graph.NodeBase)

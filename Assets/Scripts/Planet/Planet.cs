@@ -235,7 +235,6 @@ public class Planet : MonoBehaviour
         }
     }
 
-
     void SetGroundActive(bool isActive)
     {
         for (int i = 0; i < terrainFaces.Length; i++)

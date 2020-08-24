@@ -7,7 +7,7 @@ using UnityEngine;
 namespace NoiseGraph
 {
     [CreateNodeMenu("NoiseGraph/Generator/Billow")]
-    public class BillowNode : Graph.Branch
+    public class BillowNode : LibnoiseNode
     {
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public double frequency;
@@ -24,15 +24,6 @@ namespace NoiseGraph
 
         [Output(ShowBackingValue.Always, ConnectionType.Multiple, TypeConstraint.Strict)]
         public ModuleBase GeneratorOutput;
-
-        public void Awake()
-        {
-            AddDynamicOutput(
-                typeof(SerializableModuleBase),
-                ConnectionType.Multiple,
-                TypeConstraint.Strict,
-                "Output");
-        }
 
         public override object Run()
         {

@@ -7,7 +7,7 @@ using UnityEngine;
 namespace NoiseGraph
 {
     [CreateNodeMenu("NoiseGraph/Generator/Voronoi")]
-    public class VoronoiNode : Graph.Branch
+    public class VoronoiNode : LibnoiseNode
     {
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public double frequency;
@@ -17,18 +17,6 @@ namespace NoiseGraph
         public int Seed;
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public bool distance;
-
-        //[Output(ShowBackingValue.Always, ConnectionType.Multiple, TypeConstraint.Strict)]
-        //public ModuleBase GeneratorOutput;
-
-        public void Awake()
-        {
-            AddDynamicOutput(
-                typeof(SerializableModuleBase),
-                ConnectionType.Multiple,
-                TypeConstraint.Strict,
-                "Output");
-        }
 
         public override object Run()
         {

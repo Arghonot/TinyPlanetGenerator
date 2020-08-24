@@ -12,14 +12,9 @@ namespace NoiseGraph
     //}
 
     [CreateNodeMenu("NoiseGraph/Input/Quality")]
-    public class QualityNode : Graph.Leaf
+    public class QualityNode : Graph.Leaf<LibNoise.QualityMode>
     {
         [Output(ShowBackingValue.Always, ConnectionType.Multiple, TypeConstraint.Strict)]
         public LibNoise.QualityMode Quality;
-
-        public override object Run()
-        {
-            return Quality;
-        }
     }
 }
