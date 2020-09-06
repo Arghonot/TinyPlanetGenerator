@@ -12,6 +12,7 @@ This generator is based on a fork of ricardo mendez's [libnoise port](https://gi
 
 The following papers were used :
 http://www.twandegraaf.nl/Art/Documents/Procedural%20planets%20into%20detail,%20Twan%20de%20Graaf%202012.pdf
+
 http://jacobkeane.co.uk/wp-content/uploads/2014/06/Procedural-Planet-Generation.pdf
 
 Sebastian Lague's videos about [procedural landmasses](https://www.youtube.com/watch?v=wbpMiKiSKm8&list=PLFt_AvWsXl0eBW2EiBtl_sxmDtSgZBxB3) and [planets](https://www.youtube.com/watch?v=QN39W020LqU&list=PLFt_AvWsXl0cONs3T0By4puYy6GM22ko8) where used for the mesh generation.
