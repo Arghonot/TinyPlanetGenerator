@@ -106,11 +106,8 @@ public class TerrainFace : MonoBehaviour
     /// <param name="baseElevation">The minimum radius the planet can be.</param>
     /// <param name="meanElevation">The maximum elevation the planet can have (base + mean).</param>
     /// <param name="grad">The color gradient the texture is based on.</param>
-    public void ElevateMesh(Texture2D noise, float baseElevation, float meanElevation, Gradient grad = null)
+    public void ElevateMesh(Texture2D noise, float baseElevation, float meanElevation)
     {
-        if (grad == null) return;
-
-        _grad = grad;
         BaseElevation = baseElevation;
         MeanElevation = meanElevation;
         tex = noise;

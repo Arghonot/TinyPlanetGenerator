@@ -8,7 +8,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class PlanetTester : MonoBehaviour
 {
-    public Gradient grad;
+    //public Gradient grad;
     public bool Regenerate = false;
     public Texture2D tex;
     [Range(2, 256)]
@@ -20,15 +20,15 @@ public class PlanetTester : MonoBehaviour
     MeshFilter[] meshFilters;
     TerrainFace[] terrainFaces;
 
-    private void OnValidate()
-    {
-        //Initialize();
-    }
-
     private void Update()
     {
         if (Regenerate)
         {
+            if (terrainFaces == null || terrainFaces.Length == 0)
+            {
+                Initialize();
+            }
+
             Elevate();
             Regenerate = false;
         }
@@ -86,7 +86,7 @@ public class PlanetTester : MonoBehaviour
     {
         for (int i = 0; i < terrainFaces.Length; i++)
         {
-            terrainFaces[i].ElevateMesh(tex, .5f, meanElevation, grad);
+            terrainFaces[i].ElevateMesh(tex, .5f, meanElevation);
         }
     }
 
@@ -99,7 +99,7 @@ public class PlanetTester : MonoBehaviour
 
         for (int i = 0; i < terrainFaces.Length; i++)
         {
-            terrainFaces[i].ElevateMesh(tex, .5f, meanElevation, grad);
+            terrainFaces[i].ElevateMesh(tex, .5f, meanElevation);
         }
     }
 }

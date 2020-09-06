@@ -17,13 +17,10 @@ public class PlanetGenerationData
 [ExecuteInEditMode]
 public class Planet : MonoBehaviour
 {
-    /// <summary>
-    /// For debug purpose, change the ColorMap at runtime then ask a 
-    /// "planet refresh" with this bool.
-    /// </summary>
-    public bool _customRegenerate;
+    #region Fields
 
-    public Texture2D tex;
+    #region Mesh management
+
     [Range(2, 256)]
     public int resolution = 10;
 
@@ -32,17 +29,64 @@ public class Planet : MonoBehaviour
     MeshRenderer[] meshRenderers;
     TerrainFace[] terrainFaces;
 
-    public PlanetProfile profile;
+    #endregion
+
+    #region Base arguments
+
+    public float meanElevation = .15f;
+    public float baseElevation = .5f;
+
+    #endregion
+
+    #region GameObject management
 
     public Rotator Anchor;
 
-    GameObject water;
-    GameObject Aura;
-    Cloud Clouds;
+    public GameObject water;
+    public GameObject Aura;
+    public Cloud Clouds;
 
+    #endregion
+
+    #region Planet rendering
+
+    public PlanetProfile profile;
     Material mat;
-    Texture2D ColorMap;
+    public Texture2D ColorMap
+    {
+        get
+        {
+            return _colorMap;
+        }
+        set
+        {
+            _colorMap = new Texture2D(value.width, value.height);
+            _colorMap.SetPixels(value.GetPixels());
+            _colorMap.Apply();
+        }
+    }
+    Texture2D _colorMap;
+
+    #endregion
+
+    #region DEBUG
+
+    public Texture2D DebugMap;
+    public Material DebugMaterial;
+    /// <summary>
+    /// For debug purpose, change the ColorMap at runtime then ask a 
+    /// "planet refresh" with this bool.
+    /// </summary>
+    public bool _customRegenerate;
     public bool save;
+
+    int _oldResolution;
+
+    #endregion
+
+    #endregion
+
+    #region Functions
 
     #region UNITY
 
@@ -50,24 +94,11 @@ public class Planet : MonoBehaviour
     {
         if (save)
         {
-            save = false;
-
-            var bytes = ColorMap.EncodeToPNG();
-            System.IO.File.WriteAllBytes(
-                "C:/Users/loriv/OneDrive/Pictures/Tiny_planet_generator/GeneratedPlanet/planet.png", bytes);
+            SavePlanet();
         }
         if (_customRegenerate)
         {
-            Debug.Log("_customRegenerate");
-            _customRegenerate = false;
-            ColorMap = tex;
-
-            ReScale();
-            //SetGroundMaterialValues();
-
-            //HandleWater();
-            //HandleClouds();
-            //HandleAura();
+            CustomRegenerate();
         }
     }
 
@@ -85,17 +116,17 @@ public class Planet : MonoBehaviour
             PGDProfile = this.profile,
             PGDCallback = (Texture2D GeneratedTex) =>
             {
-                ColorMap = new Texture2D(
+                _colorMap = new Texture2D(
                     profile.TexturesSize,
                     (int)(profile.TexturesSize / 2f));
-                ColorMap.SetPixels(GeneratedTex.GetPixels());
-                ColorMap.Apply();
+                _colorMap.SetPixels(GeneratedTex.GetPixels());
+                _colorMap.Apply();
 
                 SetGroundActive(profile.UseGround);
 
                 if (profile.UseGround)
                 {
-                    ReScale();
+                    Elevate();
                     SetGroundMaterialValues();
                 }
 
@@ -113,6 +144,8 @@ public class Planet : MonoBehaviour
     /// </summary>
     void HandleWater()
     {
+        if (profile == null) return;
+
         water.SetActive(profile.UseWater);
 
         if (profile.UseWater)
@@ -132,7 +165,7 @@ public class Planet : MonoBehaviour
             {
                 WaterMaterial.SetTexture(
                     "Texture2D_D98FF2C8",
-                    ColorMap);
+                    _colorMap);
                 WaterMaterial.SetColor("Color_F4940654", profile.SunFresnelColor);
             }
         }
@@ -190,20 +223,20 @@ public class Planet : MonoBehaviour
         {
             mat.SetTexture(
                 "_BaseMap",
-                ColorMap);
+                _colorMap);
         }
         else if (mat.shader.name.Contains("Magma"))
         {
             mat.SetTexture(
                 "Texture2D_D98FF2C8",
-                ColorMap);
+                _colorMap);
             mat.SetColor("Color_F4940654", profile.SunFresnelColor);
         }
         else if (mat.shader.name.Contains("PlanetGround"))
         {
             mat.SetTexture(
                 "Texture2D_10E80854",
-                ColorMap);
+                _colorMap);
 
             mat.SetFloat("Vector1_AC9353BB", profile.CliffIntensity);
 
@@ -214,20 +247,20 @@ public class Planet : MonoBehaviour
         {
             mat.SetTexture(
                 "Texture2D_4FCE4029",
-                ColorMap);
+                _colorMap);
         }
         else if (mat.shader.name.Contains("WeirdFresnel"))
         {
             mat.SetTexture(
                 "Texture2D_C9B692E6",
-                ColorMap);
+                _colorMap);
         }
         // if unlit
         else
         {
             mat.SetTexture(
                 "_MainTex",
-                ColorMap);
+                _colorMap);
         }
     }
 
@@ -248,7 +281,7 @@ public class Planet : MonoBehaviour
     /// </summary>
     public void Initialize()
     {
-        Debug.Log("[INITIALIZE PLANET] " + gameObject.transform.parent.name);
+        Debug.Log("[INITIALIZE PLANET] ");
 
         if (meshFilters == null || meshFilters.Length == 0)
         {
@@ -266,8 +299,6 @@ public class Planet : MonoBehaviour
             Vector3.back
         };
 
-        //mat = new Material(Shader.Find("Standard"));
-
         for (int i = 0; i < 6; i++)
         {
             if (meshFilters[i] == null)
@@ -276,7 +307,6 @@ public class Planet : MonoBehaviour
                 meshObj.transform.parent = transform;
 
                 meshRenderers[i] = meshObj.AddComponent<MeshRenderer>();
-                //meshRenderers[i].sharedMaterial = mat;
                 meshRenderers[i].shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 meshFilters[i] = meshObj.AddComponent<MeshFilter>();
                 meshFilters[i].sharedMesh = new Mesh();
@@ -296,23 +326,93 @@ public class Planet : MonoBehaviour
         {
             face.ConstructMesh();
         }
+
+        _oldResolution = resolution;
     }
 
     #endregion
 
     #region Elevation
 
-    void ReScale()
+    public void Elevate()
     {
+        if (profile == null)
+        {
+            for (int i = 0; i < terrainFaces.Length; i++)
+            {
+                terrainFaces[i].ElevateMesh(
+                    ColorMap,
+                    baseElevation,
+                    meanElevation);
+            }
+
+            return;
+        }
+
         for (int i = 0; i < terrainFaces.Length; i++)
         {
             terrainFaces[i].ElevateMesh(
-                ColorMap,
+                _colorMap,
                 profile.BaseElevation,
-                profile.ElevationMultiplier,
-                profile.ColorGradient);
+                profile.ElevationMultiplier);
         }
     }
+
+    #endregion
+
+    #region DEBUG
+
+    void SavePlanet()
+    {
+        save = false;
+
+        var bytes = _colorMap.EncodeToPNG();
+        System.IO.File.WriteAllBytes(
+            "C:/Users/loriv/OneDrive/Pictures/Tiny_planet_generator/GeneratedPlanet/planet.png", bytes);
+    }
+
+    void CustomRegenerate()
+    {
+        Debug.Log("_customRegenerate");
+        _customRegenerate = false;
+
+        if (terrainFaces == null ||
+            terrainFaces.Length == 0 ||
+            terrainFaces[0] == null)
+        {
+            Initialize();
+
+            if (meshRenderers[0].sharedMaterial == null)
+            {
+                if (DebugMaterial == null)
+                {
+                    DebugMaterial = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+                }
+
+                for (int i = 0; i < meshRenderers.Length; i++)
+                {
+                    meshRenderers[i].sharedMaterial = DebugMaterial;
+                }
+            }
+        }
+        else if (_oldResolution != resolution)
+        {
+            for (int i = 0; i < terrainFaces.Length; i++)
+            {
+                terrainFaces[i].resolution = resolution;
+                terrainFaces[i].ConstructMesh();
+                meshFilters[i].mesh = terrainFaces[i].mesh;
+            }
+
+            _oldResolution = resolution;
+        }
+
+        ColorMap = DebugMap;
+
+        Elevate();
+    }
+
+    #endregion
 
     #endregion
 }

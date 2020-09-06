@@ -72,12 +72,6 @@ public class SolarSystemManager : Singleton<SolarSystemManager>
         planets[0].transform.GetChild(4).transform.rotation =
             Quaternion.Euler(0f, 0f, 0f);
 
-        //planets[0].transform.rotation = new Quaternion(
-        //    -0.2601548f,
-        //    -0.1782163f,
-        //    -0.04892169f,
-        //    0.9477157f);
-
         planets[PlanetAmount - 1].transform.parent.transform.eulerAngles = Vector3.zero;
         planets[PlanetAmount - 1].transform.position = new Vector3(45f, 0f, 210f);
 

@@ -17,7 +17,7 @@ namespace NoiseGraph
         public GameObject Water;
         public MeshRenderer WaterRend;
         Material DefaultMaterial;
-        public PlanetTester Planet = null;
+        public Planet Planet = null;
 
         [SerializeField] public int size = 512;
         public Rect TexturePosition = new Rect(14, 225, 180, 90);
@@ -59,10 +59,10 @@ namespace NoiseGraph
                         west,
                         east);
 
-            Planet.grad = this.grad;
-            Planet.tex = new Texture2D(size, size / 2);
-            Planet.tex.SetPixels(map.GetTexture(grad).GetPixels());
-            Planet.tex.Apply();
+            Planet.ColorMap = map.GetTexture(grad);
+            //Planet.ColorMap = new Texture2D(size, size / 2);
+            //Planet.ColorMap.SetPixels(map.GetTexture(grad).GetPixels());
+            //Planet.ColorMap.Apply();
             Planet.Elevate();
             SetPlanetMaterial();
             SetPlanetEffects();
@@ -73,7 +73,7 @@ namespace NoiseGraph
         {
             if (Planet != null) return;
 
-            Planet = new GameObject().AddComponent<PlanetTester>();
+            Planet = new GameObject().AddComponent<Planet>();
             Planet.gameObject.name = "Tester";
             Planet.resolution = 40;
             Planet.meanElevation = 0.15f;
