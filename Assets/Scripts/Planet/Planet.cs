@@ -36,13 +36,12 @@ public class Planet : MonoBehaviour
 
     public Rotator Anchor;
 
-    public GameObject water;
-    public GameObject Aura;
-    public Cloud Clouds;
+    GameObject water;
+    GameObject Aura;
+    Cloud Clouds;
 
     Material mat;
-    public Texture2D ColorMap;
-    Texture2D HeightMap;
+    Texture2D ColorMap;
     public bool save;
 
     #region UNITY
@@ -114,9 +113,10 @@ public class Planet : MonoBehaviour
     /// </summary>
     void HandleWater()
     {
+        water.SetActive(profile.UseWater);
+
         if (profile.UseWater)
         {
-            water.SetActive(true);
             water.transform.localScale = Vector3.one * profile.SeaLevel;
             Material WaterMaterial = 
                 (water.GetComponent<MeshRenderer>().material = profile.WaterMaterial);
@@ -135,10 +135,6 @@ public class Planet : MonoBehaviour
                     ColorMap);
                 WaterMaterial.SetColor("Color_F4940654", profile.SunFresnelColor);
             }
-        }
-        else
-        {
-            water.SetActive(false);
         }
     }
 

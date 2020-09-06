@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Renderer
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 776, y: 728}
+  position: {x: 808, y: 696}
   ports:
     keys:
     - Input
@@ -30,7 +30,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
-  DataPath: 
+  PictureName: Test
   south: 90
   north: -90
   west: -180
@@ -39,18 +39,18 @@ MonoBehaviour:
   tex: {fileID: 0}
   grad:
     serializedVersion: 2
-    key0: {r: 0, g: 0.017092142, b: 0.3962264, a: 1}
-    key1: {r: 0, g: 0.043339252, b: 1, a: 1}
-    key2: {r: 0, g: 0.8113208, b: 0.76489085, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 0, b: 0, a: 1}
+    key2: {r: 0, g: 1, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 1, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 30647
-    ctime2: 65535
-    ctime3: 0
+    ctime1: 21843
+    ctime2: 43666
+    ctime3: 65535
     ctime4: 0
     ctime5: 0
     ctime6: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 3
+    m_NumColorKeys: 4
     m_NumAlphaKeys: 2
   Space: 110
   TexturePosition:
@@ -73,7 +73,7 @@ MonoBehaviour:
     y: 225
     width: 180
     height: 90
-  RenderTime: 3514
+  RenderTime: 3575
 --- !u!114 &-8468873453714943303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Name: Invert
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 488, y: 472}
+  position: {x: -88, y: 936}
   ports:
     keys:
     - Output
@@ -477,7 +477,7 @@ MonoBehaviour:
   m_Name: Root Module Base
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 808, y: 232}
+  position: {x: 808, y: 1080}
   ports:
     keys:
     - Input
@@ -558,7 +558,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
-  DataPath: 
+  PictureName: Test
   south: 90
   north: -90
   west: -180
@@ -787,6 +787,9 @@ MonoBehaviour:
       - fieldName: SourceA
         node: {fileID: 3385877858421871903}
         reroutePoints: []
+      - fieldName: Input
+        node: {fileID: 4542248438855216468}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 2
@@ -843,7 +846,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
-  DataPath: 
+  PictureName: Test
   south: 90
   north: -90
   west: -180
@@ -852,17 +855,17 @@ MonoBehaviour:
   tex: {fileID: 0}
   grad:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 0, g: 0.8113208, b: 0.76489085, a: 1}
-    key2: {r: 0, g: 0.043339252, b: 1, a: 0}
-    key3: {r: 0, g: 0.017092142, b: 0.3962264, a: 0}
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 0, b: 0, a: 1}
+    key2: {r: 0, g: 1, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 1, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 6746
-    ctime2: 30647
+    ctime1: 21843
+    ctime2: 43666
     ctime3: 65535
     ctime4: 65535
     ctime5: 0
@@ -886,7 +889,7 @@ MonoBehaviour:
     y: 225
     width: 180
     height: 90
-  RenderTime: 1522
+  RenderTime: 1520
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -929,6 +932,7 @@ MonoBehaviour:
   - {fileID: -6725078303473289820}
   - {fileID: -8990107447807809670}
   - {fileID: 3385877858421871903}
+  - {fileID: 4542248438855216468}
   blackboard: {fileID: -1864291590952371761}
   CanRun: 0
   Root: {fileID: -4416004823624353886}
@@ -951,6 +955,7 @@ MonoBehaviour:
     - int
     - Min
     - Max
+    - Output
     values:
     - _fieldName: int
       _node: {fileID: 59669122444559115}
@@ -991,6 +996,15 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
+    - _fieldName: Output
+      _node: {fileID: 59669122444559115}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 1
   Min: -42
   Max: 42
 --- !u!114 &802257040385904398
@@ -1023,7 +1037,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
-  DataPath: 
+  PictureName: Test
   south: 90
   north: -90
   west: -180
@@ -1263,7 +1277,6 @@ MonoBehaviour:
     - Octaves
     - Seed
     - Quality
-    - GeneratorOutput
     values:
     - _fieldName: Output
       _node: {fileID: 2277885746728982099}
@@ -1335,15 +1348,6 @@ MonoBehaviour:
       connections: []
       _direction: 0
       _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: GeneratorOutput
-      _node: {fileID: 2277885746728982099}
-      _typeQualifiedName: LibNoise.ModuleBase, Assembly-CSharp, Version=1.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 0
       _typeConstraint: 2
       _dynamic: 0
   frequency: 1
@@ -1488,7 +1492,7 @@ MonoBehaviour:
   m_Name: Blend
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 552, y: 664}
+  position: {x: 216, y: 840}
   ports:
     keys:
     - Output
@@ -1544,6 +1548,77 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
+--- !u!114 &4542248438855216468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81750be1ae15a34695cafb03cb41a0d, type: 3}
+  m_Name: Planet Displayer
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1240, y: 648}
+  ports:
+    keys:
+    - Input
+    values:
+    - _fieldName: Input
+      _node: {fileID: 4542248438855216468}
+      _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Output
+        node: {fileID: -1755192395387620948}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  grad:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 0, b: 0, a: 1}
+    key2: {r: 0, g: 1, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 1, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 21843
+    ctime2: 43666
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 2
+  profile: {fileID: 11400000, guid: e6463099cfd4fb140b5f79cb1bcd3e53, type: 2}
+  asChanged: 0
+  Water: {fileID: 0}
+  WaterRend: {fileID: 0}
+  Planet: {fileID: 0}
+  size: 512
+  TexturePosition:
+    serializedVersion: 2
+    x: 14
+    y: 225
+    width: 180
+    height: 90
 --- !u!114 &5361491227388170919
 MonoBehaviour:
   m_ObjectHideFlags: 0

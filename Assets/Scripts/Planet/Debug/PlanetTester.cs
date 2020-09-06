@@ -22,24 +22,19 @@ public class PlanetTester : MonoBehaviour
 
     private void OnValidate()
     {
-        Initialize();
-        GenerateMesh();
+        //Initialize();
     }
 
     private void Update()
     {
         if (Regenerate)
         {
-            for (int i = 0; i < terrainFaces.Length; i++)
-            {
-                terrainFaces[i].ElevateMesh(tex, .5f, meanElevation);
-            }
-
+            Elevate();
             Regenerate = false;
         }
     }
 
-    void Initialize()
+    public void Initialize()
     {
         if (meshFilters == null || meshFilters.Length == 0)
         {
@@ -81,15 +76,26 @@ public class PlanetTester : MonoBehaviour
             }
             
             terrainFaces[i].InitTerrainFace(meshFilters[i].sharedMesh, resolution, directions[i]);
+            terrainFaces[i].ConstructMesh();
+        }
+
+        //GenerateMesh();
+    }
+
+    public void Elevate()
+    {
+        for (int i = 0; i < terrainFaces.Length; i++)
+        {
+            terrainFaces[i].ElevateMesh(tex, .5f, meanElevation, grad);
         }
     }
 
     void GenerateMesh()
     {
-        foreach (TerrainFace face in terrainFaces)
-        {
-            face.ConstructMesh();
-        }
+        //foreach (TerrainFace face in terrainFaces)
+        //{
+        //    face.ConstructMesh();
+        //}
 
         for (int i = 0; i < terrainFaces.Length; i++)
         {

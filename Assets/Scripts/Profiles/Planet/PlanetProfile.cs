@@ -44,6 +44,7 @@ public class PlanetProfile : ScriptableObject
 
     public Material material;
     public Material WaterMaterial;
+    public Material AuraMaterial;
 
     public Color SunFresnelColor;
 
