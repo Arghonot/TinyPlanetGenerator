@@ -1,3 +1,6 @@
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/Arghonot/TinyPlanetGenerator/master/LICENSE)
+
+
 # TinyPlanetGenerator
 
 ![](https://raw.githubusercontent.com/Arghonot/TinyPlanetGenerator/master/Assets/Textures/ReadmeTextures/resizedgolfplanet.png?raw=true)
