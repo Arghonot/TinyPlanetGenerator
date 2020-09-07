@@ -5,7 +5,7 @@
 
 ![](https://raw.githubusercontent.com/Arghonot/TinyPlanetGenerator/master/Assets/Textures/ReadmeTextures/resizedgolfplanet.png?raw=true)
 
-This is a WIP Spore like planet generator.
+This is a WIP (**and is yet still at an early stage of development**) Spore like planet generator.
 It is intended as a demo for a nodal procedural texture generator.
 
 This generator is based on a fork of ricardo mendez's [libnoise port](https://github.com/ricardojmendez/LibNoise.Unity) in unity and Siccity's [Xnode](https://github.com/Siccity/xNode) project to provide an editor interface as well as a node's behavior foundation.
@@ -24,7 +24,7 @@ To work with this repository you will need :
 * My [repository](https://github.com/Arghonot/My_CustomBehaviorTree/tree/XnodeEnhancement) about node's and graphs that comes on top of Xnode.
 * [XNode](https://github.com/Siccity/xNode).
 * ShaderGraph.
-* [Unity 2019.3.0f6](https://unity3d.com/unity/whats-new/2019.3.0).
+* [Unity 2020.1.3](https://unity3d.com/unity/whats-new/2020.1.3).
 
 ## Use
 Since this project is still a work in progress a lot of the code is subject to a deep refactoring in the upcoming commits.
@@ -42,14 +42,17 @@ It is a Xnode graph that contain the logic for the texture generation like the a
 
 ![](https://raw.githubusercontent.com/Arghonot/TinyPlanetGenerator/master/Assets/Textures/ReadmeTextures/Graph.PNG?raw=true)
 
+**Pull requests soon welcome** as the code base is still subject to changes.
+
+feel free to email me at lo.rivemale@gmail.com if you have any question or feedback ! 
 
 ## Next updates
 The next commits will contain : 
 * A completely independant repository for the planet generation tool
 * a character controller to move on the planet
-* improved shaders
-* a rich environment
-* more complex planets
+* improved shaders (shader graphs)
+* a rich environment (with asteroids, clouds and perhaps events happening in the solar system)
+* more complex planets (with use of perlin / voronoi / ... blend and other libnoise modules)
 
 ## Gallery
 ![](https://raw.githubusercontent.com/Arghonot/TinyPlanetGenerator/master/Assets/Textures/ReadmeTextures/MagmaVoronoi.PNG?raw=true "From an old version")
