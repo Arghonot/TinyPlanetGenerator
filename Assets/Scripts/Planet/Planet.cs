@@ -155,8 +155,7 @@ public class Planet : MonoBehaviour
                 (water.GetComponent<MeshRenderer>().material = profile.WaterMaterial);
 
             if (profile.WaterMaterial.shader.name.Contains("Water"))
-            {
-
+            { 
                 WaterMaterial.SetColor("Color_109BE5B1", profile.WaterColor);
                 WaterMaterial.SetColor("Color_B902B901", profile.RippleColor);
 

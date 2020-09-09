@@ -1,5 +1,6 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
+using System.Linq;
 
 using LibNoise;
 using LibNoise.Generator;
@@ -7,6 +8,7 @@ using System.Globalization;
 
 using TMPro;
 using System.Runtime.InteropServices;
+using System.Collections.Generic;
 
 public enum MapType
 {
@@ -28,6 +30,7 @@ public enum DisplayShape
 /// </summary>
 public class NoiseTool : MonoBehaviour
 {
+    public List<Gradient> grads;
     [DllImport("__Internal")]
     private static extern void ImageDownloader(string str, string fn);
 
@@ -46,7 +49,10 @@ public class NoiseTool : MonoBehaviour
 
     #region UI
 
+    public TMP_Dropdown Seamless;
+    public TMP_Dropdown RandomSeed;
     public TMP_Dropdown Type;
+    public TMP_Dropdown Grad;
     public TMP_Dropdown Form;
     public TMP_Dropdown Shape;
 
@@ -54,6 +60,10 @@ public class NoiseTool : MonoBehaviour
     public InputField Input_Lacunarity;
     public InputField Input_Persistence;
     public InputField Input_Displacement;
+    public InputField Input_OriginLn;
+    public InputField Input_OriginLat;
+    public InputField Input_WidthLn;
+    public InputField Input_WidthLat;
     public InputField Input_Octave;
     public InputField Input_Seed;
     public InputField Input_Width;
@@ -82,8 +92,8 @@ public class NoiseTool : MonoBehaviour
     public int Height = 256;
 
     #region Coords
-    float south = -90.0f;
-    float north = 90.0f;
+    float south = 90.0f;
+    float north = -90.0f;
 
     float west = -180.0f;
     float east = 180.0f;
@@ -130,6 +140,10 @@ public class NoiseTool : MonoBehaviour
         Input_Seed.text = seed.ToString();
         Input_Width.text = Width.ToString();
         Input_Height.text = Height.ToString();
+        Input_OriginLat.text = 0d.ToString();
+        Input_OriginLn.text = 0d.ToString();
+        Input_WidthLat.text = 10d.ToString();
+        Input_WidthLn.text = 10d.ToString();
     }
 
     public void UpdateType()
@@ -196,12 +210,27 @@ public class NoiseTool : MonoBehaviour
         {
             case 0: // Flat
                 currentMapForm = MapType.Planar;
+                Seamless.gameObject.SetActive(true);
+                Input_OriginLat.gameObject.SetActive(true);
+                Input_OriginLn.gameObject.SetActive(true);
+                Input_WidthLat.gameObject.SetActive(true);
+                Input_WidthLn.gameObject.SetActive(true);
                 break;
             case 1: // Spherical
                 currentMapForm = MapType.Spherical;
+                Seamless.gameObject.SetActive(true);
+                Input_OriginLat.gameObject.SetActive(false);
+                Input_OriginLn.gameObject.SetActive(false);
+                Input_WidthLat.gameObject.SetActive(false);
+                Input_WidthLn.gameObject.SetActive(false);
                 break;
             case 2: // Cylindric
                 currentMapForm = MapType.Cylindrical;
+                Seamless.gameObject.SetActive(true);
+                Input_OriginLat.gameObject.SetActive(false);
+                Input_OriginLn.gameObject.SetActive(false);
+                Input_WidthLat.gameObject.SetActive(false);
+                Input_WidthLn.gameObject.SetActive(false);
                 break;
         }
     }
@@ -293,20 +322,41 @@ public class NoiseTool : MonoBehaviour
 
     public void Generate()
     {
-        print("Generate");
+        bool seamless = Seamless.value == 1 ? true : false;
+        if (RandomSeed.value == 1)
+        {
+            seed = Random.Range(0, int.MaxValue - 1);
+            Input_Seed.text = seed.ToString();
+        }
 
         ModuleBase generator = GetModule(currentType);
-
         Noise2D map = new Noise2D(Width, Height, generator);
 
         switch (currentMapForm)
         {
             case MapType.Planar:
+                double ln = 0d;
+                double lat = 0d;
+                double lnWidth = 10d;
+                double latWidth = 10d;
+
+                if (Input_OriginLn.text != "" && Input_OriginLat.text != "")
+                {
+                    ln = double.Parse(Input_OriginLn.text.Replace('.', ','));
+                    lat = double.Parse(Input_OriginLat.text.Replace('.', ','));
+                }
+                if (Input_WidthLn.text != "" && Input_WidthLat.text != "")
+                {
+                    lnWidth = double.Parse(Input_WidthLn.text.Replace('.', ',').Replace("-", ""));
+                    latWidth = double.Parse(Input_WidthLat.text.Replace('.', ',').Replace("-", ""));
+                }
+
                 map.GeneratePlanar(
-                    south,
-                    north,
-                    west,
-                    east);
+                    ln,
+                    ln + lnWidth,
+                    lat,
+                    lat + latWidth,
+                    seamless);
                 break;
             case MapType.Spherical:
                 map.GenerateSpherical(
@@ -317,8 +367,8 @@ public class NoiseTool : MonoBehaviour
                 break;
             case MapType.Cylindrical:
                 map.GenerateCylindrical(
-                    south,
-                    north,
+                    -south,
+                    -north,
                     west,
                     east);
                 break;
@@ -326,7 +376,7 @@ public class NoiseTool : MonoBehaviour
                 break;
         }
 
-        tex = map.GetTexture();
+        tex = map.GetTexture(grads[Grad.value]);
         tex.Apply();
 
         CommonMaterial.SetTexture("_BaseMap", tex);
@@ -350,7 +400,7 @@ public class NoiseTool : MonoBehaviour
                     persistence,
                     octaves,
                     seed,
-                    QualityMode.Low);
+                    QualityMode.High);
 
                 break;
             case NoiseType.Billow:
@@ -360,7 +410,7 @@ public class NoiseTool : MonoBehaviour
                     persistence,
                     octaves,
                     seed,
-                    QualityMode.Low);
+                    QualityMode.High);
 
                 break;
             case NoiseType.RiggedMultifractal:
@@ -369,7 +419,7 @@ public class NoiseTool : MonoBehaviour
                     lacunarity,
                     octaves,
                     seed,
-                    QualityMode.Low);
+                    QualityMode.High);
 
                 break;
             case NoiseType.Voronoi:
@@ -387,7 +437,7 @@ public class NoiseTool : MonoBehaviour
                     persistence,
                     octaves,
                     seed,
-                    QualityMode.Low);
+                    QualityMode.High);
 
                 break;
         }

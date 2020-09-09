@@ -1,7 +1,7 @@
 ﻿using LibNoise;
 using UnityEngine;
 using XNode;
-using UnityEditor.SceneManagement;
+//using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -35,8 +35,8 @@ namespace NoiseGraph
         {
             DefaultMaterial = new Material(Shader.Find("Shader Graphs/DEBUGColor"));
             InitPlanet();
-            EditorSceneManager.sceneClosing += OnStartLoadingScene;
-            EditorSceneManager.sceneOpened += OnLoadedScene;
+            //EditorSceneManager.sceneClosing += OnStartLoadingScene;
+            //EditorSceneManager.sceneOpened += OnLoadedScene;
         }
 
         private void OnDestroy()
@@ -100,11 +100,11 @@ namespace NoiseGraph
             CleanPreview();
         }
 
-        void OnLoadedScene(UnityEngine.SceneManagement.Scene scene, UnityEditor.SceneManagement.OpenSceneMode mode)
-        {
-            Debug.Log("Scene Name " + SceneManager.GetActiveScene().name);
-            InitPlanet();
-        }
+        //void OnLoadedScene(UnityEngine.SceneManagement.Scene scene, UnityEditor.SceneManagement.OpenSceneMode mode)
+        //{
+        //    Debug.Log("Scene Name " + SceneManager.GetActiveScene().name);
+        //    InitPlanet();
+        //}
 
         void CleanPreview()
         {

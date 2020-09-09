@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Renderer
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 808, y: 696}
+  position: {x: 728, y: 168}
   ports:
     keys:
     - Input
@@ -39,22 +39,22 @@ MonoBehaviour:
   tex: {fileID: 0}
   grad:
     serializedVersion: 2
-    key0: {r: 0, g: 0, b: 0, a: 1}
-    key1: {r: 1, g: 0, b: 0, a: 1}
-    key2: {r: 0, g: 1, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 1, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
+    key0: {r: 0, g: 0.017092142, b: 0.3962264, a: 1}
+    key1: {r: 0, g: 0.043339252, b: 1, a: 1}
+    key2: {r: 0, g: 0.8113208, b: 0.76489085, a: 0}
+    key3: {r: 0.990566, g: 0.9127983, b: 0.2990388, a: 0}
+    key4: {r: 0, g: 0.4339623, b: 0.19775492, a: 0}
+    key5: {r: 0.6698113, g: 0.4053882, b: 0, a: 0}
+    key6: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 0}
+    key7: {r: 1, g: 1, b: 1, a: 0}
     ctime0: 0
-    ctime1: 21843
-    ctime2: 43666
-    ctime3: 65535
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
+    ctime1: 4433
+    ctime2: 21395
+    ctime3: 22359
+    ctime4: 26407
+    ctime5: 45104
+    ctime6: 56861
+    ctime7: 65535
     atime0: 0
     atime1: 65535
     atime2: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 4
+    m_NumColorKeys: 8
     m_NumAlphaKeys: 2
   Space: 110
   TexturePosition:
@@ -73,7 +73,7 @@ MonoBehaviour:
     y: 225
     width: 180
     height: 90
-  RenderTime: 3575
+  RenderTime: 1901
 --- !u!114 &-8468873453714943303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Name: Invert
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -88, y: 936}
+  position: {x: 136, y: 760}
   ports:
     keys:
     - Output
@@ -97,7 +97,13 @@ MonoBehaviour:
       _node: {fileID: -8468873453714943303}
       _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: Controller
+        node: {fileID: 3385877858421871903}
+        reroutePoints: []
+      - fieldName: Input
+        node: {fileID: 2807679376733768331}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 2
@@ -106,7 +112,10 @@ MonoBehaviour:
       _node: {fileID: -8468873453714943303}
       _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: Output
+        node: {fileID: -1684149590783249247}
+        reroutePoints: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 2
@@ -124,7 +133,7 @@ MonoBehaviour:
   m_Name: Black Board Variable
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -440, y: 264}
+  position: {x: -488, y: 328}
   ports:
     keys:
     - Output
@@ -258,6 +267,77 @@ MonoBehaviour:
   XAngle: 90
   YAngle: 0
   ZAngle: 0
+--- !u!114 &-6958955670509085221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81750be1ae15a34695cafb03cb41a0d, type: 3}
+  m_Name: Planet Displayer
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1080, y: 504}
+  ports:
+    keys:
+    - Input
+    values:
+    - _fieldName: Input
+      _node: {fileID: -6958955670509085221}
+      _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Output
+        node: {fileID: -1755192395387620948}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  grad:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 0, b: 0, a: 1}
+    key2: {r: 0, g: 1, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 1, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 21843
+    ctime2: 43666
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 2
+  profile: {fileID: 11400000, guid: 44e3478cfa317c14c8f67f79928274f6, type: 2}
+  asChanged: 0
+  Water: {fileID: 0}
+  WaterRend: {fileID: 0}
+  Planet: {fileID: 0}
+  size: 512
+  TexturePosition:
+    serializedVersion: 2
+    x: 14
+    y: 225
+    width: 180
+    height: 90
 --- !u!114 &-6725078303473289820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,7 +351,7 @@ MonoBehaviour:
   m_Name: Terrace
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 184, y: 344}
+  position: {x: 152, y: 344}
   ports:
     keys:
     - Output
@@ -286,8 +366,8 @@ MonoBehaviour:
       _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: Input
-        node: {fileID: -1755192395387620948}
+      - fieldName: SourceA
+        node: {fileID: 3385877858421871903}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -359,7 +439,7 @@ MonoBehaviour:
   m_Name: Billow
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -104, y: 152}
+  position: {x: -184, y: 216}
   ports:
     keys:
     - Output
@@ -477,7 +557,7 @@ MonoBehaviour:
   m_Name: Root Module Base
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 808, y: 1080}
+  position: {x: 728, y: 776}
   ports:
     keys:
     - Input
@@ -507,7 +587,7 @@ MonoBehaviour:
   m_Name: Black Board Variable
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -440, y: 440}
+  position: {x: -488, y: 504}
   ports:
     keys:
     - Output
@@ -615,7 +695,7 @@ MonoBehaviour:
   m_Name: Black Board Variable
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -440, y: 168}
+  position: {x: -488, y: 232}
   ports:
     keys:
     - Output
@@ -636,98 +716,6 @@ MonoBehaviour:
   VariableIndex: 1
   Name: lacunarity
   Blackboard: {fileID: -1864291590952371761}
---- !u!114 &-3855425208881591542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7801811489740e04684525ddf1ab61ef, type: 3}
-  m_Name: Curve
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 1016, y: 360}
-  ports:
-    keys:
-    - Output
-    - Input
-    - InputCurve
-    values:
-    - _fieldName: Output
-      _node: {fileID: -3855425208881591542}
-      _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 2
-      _dynamic: 1
-    - _fieldName: Input
-      _node: {fileID: -3855425208881591542}
-      _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: Output
-        node: {fileID: -1755192395387620948}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: InputCurve
-      _node: {fileID: -3855425208881591542}
-      _typeQualifiedName: UnityEngine.AnimationCurve, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-  InputCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: -1.0082703
-      value: -1.0050659
-      inSlope: 1.497095
-      outSlope: 1.497095
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: -0.30805147
-      value: 0.043228164
-      inSlope: 0.2610892
-      outSlope: 0.2610892
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.54044116
-    - serializedVersion: 3
-      time: 0.17231399
-      value: 0.1931696
-      inSlope: 0.0032853573
-      outSlope: 0.0032853573
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.4684177
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0.9748025
-      outSlope: 0.9748025
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &-3698358235135270797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -861,7 +849,7 @@ MonoBehaviour:
   m_Name: Turbulence
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 440, y: 344}
+  position: {x: 728, y: 648}
   ports:
     keys:
     - Output
@@ -876,11 +864,8 @@ MonoBehaviour:
       - fieldName: Input
         node: {fileID: -894870061300543087}
         reroutePoints: []
-      - fieldName: SourceA
-        node: {fileID: 3385877858421871903}
-        reroutePoints: []
       - fieldName: Input
-        node: {fileID: -3855425208881591542}
+        node: {fileID: -6958955670509085221}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -892,7 +877,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: Output
-        node: {fileID: -6725078303473289820}
+        node: {fileID: 3385877858421871903}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
@@ -908,6 +893,94 @@ MonoBehaviour:
       _typeConstraint: 2
       _dynamic: 0
   Power: 0.2
+--- !u!114 &-1684149590783249247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d9d32e8a71cd84990320d6d700a6c1, type: 3}
+  m_Name: Ridged Multifractal
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -200, y: 888}
+  ports:
+    keys:
+    - Output
+    - frequency
+    - lacunarity
+    - Octaves
+    - Seed
+    - Quality
+    values:
+    - _fieldName: Output
+      _node: {fileID: -1684149590783249247}
+      _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Input
+        node: {fileID: -8468873453714943303}
+        reroutePoints: []
+      - fieldName: Input
+        node: {fileID: 5012311802601578886}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 1
+    - _fieldName: frequency
+      _node: {fileID: -1684149590783249247}
+      _typeQualifiedName: System.Double, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: lacunarity
+      _node: {fileID: -1684149590783249247}
+      _typeQualifiedName: System.Double, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: Octaves
+      _node: {fileID: -1684149590783249247}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: Seed
+      _node: {fileID: -1684149590783249247}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: Quality
+      _node: {fileID: -1684149590783249247}
+      _typeQualifiedName: LibNoise.QualityMode, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  frequency: 2
+  lacunarity: 2
+  Octaves: 6
+  Seed: 42
+  Quality: 2
 --- !u!114 &-894870061300543087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -921,7 +994,7 @@ MonoBehaviour:
   m_Name: Renderer
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 808, y: 312}
+  position: {x: 1080, y: 120}
   ports:
     keys:
     - Input
@@ -947,22 +1020,22 @@ MonoBehaviour:
   tex: {fileID: 0}
   grad:
     serializedVersion: 2
-    key0: {r: 0, g: 0, b: 0, a: 1}
-    key1: {r: 1, g: 0, b: 0, a: 1}
-    key2: {r: 0, g: 1, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 1, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
+    key0: {r: 0, g: 0.017092142, b: 0.3962264, a: 1}
+    key1: {r: 0, g: 0.043339252, b: 1, a: 1}
+    key2: {r: 0, g: 0.8113208, b: 0.76489085, a: 0}
+    key3: {r: 0.990566, g: 0.9127983, b: 0.2990388, a: 0}
+    key4: {r: 0, g: 0.4339623, b: 0.19775492, a: 0}
+    key5: {r: 0.6698113, g: 0.4053882, b: 0, a: 0}
+    key6: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 0}
+    key7: {r: 1, g: 1, b: 1, a: 0}
     ctime0: 0
-    ctime1: 21843
-    ctime2: 43666
-    ctime3: 65535
-    ctime4: 65535
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
+    ctime1: 4433
+    ctime2: 21395
+    ctime3: 22359
+    ctime4: 26407
+    ctime5: 45104
+    ctime6: 56861
+    ctime7: 65535
     atime0: 0
     atime1: 65535
     atime2: 0
@@ -972,7 +1045,7 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 4
+    m_NumColorKeys: 8
     m_NumAlphaKeys: 2
   Space: 110
   TexturePosition:
@@ -981,7 +1054,7 @@ MonoBehaviour:
     y: 225
     width: 180
     height: 90
-  RenderTime: 1520
+  RenderTime: 1908
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1024,7 +1097,12 @@ MonoBehaviour:
   - {fileID: -6725078303473289820}
   - {fileID: -8990107447807809670}
   - {fileID: 3385877858421871903}
-  - {fileID: -3855425208881591542}
+  - {fileID: -1684149590783249247}
+  - {fileID: 5012311802601578886}
+  - {fileID: 2807679376733768331}
+  - {fileID: -6958955670509085221}
+  - {fileID: 6363666001633116623}
+  - {fileID: 3899962544649310026}
   blackboard: {fileID: -1864291590952371761}
   CanRun: 0
   Root: {fileID: -4416004823624353886}
@@ -1186,7 +1264,7 @@ MonoBehaviour:
   m_Name: Voronoi
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -136, y: 392}
+  position: {x: -184, y: 456}
   ports:
     keys:
     - Output
@@ -1266,7 +1344,7 @@ MonoBehaviour:
   m_Name: Black Board Variable
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -440, y: 72}
+  position: {x: -488, y: 136}
   ports:
     keys:
     - Output
@@ -1447,6 +1525,80 @@ MonoBehaviour:
   Octaves: 6
   Seed: 4
   Quality: 2
+--- !u!114 &2807679376733768331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec22ba376220304f958cf2432a84ba2, type: 3}
+  m_Name: Renderer
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 408, y: 808}
+  ports:
+    keys:
+    - Input
+    values:
+    - _fieldName: Input
+      _node: {fileID: 2807679376733768331}
+      _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Output
+        node: {fileID: -8468873453714943303}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  PictureName: Test
+  south: 90
+  north: -90
+  west: -180
+  east: 180
+  size: 512
+  tex: {fileID: 0}
+  grad:
+    serializedVersion: 2
+    key0: {r: 0, g: 0.08627451, b: 0.25882354, a: 1}
+    key1: {r: 0.003921569, g: 0.16862746, b: 0.26666668, a: 1}
+    key2: {r: 0.015686275, g: 0.2509804, b: 0.3137255, a: 0}
+    key3: {r: 0.14901961, g: 0.3254902, b: 0.3882353, a: 0}
+    key4: {r: 0.1882353, g: 0.41960785, b: 0.4627451, a: 0}
+    key5: {r: 0.30588236, g: 0.45882353, b: 0.49411765, a: 0}
+    key6: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 0}
+    key7: {r: 1, g: 1, b: 1, a: 0}
+    ctime0: 0
+    ctime1: 15613
+    ctime2: 27371
+    ctime3: 39707
+    ctime4: 48188
+    ctime5: 65535
+    ctime6: 56861
+    ctime7: 65535
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 1
+    m_NumColorKeys: 6
+    m_NumAlphaKeys: 2
+  Space: 110
+  TexturePosition:
+    serializedVersion: 2
+    x: 14
+    y: 225
+    width: 180
+    height: 90
+  RenderTime: 327
 --- !u!114 &2864143369999357270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1584,7 +1736,7 @@ MonoBehaviour:
   m_Name: Blend
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 216, y: 840}
+  position: {x: 408, y: 632}
   ports:
     keys:
     - Output
@@ -1603,6 +1755,9 @@ MonoBehaviour:
       - fieldName: Input
         node: {fileID: -4416004823624353886}
         reroutePoints: []
+      - fieldName: Input
+        node: {fileID: -1755192395387620948}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 2
@@ -1613,7 +1768,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: Output
-        node: {fileID: -1755192395387620948}
+        node: {fileID: -6725078303473289820}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
@@ -1635,11 +1790,184 @@ MonoBehaviour:
       _node: {fileID: 3385877858421871903}
       _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
         Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Output
+        node: {fileID: -8468873453714943303}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+--- !u!114 &3899962544649310026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26745787081e68d4ab2140ee1d2a09c9, type: 3}
+  m_Name: Perlin
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -152, y: -24}
+  ports:
+    keys:
+    - Output
+    - frequency
+    - lacunarity
+    - persistence
+    - Octaves
+    - Seed
+    - Quality
+    values:
+    - _fieldName: Output
+      _node: {fileID: 3899962544649310026}
+      _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Input
+        node: {fileID: 6363666001633116623}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 1
+    - _fieldName: frequency
+      _node: {fileID: 3899962544649310026}
+      _typeQualifiedName: System.Double, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
+    - _fieldName: lacunarity
+      _node: {fileID: 3899962544649310026}
+      _typeQualifiedName: System.Double, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: persistence
+      _node: {fileID: 3899962544649310026}
+      _typeQualifiedName: System.Double, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: Octaves
+      _node: {fileID: 3899962544649310026}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: Seed
+      _node: {fileID: 3899962544649310026}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: Quality
+      _node: {fileID: 3899962544649310026}
+      _typeQualifiedName: LibNoise.QualityMode, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  frequency: 2
+  lacunarity: 0.5
+  persistence: 0.3
+  Octaves: 6
+  Seed: 7
+  Quality: 2
+--- !u!114 &5012311802601578886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec22ba376220304f958cf2432a84ba2, type: 3}
+  m_Name: Renderer
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 136, y: 920}
+  ports:
+    keys:
+    - Input
+    values:
+    - _fieldName: Input
+      _node: {fileID: 5012311802601578886}
+      _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Output
+        node: {fileID: -1684149590783249247}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  PictureName: Test
+  south: 90
+  north: -90
+  west: -180
+  east: 180
+  size: 512
+  tex: {fileID: 0}
+  grad:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0.8113208, b: 0.76489085, a: 0}
+    key3: {r: 0.990566, g: 0.9127983, b: 0.2990388, a: 0}
+    key4: {r: 0, g: 0.4339623, b: 0.19775492, a: 0}
+    key5: {r: 0.6698113, g: 0.4053882, b: 0, a: 0}
+    key6: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 0}
+    key7: {r: 1, g: 1, b: 1, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 21395
+    ctime3: 22359
+    ctime4: 26407
+    ctime5: 45104
+    ctime6: 56861
+    ctime7: 65535
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  Space: 110
+  TexturePosition:
+    serializedVersion: 2
+    x: 14
+    y: 225
+    width: 180
+    height: 90
+  RenderTime: 324
 --- !u!114 &5361491227388170919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1830,7 +2158,7 @@ MonoBehaviour:
   m_Name: Black Board Variable
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -440, y: 360}
+  position: {x: -488, y: 424}
   ports:
     keys:
     - Output
@@ -1851,6 +2179,80 @@ MonoBehaviour:
   VariableIndex: 3
   Name: octaves
   Blackboard: {fileID: -1864291590952371761}
+--- !u!114 &6363666001633116623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec22ba376220304f958cf2432a84ba2, type: 3}
+  m_Name: Renderer
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 312, y: -88}
+  ports:
+    keys:
+    - Input
+    values:
+    - _fieldName: Input
+      _node: {fileID: 6363666001633116623}
+      _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Output
+        node: {fileID: 3899962544649310026}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  PictureName: randomPerlin
+  south: 90
+  north: -90
+  west: -180
+  east: 180
+  size: 1024
+  tex: {fileID: 0}
+  grad:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 1, g: 0, b: 0.041492462, a: 0}
+    key3: {r: 0.021359917, g: 0, b: 0.028301895, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 38550
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  Space: 110
+  TexturePosition:
+    serializedVersion: 2
+    x: 14
+    y: 225
+    width: 180
+    height: 90
+  RenderTime: 1088
 --- !u!114 &8152237465312598214
 MonoBehaviour:
   m_ObjectHideFlags: 0

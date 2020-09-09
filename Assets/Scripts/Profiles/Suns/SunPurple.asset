@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: SunPurple
   m_EditorClassIdentifier: 
   Name: 
-  TexturesSize: 256
+  TexturesSize: 60
   ColorGradient:
     serializedVersion: 2
-    key0: {r: 0, g: 0, b: 0, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 0, b: 0.909544, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -26,9 +26,9 @@ MonoBehaviour:
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
     ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
+    ctime2: 65535
+    ctime3: 65535
+    ctime4: 65535
     ctime5: 0
     ctime6: 0
     ctime7: 0
@@ -75,7 +75,7 @@ MonoBehaviour:
   ElevationMultiplier: 0
   BaseElevation: 1
   type: 0
-  graph: {fileID: 11400000, guid: 15dcdf8bb4ef9d141b84741eb10469a8, type: 2}
+  graph: {fileID: 11400000, guid: b955858b198dbac48b030262b15a9d03, type: 2}
   frequency: 1
   lacunarity: 2
   persistence: 0.5
@@ -84,6 +84,7 @@ MonoBehaviour:
   distance: 1
   material: {fileID: 2100000, guid: 369463bff25aaeb499f6c345ce75be30, type: 2}
   WaterMaterial: {fileID: 2100000, guid: 369463bff25aaeb499f6c345ce75be30, type: 2}
+  AuraMaterial: {fileID: 0}
   SunFresnelColor: {r: 0, g: 0, b: 0, a: 0}
   UseGround: 0
   UseWater: 1
