@@ -366,8 +366,9 @@ public class Planet : MonoBehaviour
         save = false;
 
         var bytes = _colorMap.EncodeToPNG();
-        System.IO.File.WriteAllBytes(
-            "C:/Users/loriv/OneDrive/Pictures/Tiny_planet_generator/GeneratedPlanet/planet.png", bytes);
+        //System.IO.File.WriteAllBytes(
+        //    "C:/Users/loriv/OneDrive/Pictures/Tiny_planet_generator/GeneratedPlanet/planet.png", bytes);
+        File.WriteAllBytes(Application.dataPath + "/Textures/TestMaps/PlanetRendered.png", bytes);
     }
 
     void CustomRegenerate()

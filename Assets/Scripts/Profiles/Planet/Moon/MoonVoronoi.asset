@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MoonVoronoi
   m_EditorClassIdentifier: 
   Name: 
-  TexturesSize: 160
+  TexturesSize: 1024
   ColorGradient:
     serializedVersion: 2
     key0: {r: 0, g: 0, b: 0, a: 1}
