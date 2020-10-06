@@ -2232,8 +2232,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2464,8 +2464,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4253,8 +4253,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6310,8 +6310,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6922,8 +6922,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8399,8 +8399,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -9190,8 +9190,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -11896,8 +11896,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -13603,21 +13603,21 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   - serializedVersion: 2
-    key0: {r: 0.1764706, g: 0.24313726, b: 0.5176471, a: 1}
-    key1: {r: 0.34901962, g: 0.44705883, b: 0.6901961, a: 1}
-    key2: {r: 1, g: 0.9098039, b: 0.7529412, a: 0}
-    key3: {r: 1, g: 0.91128063, b: 0.7529412, a: 0}
-    key4: {r: 0.2612756, g: 0.5471698, b: 0.23745106, a: 0}
-    key5: {r: 0.046991818, g: 0.31132078, b: 0.08003294, a: 0}
-    key6: {r: 0.48235294, g: 0.49019608, b: 0.41568628, a: 0}
+    key0: {r: 0.34901962, g: 0.44705883, b: 0.6901961, a: 1}
+    key1: {r: 0.1764706, g: 0.24313726, b: 0.5176471, a: 1}
+    key2: {r: 1, g: 0.91128063, b: 0.7529412, a: 0}
+    key3: {r: 0.2612756, g: 0.5471698, b: 0.23745106, a: 0}
+    key4: {r: 0.046991818, g: 0.31132078, b: 0.08003294, a: 0}
+    key5: {r: 0.48235294, g: 0.49019608, b: 0.41568628, a: 0}
+    key6: {r: 0.78039217, g: 0.79607844, b: 0.78431374, a: 0}
     key7: {r: 0.78039217, g: 0.79607844, b: 0.78431374, a: 0}
-    ctime0: 2313
-    ctime1: 2891
-    ctime2: 10987
-    ctime3: 20624
-    ctime4: 24287
-    ctime5: 49151
-    ctime6: 61102
+    ctime0: 19045
+    ctime1: 22123
+    ctime2: 30587
+    ctime3: 33280
+    ctime4: 49151
+    ctime5: 61102
+    ctime6: 65535
     ctime7: 65535
     atime0: 0
     atime1: 65535
@@ -13628,7 +13628,7 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 1
-    m_NumColorKeys: 8
+    m_NumColorKeys: 7
     m_NumAlphaKeys: 2
   - serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14544,8 +14544,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

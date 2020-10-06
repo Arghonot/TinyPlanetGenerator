@@ -33,7 +33,6 @@ public class PlanetProfile : ScriptableObject
 
     public NoiseGraph.LibnoiseGraph graph;
 
-
     // Noise relative
     public double frequency = 1d;
     public double lacunarity = 2d;
@@ -65,19 +64,34 @@ public class PlanetProfile : ScriptableObject
     public float AuraIntensity = 7.73f;
     public Color Aura = Color.blue;
 
+    // TODO work on some getter and setters to make it private later on
+    public Graph.SerializableBlackBoard sbb;
+
+    public SerializableModuleBase Run()
+    {
+        return graph.GetGenerator(GetArguments());
+    }
+
+    public void OnDragGraph()
+    {
+
+    }
+
     // TODO build GD only based on noise attr
-    public Graph.GenericDicionnary GetArguments()
+    Graph.GenericDicionnary GetArguments()
     {
         Graph.GenericDicionnary gd = new Graph.GenericDicionnary();
 
         foreach (var item in this.GetType().GetFields())
         {
             gd.Add(item.Name, item.GetValue(this));
-            //if (item.Name == "frequency") Debug.Log(item.Name + " " + (double)item.GetValue(this));
         }
 
-        //Debug.Log("there are : " + gd.Count.ToString() + " keys in the dictionnary");
-
         return gd;
+    }
+
+    private void Awake()
+    {
+        if (sbb == null) sbb = new Graph.SerializableBlackBoard();
     }
 }

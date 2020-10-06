@@ -267,77 +267,6 @@ MonoBehaviour:
   XAngle: 90
   YAngle: 0
   ZAngle: 0
---- !u!114 &-6958955670509085221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e81750be1ae15a34695cafb03cb41a0d, type: 3}
-  m_Name: Planet Displayer
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 1080, y: 504}
-  ports:
-    keys:
-    - Input
-    values:
-    - _fieldName: Input
-      _node: {fileID: -6958955670509085221}
-      _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: Output
-        node: {fileID: -1755192395387620948}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-  grad:
-    serializedVersion: 2
-    key0: {r: 0, g: 0, b: 0, a: 1}
-    key1: {r: 1, g: 0, b: 0, a: 1}
-    key2: {r: 0, g: 1, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 1, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 21843
-    ctime2: 43666
-    ctime3: 65535
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 4
-    m_NumAlphaKeys: 2
-  profile: {fileID: 11400000, guid: 44e3478cfa317c14c8f67f79928274f6, type: 2}
-  asChanged: 0
-  Water: {fileID: 0}
-  WaterRend: {fileID: 0}
-  Planet: {fileID: 0}
-  size: 512
-  TexturePosition:
-    serializedVersion: 2
-    x: 14
-    y: 225
-    width: 180
-    height: 90
 --- !u!114 &-6725078303473289820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -865,7 +794,7 @@ MonoBehaviour:
         node: {fileID: -894870061300543087}
         reroutePoints: []
       - fieldName: Input
-        node: {fileID: -6958955670509085221}
+        node: {fileID: 420292116895704608}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -1100,9 +1029,9 @@ MonoBehaviour:
   - {fileID: -1684149590783249247}
   - {fileID: 5012311802601578886}
   - {fileID: 2807679376733768331}
-  - {fileID: -6958955670509085221}
   - {fileID: 6363666001633116623}
   - {fileID: 3899962544649310026}
+  - {fileID: 420292116895704608}
   blackboard: {fileID: -1864291590952371761}
   CanRun: 0
   Root: {fileID: -4416004823624353886}
@@ -1177,6 +1106,77 @@ MonoBehaviour:
       _dynamic: 1
   Min: -42
   Max: 42
+--- !u!114 &420292116895704608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81750be1ae15a34695cafb03cb41a0d, type: 3}
+  m_Name: Planet Renderer
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1183.3472, y: 583.6397}
+  ports:
+    keys:
+    - Input
+    values:
+    - _fieldName: Input
+      _node: {fileID: 420292116895704608}
+      _typeQualifiedName: SerializableModuleBase, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Output
+        node: {fileID: -1755192395387620948}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  grad:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  profile: {fileID: 0}
+  asChanged: 0
+  Water: {fileID: 0}
+  WaterRend: {fileID: 0}
+  Planet: {fileID: 0}
+  size: 512
+  TexturePosition:
+    serializedVersion: 2
+    x: 14
+    y: 225
+    width: 180
+    height: 90
 --- !u!114 &802257040385904398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2218,22 +2218,22 @@ MonoBehaviour:
   tex: {fileID: 0}
   grad:
     serializedVersion: 2
-    key0: {r: 0, g: 0, b: 0, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 1, g: 0, b: 0.041492462, a: 0}
-    key3: {r: 0.021359917, g: 0, b: 0.028301895, a: 0}
+    key0: {r: 0, g: 0.017092142, b: 0.3962264, a: 1}
+    key1: {r: 0, g: 0.043339252, b: 1, a: 1}
+    key2: {r: 0, g: 0.8113208, b: 0.76489085, a: 0}
+    key3: {r: 1, g: 0, b: 0.041492462, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0.046991818, g: 0.31132078, b: 0.08003294, a: 0}
+    key6: {r: 0.48235294, g: 0.49019608, b: 0.41568628, a: 0}
+    key7: {r: 0.78039217, g: 0.79607844, b: 0.78431374, a: 0}
     ctime0: 0
-    ctime1: 65535
-    ctime2: 38550
-    ctime3: 65535
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
+    ctime1: 30647
+    ctime2: 65535
+    ctime3: 17155
+    ctime4: 65535
+    ctime5: 49151
+    ctime6: 61102
+    ctime7: 65535
     atime0: 0
     atime1: 65535
     atime2: 0
@@ -2243,7 +2243,7 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 2
+    m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   Space: 110
   TexturePosition:
@@ -2252,7 +2252,7 @@ MonoBehaviour:
     y: 225
     width: 180
     height: 90
-  RenderTime: 1088
+  RenderTime: 1013
 --- !u!114 &8152237465312598214
 MonoBehaviour:
   m_ObjectHideFlags: 0

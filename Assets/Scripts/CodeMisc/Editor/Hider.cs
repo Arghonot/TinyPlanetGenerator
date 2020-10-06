@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-
 /// <summary>
 /// This class is a tool that helps delete objects that are hidden
 /// </summary>

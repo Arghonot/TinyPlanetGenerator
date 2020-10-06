@@ -48,7 +48,7 @@ public class CustomPerlinGenerator : Singleton<CustomPerlinGenerator>
         Noise2D noise = new Noise2D(
             mapSize,
             mapSize / 2,
-            profile.graph.GetGenerator(profile.GetArguments()));
+            profile.Run());
 
         noise.GenerateSpherical(
             south,

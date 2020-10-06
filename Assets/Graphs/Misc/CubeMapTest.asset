@@ -237,7 +237,7 @@ MonoBehaviour:
     y: 130
     width: 180
     height: 90
-  RenderTime: 1062
+  RenderTime: 512
 --- !u!114 &-8686562967835764237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,6 +543,7 @@ MonoBehaviour:
     - int
     - Min
     - Max
+    - Output
     values:
     - _fieldName: int
       _node: {fileID: -7433417613049996455}
@@ -586,6 +587,15 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
+    - _fieldName: Output
+      _node: {fileID: -7433417613049996455}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 1
   Min: 0
   Max: 42
 --- !u!114 &-7379705838389426922
@@ -641,7 +651,6 @@ MonoBehaviour:
     - Octaves
     - Seed
     - Quality
-    - GeneratorOutput
     - Output
     values:
     - _fieldName: 
@@ -705,15 +714,6 @@ MonoBehaviour:
       connections: []
       _direction: 0
       _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: GeneratorOutput
-      _node: {fileID: -6396021537462044409}
-      _typeQualifiedName: LibNoise.ModuleBase, Assembly-CSharp, Version=1.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 0
       _typeConstraint: 2
       _dynamic: 0
     - _fieldName: Output
