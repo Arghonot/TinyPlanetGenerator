@@ -141,7 +141,7 @@ MonoBehaviour:
     y: 225
     width: 180
     height: 90
-  RenderTime: 442
+  RenderTime: 279
 --- !u!114 &-8531079311839307232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -660,7 +660,7 @@ MonoBehaviour:
   persistence: 0.5
   Octaves: 6
   Seed: 1
-  Quality: 0
+  Quality: 2
 --- !u!114 &1178380322560031920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -811,7 +811,7 @@ MonoBehaviour:
     y: 225
     width: 180
     height: 90
-  RenderTime: 496
+  RenderTime: 251
 --- !u!114 &2464271249403640630
 MonoBehaviour:
   m_ObjectHideFlags: 0

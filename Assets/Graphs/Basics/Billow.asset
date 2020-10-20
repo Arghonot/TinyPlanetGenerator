@@ -73,7 +73,7 @@ MonoBehaviour:
     y: 225
     width: 180
     height: 90
-  RenderTime: 457
+  RenderTime: 272
 --- !u!114 &-4003560954165868777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,6 +218,7 @@ MonoBehaviour:
     - int
     - Min
     - Max
+    - Output
     values:
     - _fieldName: int
       _node: {fileID: 527407868874515414}
@@ -249,6 +250,15 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
+    - _fieldName: Output
+      _node: {fileID: 527407868874515414}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 1
   Min: 0
   Max: 2147483640
 --- !u!114 &1696917408789307585
